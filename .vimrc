@@ -12,8 +12,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'haya14busa/incsearch.vim'
 Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
 Plug 'vimwiki/vimwiki'
+Plug 'itchyny/calendar.vim'
 call plug#end()
 
 " Colorscheme
