@@ -18,7 +18,21 @@ echo "alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'" >> $HOME/.
 
 At this point it's worth to mention that **I've put alias to .bashrc-personal file because this is proper place to keep personal bash configuration in Arcolinux**.
 
+Next I've created repository in [GitHub](https://github.com) and added it as remote reference to the bare repo.
+
+```bash
+config remote add origin https://github.com/Norbiox/dotfiles.git
+config push --set-upstream origin dev
+```
+
 ## How to use this repo on machine with freshly installed Arcolinux
+
+### Setup GitHub CLI
+
+```bash
+sudo pacman -S github-cli
+gh auth login
+```
 
 ### Clone this repo as bare repo to get all dotfiles
 
