@@ -18,6 +18,9 @@ echo "Merge xrdb..."
 xrdb -merge ~/.Xresources
 
 echo "Install various packages..."
-sudo pacman -S zoxide
+sudo pacman -S \
+  ranger \
+  w3m \
+  zoxide
 
 echo "Done"
