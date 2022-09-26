@@ -17,4 +17,7 @@ sudo pacman -S gvim
 echo "Merge xrdb..."
 xrdb -merge ~/.Xresources
 
+echo "Install various packages..."
+sudo pacman -S zoxide
+
 echo "Done"
