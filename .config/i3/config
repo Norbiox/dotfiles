@@ -54,67 +54,21 @@ set_from_resource $color15    color15
 set $font "xft:Victor Mono Bold 16px"
 font $font
 
-################# Single and Dual screen
+################ Screen layout and workspaces   
 
-# current displays
-exec --no-startup-id xrandr --output DP0 --right-of HDMI-0 --auto
+exec --no-startup-id .screenlayout/home.sh
+exec --no-startup-id nitrogen --restore
 
-# setting variables for later use
-# use xrandr and/or arandr to know the names of your monitors
-# use this line to tell which monitor is on the right
-# xrandr --output DVI-I-2 --right-of DVI-I-1 --auto
-# exec --no-startup-id xrandr --output LVDS1 --mode 1366x768 --output DP3 --mode 1920x1080 --right-of LVDS1
-# exec --no-startup-id xrandr --output DVI-I-0 --right-of HDMI-0 --auto
-# exec --no-startup-id xrandr --output DVI-1 --right-of DVI-0 --auto
-# exec --no-startup-id xrandr --output DVI-D-1 --right-of DVI-I-1 --auto
-# exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
+bindsym $mod+Ctrl+s mode "$mode_screen_layout"
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-# using names instead of numbers for the workspaces
-# set $ws1 "1: Terminal"
-# set $ws2 "2: Browser"
-# set $ws3 "3: Mail"
-# set $ws4 "4: File Manager"
-
-# switch to workspace
-#bindsym $mod+1 workspace $ws1
-#bindsym $mod+2 workspace $ws2
-#bindsym $mod+3 workspace $ws3
-#bindsym $mod+4 workspace $ws4
-
-# current setup
-
-set $firstMonitor HDMI-1
-set $secondMonitor HDMI-2
-
-# Other Examples
-
-#set $firstMonitor DP3
-#set $secondMonitor LVDS1
-
-#set $firstMonitor DVI-I-0
-#set $secondMonitor HDMI-0
-
-#set $firstMonitor DVI-0
-#set $secondMonitor DVI-1
-
-#set $firstMonitor DVI-I-1
-#set $secondMonitor DVI-D-1
-
-#set $firstMonitor HDMI-1
-#set $secondMonitor HDMI-2
-
-workspace 1 output $firstMonitor
-workspace 2 output $firstMonitor
-workspace 3 output $firstMonitor
-workspace 4 output $firstMonitor
-workspace 5 output $firstMonitor
-workspace 6 output $secondMonitor
-workspace 7 output $secondMonitor
-workspace 8 output $secondMonitor
-workspace 9 output $secondMonitor
-workspace 10 output $secondMonitor
+set $mode_screen_layout (1) single, (2) home
+mode "$mode_screen_layout" {
+    bindsym 1 exec --no-startup-id .screenlayout/single.sh, mode "default"
+    bindsym 2 exec --no-startup-id .screenlayout/home.sh, mode "default"
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -139,6 +93,13 @@ bindsym $mod+Shift+7 move container to workspace 7; workspace 7
 bindsym $mod+Shift+8 move container to workspace 8; workspace 8
 bindsym $mod+Shift+9 move container to workspace 9; workspace 9
 bindsym $mod+Shift+0 move container to workspace 10; workspace 10
+
+# move workspace to other screen
+bindsym $mod+Ctrl+Shift+h   move workspace to output left
+bindsym $mod+Ctrl+Shift+j   move workspace to output down
+bindsym $mod+Ctrl+Shift+k   move workspace to output up
+bindsym $mod+Ctrl+Shift+l   move workspace to output right
+
 
 ################# menu's in arcolinux
 
