@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Fix time and date..."
+sudo timedatectl set-ntp true
+
 echo "Merge xrdb..."
 xrdb -merge ~/.Xresources
 

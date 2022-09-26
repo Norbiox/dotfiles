@@ -321,7 +321,10 @@ exec_always --no-startup-id numlockx on
 exec --no-startup-id volumeicon
 
 # clipman
- exec --no-startup-id xfce4-clipman
+exec --no-startup-id xfce4-clipman
+
+# redshift
+exec --no-startup-id redshift-gtk
 
 ################# system applications       
 
