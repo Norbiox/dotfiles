@@ -28,7 +28,7 @@ cdls() {
     builtin cd "$@" && ls
 }
 alias cd..='cd ..'
-alias cp='z'
+alias cd='z'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
