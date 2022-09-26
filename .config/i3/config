@@ -18,15 +18,16 @@
 # Key to rule them all : Super(Windows) or Alt key - see definition above
 # set Super key
 set $mod Mod4
+set $mod1 Mod1
 
 ################# Define the movements keys - variables
 
 # This is setup for qwerty
 # set $right to m if using azerty keyboard
-set $up l
-set $down k
-set $left j
-set $right semicolon 
+set $up k
+set $down j
+set $left h
+set $right l
 
 ################# Single and Dual screen
 
@@ -224,10 +225,10 @@ for_window [urgent=latest] focus
 default_orientation horizontal
 
 # split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 # Super + F in arcolinux is execute thunar
