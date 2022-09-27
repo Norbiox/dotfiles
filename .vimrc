@@ -1,10 +1,11 @@
-" Plugins
+""" Install plugins manager
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+""" Install plugins
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
@@ -15,12 +16,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'haya14busa/incsearch.vim'
 Plug 'preservim/nerdtree'
-Plug 'preservim/nerdcommenter'
 Plug 'vimwiki/vimwiki'
 Plug 'itchyny/calendar.vim'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
-" Colorscheme
+""" Colorscheme
 if exists('+termguicolors')
   let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
@@ -39,7 +40,7 @@ let g:onedark_termcolors=16
 let g:onedark_terminal_italics=1
 let g:onedark_hide_endofbuffer=1
 
-" Common settings
+""" Common settings
 set encoding=UTF-8
 set expandtab
 set relativenumber
@@ -58,7 +59,7 @@ set undolevels=1000
 set shiftwidth=2
 set tabstop=2
 
-" Python
+""" Python
 au BufNewFile,BufRead *.py
     \ set expandtab       |" replace tabs with spaces
     \ set autoindent      |" copy indent when starting a new line
@@ -66,16 +67,18 @@ au BufNewFile,BufRead *.py
     \ set softtabstop=4
     \ set shiftwidth=4
 
-" Markdown
+""" Markdown
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
-" Plugin settings
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
+""" NERdTree settings
+let NERDTreeQuitOnOpen = 1
+let NERDTreeShowHidden = 1
+
+""" fzf settings
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 let g:fzf_files_options = '--preview "(cat {})"'
 
-" Keymaps
+""" Keymaps
 map <C-p> :Files<CR>
 map <C-n> :NERDTreeToggle<CR>
 inoremap jk <Esc>
@@ -86,11 +89,11 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 nnoremap <space> za
 
-" Vimwiki
+""" Vimwiki
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'custom'
 
-" Others
+""" Others
 let @d = ":put =strftime('%d.%m.%Y')"
 
 set exrc
