@@ -9,6 +9,7 @@ xrdb -merge ~/.Xresources
 echo "Install various packages..."
 sudo pacman -Sy \
   blueman \
+  btop \
   github-cli \
   gvim \
   ipython \
