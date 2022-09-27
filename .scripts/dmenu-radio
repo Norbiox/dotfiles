@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if ! [ -f "$HOME/.dmenurc" ]; then
+	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
+fi
+. $HOME/.dmenurc
+dmenu_cmd="dmenu $DMENU_OPTIONS"
+
+declare -a options=(
+"Turn Off"
+"Radio Pielgrzym - pieśni - http://shoutcast.com.pl:9444/"
+"Radio Pielgrzym - kazania i reportaże - http://shoutcast.com.pl:9448/"
+"Radio Pielgrzym - kazania - http://shoutcast.com.pl:9450/"
+"CodeRadio - https://coderadio-relay-nyc.freecodecamp.org/radio/8010/radio.mp3"
+"HPR Gospel Bluegrass - https://us2.maindigitalstream.com/ssl/7739"
+"quit"
+)
+
+chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Radio:")
+
+if [[ "$chosen" == "quit" ]]; then
+        echo "Program terminated" && exit 1
+
+elif [[ "$chosen" == "Turn Off" ]]; then
+        echo "Turning radio down..."
+        pkill mplayer;
+
+elif [ "$chosen" ]; then
+        radioname=$(printf '%s\n' "${chosen}" | awk '{print $1}')
+        radiourl=$(printf '%s\n' "${chosen}" | awk '{print $NF}')
+        echo "Turning radio $radioname..."
+        pkill mplayer;
+        mplayer -nocache -afm ffmpeg $radiourl;
+
+else
+        echo "Program terminated" && exit 1
+fi

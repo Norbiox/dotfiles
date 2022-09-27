@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if ! [ -f "$HOME/.dmenurc" ]; then
+	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
+fi
+. $HOME/.dmenurc
+dmenu_cmd="dmenu $DMENU_OPTIONS"
+
+declare -a options=(
+"alacritty - $HOME/.config/alacritty/alacritty.yml"
+"i3 - $HOME/.config/i3/config"
+"i3blocks - $HOME/.config/i3blocks/config"
+"dmenu - $HOME/.dmenurc"
+"quit"
+)
+
+chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Open config")
+
+if [[ "$chosen" == "quit" ]]; then
+        echo "Program terminated" && exit 1
+
+elif [ "$chosen" ]; then
+        filename=$(printf '%s\n' "${chosen}" | awk '{print $NF}')
+        $TERM -e vim $filename;
+
+else
+        echo "Program terminated" && exit 1
+fi

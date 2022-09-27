@@ -3,7 +3,12 @@
 
 export EDITOR='vim'
 export VISUAL='vim'
+export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
 
+#---Add my scripts to PATH---#
+if [ -d "$HOME/.scripts" ] ;
+  then PATH="$HOME/.scripts:$PATH"
+fi
 
 #---History options---#
 export HISTSIZE=10000

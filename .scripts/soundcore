@@ -1,0 +1,51 @@
+#!/bin/bash
+
+mac_address=`bluetoothctl paired-devices | grep "Soundcore" | cut -f2 -d" "`
+card="bluez_card.AC_12_2F_D2_1B_84"
+input="bluez_input.AC_12_2F_D2_1B_84.headset-head-unit"
+
+if [ -z $mac_address ] ; then
+    echo "No Soundcore device paired";
+    exit 1
+fi
+
+connect() {
+    bluetoothctl connect $mac_address;
+}
+
+disconnect() {
+    bluetoothctl disconnect $mac_address;
+}
+
+reconnect() {
+    bluetoothctl disconnect $mac_address && bluetoothctl connect $mac_address;
+}
+
+set_profile_a2dp_ldac() {
+    pactl set-card-profile $card a2dp-sink-ldac;
+    pactl set-default-source effect_output.rnnoise;
+}
+
+set_profile_hhu_msbc() {
+    pactl set-card-profile $card headset-head-unit-msbc;
+    pactl set-default-source $input;
+    pactl set-default-source effect_output.rnnoise;
+}
+
+help() {
+    echo "Possible options: connect (c), disconnect (d), reconnect (r), a2dp-ldac (ldac), hhu-msbc (msbc)"
+}
+
+case "$1" in
+    "c") connect;;
+    "connect") connect;;
+    "d") disconnect;;
+    "disconnect") disconnect;;
+    "r") reconnect;;
+    "reconnect") reconnect;;
+    "ldac") set_profile_a2dp_ldac;;
+    "a2dp-ldac") set_profile_a2dp_ldac;;
+    "msbc") set_profile_hhu_msbc;;
+    "hhu-msbc") set_profile_hhu_msbc;;
+    "--help") help;;
+esac

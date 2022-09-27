@@ -1,0 +1,16 @@
+#!/usr/bin/python
+import i3
+import os
+
+EXTRA_WORKSPACE = 999
+
+def get_current_workspace():
+    for ws in i3.get_workspaces():
+        if ws['focused']:
+            return int(ws['num'])
+
+
+if __name__ == "__main__":
+    current_workspace = get_current_workspace()
+    if current_workspace == EXTRA_WORKSPACE:
+        previous_workspace = os.environ.get('PREV_WORKSPACE')

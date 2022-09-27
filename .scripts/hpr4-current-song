@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+import argparse
+import html
+import re
+import requests
+import subprocess
+import sys
+
+URL = "https://www.hpr.org/nowplaying/hpr4/hpr4playingnow.html"
+HEADERS = {"User-Agent": "Mozilla/5.0 (Android; Tablet; rv:19.0) Gecko/19.0 Firefox/19.0"}
+FILE = ".hpr4_current_song"
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Fetch or read current song played in HPR4")
+    parser.add_argument("-r", "--read-from-file", action="store_true", help=f"read song from {FILE}")
+    parser.add_argument("-n", "--notify", action="store_true", default=True, help=f"display notification with current song")
+    args = parser.parse_args()
+
+    if args.read_from_file:
+        with open(FILE) as f:
+            print(f.read())
+    else:
+        response = requests.get(URL, headers=HEADERS)
+        content = html.unescape(response.content.decode('utf-8'))
+
+        author, title = re.findall("<b>(.*?)</b>", content, re.DOTALL)
+        text = ' - '.join([author, title])
+
+        print(text)
+
+        with open(".hpr4_current_song", "w+") as f:
+            f.write(text)
+
+    if args.notify:
+        subprocess.run(["notify-send", "-t", "20000", title, author])

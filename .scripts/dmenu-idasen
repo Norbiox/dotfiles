@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if ! [ -f "$HOME/.dmenurc" ]; then
+	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
+fi
+. $HOME/.dmenurc
+dmenu_cmd="dmenu $DMENU_OPTIONS"
+
+declare -a options=()
+
+while read line; do
+        options+=("${line}m");
+done < <(tail -n +3 ~/.config/idasen/idasen.yaml)
+
+chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Pick Idasen position:")
+
+if [ "$chosen" ]; then
+        position_name=$(printf '%s\n' "${chosen}" | sed s/://g | awk '{print $1}')
+        echo "Setting Idasen desk to position: $position_name..."
+        idasen $position_name
+else
+        echo "Program terminated" && exit 1
+fi
