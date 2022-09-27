@@ -21,6 +21,10 @@ sudo pacman -Sy \
   wacom-settings-git \
   zoxide
 
+echo "Install various packages from AUR..."
+yay -S \
+  hstr
+
 echo "Setup git..."
 git config --global user.name "Norbiox"
 git config --global user.email "norbertchmiel.it@gmail.com"
