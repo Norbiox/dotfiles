@@ -13,6 +13,7 @@ sudo pacman -Sy \
   gvim \
   ipython \
   lastpass \
+  lastpass-cli \
   mplayer \
   nodejs \
   npm \
