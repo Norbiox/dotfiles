@@ -26,6 +26,7 @@ sudo pacman -Sy \
   translate-shell \
   w3m \
   wacom-settings-git \
+  xclip \
   zoxide
 
 echo "Install various packages from AUR..."
