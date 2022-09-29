@@ -487,6 +487,7 @@ for_window [class="Xfce4-taskmanager"] floating enable
 # for_window [instance="gimp"] floating disable
 for_window [instance="script-fu"] border normal
 for_window [instance="variety"] floating disable
+for_window [instance="pavucontrol"] floating enable
 
 for_window [title="Copying"] floating enable
 for_window [title="Deleting"] floating enable
