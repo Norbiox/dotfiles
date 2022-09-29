@@ -2,10 +2,10 @@
 # Setup Wacom default stylus screen and pad buttons
 
 screen=`xrandr | grep -m1 " connected" | awk '{ print $1 } '`
-stylus_id=`xinput | grep "Wacom Intuos S Pen Pen" | awk '{ print $7 }' | sed 's/id=//g'`
+stylus_id=`xinput | grep "Wacom Intuos S Pen" | awk '{ print $8 }' | sed 's/id=//g'` 
 xinput map-to-output $stylus_id $screen
 
-pad_id=`xinput | grep "Wacom Intuos S Pad" | awk '{ print $7 }' | sed 's/id=//g'`
+pad_id=`xinput | grep "Wacom Intuos S Pad" | awk '{ print $8 }' | sed 's/id=//g'`
 xsetwacom set $pad_id Button 1 "key +ctrl z -ctrl"
 xsetwacom set $pad_id Button 2 "key +ctrl x -ctrl"
 xsetwacom set $pad_id Button 3 "key +ctrl c -ctrl"
