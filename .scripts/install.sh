@@ -24,6 +24,7 @@ sudo pacman -Sy \
   ranger \
   sysstat \
   translate-shell \
+  visual-studio-code-bin \
   w3m \
   wacom-settings-git \
   xclip \
@@ -65,7 +66,7 @@ git config --global core.editor "vim"
 gh auth login
 
 echo "Install python packages..."
-pip install idasen
+pip install black idasen
 
 echo "Setup printing..."
 sudo systemctl enable cups.service
