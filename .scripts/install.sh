@@ -27,6 +27,7 @@ sudo pacman -Sy \
   w3m \
   wacom-settings-git \
   xclip \
+  xss-lock \
   zoxide
 
 echo "Install various packages from AUR..."
