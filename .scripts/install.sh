@@ -49,7 +49,8 @@ sudo systemctl start containerd.service
 
 echo "Install various packages from AUR..."
 yay -S \
-  hstr
+  hstr \
+  mongodb-compass
 
 echo "Install additional fonts..."
 if [ ! -d "/usr/local/share/fonts" ]; then
