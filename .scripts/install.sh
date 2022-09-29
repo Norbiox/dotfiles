@@ -8,6 +8,7 @@ xrdb -merge ~/.Xresources
 
 echo "Install various packages..."
 sudo pacman -Sy \
+  acpi \
   blueman \
   btop \
   github-cli \
@@ -21,6 +22,7 @@ sudo pacman -Sy \
   python-pip \
   python-virtualenv \
   ranger \
+  sysstat \
   translate-shell \
   w3m \
   wacom-settings-git \
