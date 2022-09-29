@@ -35,6 +35,17 @@ sudo pacman -Sy power-profiles-deamon
 sudo systemctl enable power-profiles-daemon.service
 sudo systemctl start power-profiles-daemon.service
 
+echo "Install docker..."
+sudo pacman -Sy docker docker-compose
+if [ -n $(getent group docker) ]; then
+  sudo groupadd docker 
+fi
+sudo usermod -aG docker $USER
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo systemctl enable containerd.service
+sudo systemctl start containerd.service
+
 echo "Install various packages from AUR..."
 yay -S \
   hstr
@@ -60,4 +71,4 @@ echo "Setup printing..."
 sudo systemctl enable cups.service
 sudo systemctl start cups.service
 
-echo "Done"
+echo "Installation done. Please reboot."
