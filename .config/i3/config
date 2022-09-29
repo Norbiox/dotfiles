@@ -93,6 +93,8 @@ bindsym $mod1+Shift+h           exec --no-startup-id dmenu-soundcore
 # Wacom stylus
 bindsym $mod1+Shift+w           exec --no-startup-id dmenu-wacom
 
+# Power profiles
+bindsym $mod1+Shift+p           exec --no-startup-id dmenu-powerprofile
 
 ################# how to exit, logoff, suspend, ...
 

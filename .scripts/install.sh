@@ -30,6 +30,11 @@ sudo pacman -Sy \
   xss-lock \
   zoxide
 
+echo "Install power-profiles-daemon..."
+sudo pacman -Sy power-profiles-deamon
+sudo systemctl enable power-profiles-daemon.service
+sudo systemctl start power-profiles-daemon.service
+
 echo "Install various packages from AUR..."
 yay -S \
   hstr
