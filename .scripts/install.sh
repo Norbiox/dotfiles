@@ -47,4 +47,8 @@ gh auth login
 echo "Install python packages..."
 pip install idasen
 
+echo "Setup printing..."
+sudo systemctl enable cups.service
+sudo systemctl start cups.service
+
 echo "Done"
