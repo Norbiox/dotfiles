@@ -17,12 +17,14 @@ sudo pacman -Sy \
   lastpass \
   lastpass-cli \
   mplayer \
+  nmap \
   nodejs \
   npm \
   python-pip \
   python-virtualenv \
   ranger \
   sysstat \
+  tldr \
   translate-shell \
   visual-studio-code-bin \
   w3m \
@@ -51,6 +53,7 @@ echo "Install various packages from AUR..."
 yay -S \
   hstr \
   mongodb-compass
+  mongodb-tools
 
 echo "Install additional fonts..."
 if [ ! -d "/usr/local/share/fonts" ]; then
