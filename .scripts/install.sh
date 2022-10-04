@@ -9,6 +9,7 @@ xrdb -merge ~/.Xresources
 echo "Install various packages..."
 sudo pacman -Sy \
   acpi \
+  audacity \
   blueman \
   btop \
   github-cli \
@@ -20,10 +21,13 @@ sudo pacman -Sy \
   nmap \
   nodejs \
   npm \
+  openssh \
   python-pip \
   python-virtualenv \
   ranger \
+  slack-desktop \
   sysstat \
+  teams \
   tldr \
   translate-shell \
   visual-studio-code-bin \
