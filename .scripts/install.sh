@@ -71,6 +71,8 @@ echo "Setup git..."
 git config --global user.name "Norbiox"
 git config --global user.email "norbertchmiel.it@gmail.com"
 git config --global core.editor "vim"
+git config --global diff.tool "vimdiff"
+git config --global difftool.prompt "false"
 gh auth login
 
 echo "Install python packages..."
