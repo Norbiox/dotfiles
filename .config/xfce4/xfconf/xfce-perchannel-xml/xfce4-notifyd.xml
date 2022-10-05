@@ -24,8 +24,10 @@
       <value type="string" value="Package Manager"/>
       <value type="string" value="pasystray"/>
       <value type="string" value="pragha"/>
+      <value type="string" value="Slack"/>
       <value type="string" value="Spotify"/>
       <value type="string" value="System Config Printer Notification"/>
+      <value type="string" value="teams"/>
       <value type="string" value="Terminal"/>
       <value type="string" value="Thunar"/>
       <value type="string" value="Transmission"/>
@@ -36,6 +38,7 @@
       <value type="string" value="vivaldi-snapshot"/>
       <value type="string" value="vivaldi-stable"/>
       <value type="string" value="Volume Icon"/>
+      <value type="string" value="vpnui"/>
       <value type="string" value="Xfce volume control"/>
       <value type="string" value="Xfce4-notifyd settings"/>
       <value type="string" value="xfce4-power-manager"/>
