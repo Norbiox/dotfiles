@@ -1,0 +1,297 @@
+{
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.tabSize": 2
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "[javascript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.tabSize": 2
+    },
+    "[javascriptreact]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.rulers": [
+            100
+        ],
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "[go]": {
+        "editor.defaultFormatter": "golang.go"
+    },
+    "debug.console.fontFamily": "'Victor Mono'",
+    "debug.console.fontSize": 13,
+    // "debug.console.fontFamily": "'Fira Code'",
+    // "debug.console.fontFamily": "'Cascadia Code'",
+    "editor.cursorStyle": "line",
+    // *** EDITOR SPECIFIC FONTS SETTINGS ***
+    // * COMIC MONO
+    // "editor.fontFamily": "'Comic Mono'",
+    // "editor.fontSize": 13,
+    // "editor.fontWeight": "400",
+    // * FIRA CODE
+    // "editor.fontFamily": "'Fira Code'",
+    // "editor.fontSize": 14,
+    // "editor.fontWeight": "400",
+    // * VICTOR MONO
+    "editor.fontFamily": "'Victor Mono'",
+    "editor.fontSize": 13,
+    "editor.fontWeight": "700",
+    // * CASCADIA CODE
+    // "editor.fontFamily": "'Cascadia Code'",
+    // * B612 Mono
+    // "editor.fontFamily": "'B612 Mono'",
+    //"editor.fontSize": 14,
+    //"editor.fontWeight": "500",
+    // *** END OF EDITOR SPECIFIC FONT SETTINGS ***
+    "editor.fontLigatures": true,
+    "editor.insertSpaces": true,
+    "editor.lineHeight": 20,
+    "editor.lineNumbers": "relative",
+    "editor.minimap.maxColumn": 100,
+    "editor.mouseWheelZoom": true,
+    "editor.suggestSelection": "first",
+    "editor.wordWrap": "off",
+    "editor.wordWrapColumn": 100,
+    "explorer.autoReveal": false,
+    "files.exclude": {
+        "**/*.pyc": true,
+        "**/__pycache__": true
+    },
+    "html.suggest.html5": true,
+    "javascript.validate.enable": false,
+    "kite.showWelcomeNotificationOnStartup": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "oneDarkPro.bold": true,
+    "oracleDeveloperTools.networkConfiguration.configFilesLocation": "/home/norbert/Oracle/network/admin",
+    "oracleDeveloperTools.networkConfiguration.walletFileLocation": "/home/norbert/Oracle/network/admin",
+    "oracleDeveloperTools.oracleConnections": [
+        {
+            "authenticationType": 2,
+            "connectionType": 2,
+            "dBAPrivilege": "None",
+            "dataSource": "192.168.56.6:1521/fcrm",
+            "name": "TestDB",
+            "password": "fcrm",
+            "passwordEmptyByUser": false,
+            "passwordSaved": true,
+            "userID": "FCRM"
+        }
+    ],
+    "prettier.printWidth": 1000,
+    "problems.showCurrentInStatus": true,
+    "python.analysis.autoImportCompletions": false,
+    "python.formatting.blackArgs": [
+        "-l",
+        "100",
+    ],
+    "python.formatting.provider": "black",
+    "python.jediEnabled": false,
+    "python.languageServer": "Pylance",
+    "python.pythonPath": "/usr/local/bin/python",
+    "python.sortImports.args": [
+        "-rc",
+        "-w 100",
+        "-m 3"
+    ],
+    "remote.containers.defaultExtensions": [
+        "eamodio.gitlens",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "mutantdino.resourcemonitor"
+    ],
+    "scm.inputFontFamily": "'Fira Code'",
+    "search.exclude": {
+        "**/venv": true
+    },
+    "search.showLineNumbers": true,
+    "search.smartCase": true,
+    "sql-formatter.dialect": "pl/sql",
+    "sql-formatter.linesBetweenQueries": 1,
+    "sql-formatter.uppercase": true,
+    "sqltools.connections": [
+        {
+            "connectionTimeout": 60,
+            "database": "fcrm",
+            "dialect": "OracleDB",
+            "name": "fcrm_test",
+            "password": "fcrm",
+            "port": 1521,
+            "server": "192.168.56.6",
+            "username": "fcrm"
+        }
+    ],
+    "sqltools.useNodeRuntime": true,
+    "sync.autoUpload": false,
+    "sync.gist": "7bed33a083fb112b3ba064a8d2ae7faa",
+    // *** TERMINAL SPECIFIC FONTS SETTINGS ***
+    // "editor.fontFamily": "'Comic Mono'",
+    // * FIRA CODE
+    // "terminal.integrated.fontFamily": "'Fira Code'",
+    // "terminal.integrated.fontWeight": "500",
+    // "terminal.integrated.fontSize": 14,
+    // "terminal.integrated.lineHeight": 1.1,
+    // * VICTOR MONO
+    "terminal.integrated.fontFamily": "'Victor Mono'",
+    "terminal.integrated.fontWeight": "700",
+    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.lineHeight": 1,
+    // *** END OF TERMINAL SPECIFIC FONT SETTINGS ***
+    "terminal.external.linuxExec": "alacritty",
+    "terminal.integrated.automationShell.linux": "/bin/bash",
+    "terminal.integrated.rendererType": "dom",
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "vim.changeWordIncludesWhitespace": true,
+    "vim.handleKeys": {
+        "<C-E>": false,
+        "<C-F>": false,
+        "<C-G>": false,
+        "<C-X>": false,
+        "<C-d>": true
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<esc>"
+            ]
+        },
+        {
+            "before": [
+                "k",
+                "j"
+            ],
+            "after": [
+                "<esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "m",
+                "a"
+            ],
+            "commands": [
+                "numberedBookmarks.toggleBookmark1"
+            ]
+        }
+    ],
+    "vim.showcmd": true,
+    "vim.useSystemClipboard": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.menuBarVisibility": "toggle",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#0c274c",
+        "statusBar.debuggingBackground": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "activityBar.activeBackground": "#133e78",
+        "activityBar.activeBorder": "#dc2372",
+        "activityBar.background": "#133e78",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#dc2372",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#133e78",
+        "titleBar.activeBackground": "#0c274c",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#0c274c99",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "editor.lineHighlightBackground": "#ffffff00",
+        "editor.lineHighlightBorder": "#ffffff00"
+    },
+    "workbench.editor.limit.enabled": true,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.suggest.showStatusBar": true,
+    "markdown.preview.fontSize": 13,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.inlineSuggest.enabled": true,
+    "diffEditor.wordWrap": "off",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<esc>"
+            ]
+        },
+        {
+            "before": [
+                "k",
+                "j"
+            ],
+            "after": [
+                "<esc>"
+            ]
+        }
+    ],
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": false,
+        "markdown": false,
+        "python": true
+    },
+    "editor.bracketPairColorization.enabled": true,
+    "workbench.tree.indent": 5,
+    "workbench.startupEditor": "none",
+    "workbench.editor.pinnedTabSizing": "shrink",
+    "tabnine.experimentalAutoImports": true,
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.tabCloseButton": "left",
+    "cSpell.userWords": [
+        "Abrahamowe",
+        "Edenowe",
+        "Fruchtenbaum",
+        "zamieszkiwalną"
+    ],
+    "cSpell.ignoreWords": [
+        "ὀρθοτομέω"
+    ],
+    "workbench.reduceMotion": "on",
+    "editor.guides.indentation": false,
+    "cSpell.language": "en,pl,pl-PL",
+    "redhat.telemetry.enabled": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.scale": 2,
+    "editor.minimap.enabled": false,
+    "editor.formatOnSave": true,
+    "html.format.enable": false,
+    "markdown-preview-enhanced.previewTheme": "one-dark.css"
+}
