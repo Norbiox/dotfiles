@@ -359,6 +359,9 @@ bindsym $mod+Shift+d exec --no-startup-id dbeaver;focus
 #slack
 bindsym $mod+Shift+s exec --no-startup-id slack;focus
 
+#slack
+bindsym $mod+Shift+t exec --no-startup-id teams;focus
+
 #thunar
 bindsym $mod+Shift+p exec --no-startup-id thunar;focus
 
