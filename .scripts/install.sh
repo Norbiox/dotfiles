@@ -35,6 +35,8 @@ sudo pacman -Sy \
   wacom-settings-git \
   xclip \
   xss-lock \
+  zathura \
+  zathura-pdf-mupdf \
   zoxide
 
 echo "Install power-profiles-daemon..."
