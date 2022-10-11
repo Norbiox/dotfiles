@@ -39,6 +39,9 @@ sudo pacman -Sy \
   zathura-pdf-mupdf \
   zoxide
 
+echo "Install nvidia and CUDA..."
+sudo pacman -Sy nvidia opencl-nvidia cuda
+
 echo "Install power-profiles-daemon..."
 sudo pacman -Sy power-profiles-deamon
 sudo systemctl enable power-profiles-daemon.service
