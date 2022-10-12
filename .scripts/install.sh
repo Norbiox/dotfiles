@@ -17,6 +17,7 @@ sudo pacman -Sy \
   ipython \
   lastpass \
   lastpass-cli \
+  libreoffice-fresh \
   mplayer \
   nmap \
   nodejs \
