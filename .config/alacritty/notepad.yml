@@ -210,7 +210,7 @@ colors:
     #focused_match:
     #  foreground: CellBackground
     #  background: CellForeground
-    bar:
+  footer_bar:
       background: '#abb2bf'
       foreground: '#282c34'
   normal:
