@@ -700,7 +700,5 @@ client.background       $background
 
 ################# unclutter                        
 
-# NOT USED
-
 # get the mouse out of the way with unclutter
-# exec --no-startup-id unclutter
+exec --no-startup-id unclutter

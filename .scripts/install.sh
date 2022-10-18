@@ -31,6 +31,7 @@ sudo pacman -Sy \
   teams \
   tldr \
   translate-shell \
+  unclutter \
   visual-studio-code-bin \
   w3m \
   wacom-settings-git \
