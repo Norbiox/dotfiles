@@ -308,7 +308,7 @@ bindsym $mod+Ctrl+l resize grow width 5 px or 5 ppt
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Automatic lock on suspend
-exec --no-startup-id xss-lock -- ~/.config/i3/lock.sh
+exec --no-startup-id xss-lock -- ~/.config/i3/scripts/i3exit.sh lock
 
 # Updater
 #exec --no-startup-id pamac-tray
