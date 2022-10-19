@@ -61,7 +61,7 @@ exec --no-startup-id nitrogen --restore
 
 bindsym $mod+Ctrl+s mode "$mode_screen_layout"
 
-set $mode_screen_layout (1) single, (2) home
+set $mode_screen_layout (1) laptop, (2) home
 mode "$mode_screen_layout" {
     bindsym 1 exec --no-startup-id .screenlayout/single.sh, mode "default"
     bindsym 2 exec --no-startup-id .screenlayout/home.sh, mode "default"
@@ -463,6 +463,7 @@ for_window [class="Arcolinux-welcome-app.py"] floating enable
 for_window [class="Arcolinux-calamares-tool.py"] floating enable
 for_window [class="Bleachbit"] floating disable
 for_window [class="Blueberry.py"] floating enable
+for_window [class="Blueman-manager"] floating enable
 for_window [class="Brasero"] floating disable
 for_window [class="Galculator"] floating enable
 for_window [class="Gnome-disks"] floating disable

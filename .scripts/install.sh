@@ -10,6 +10,7 @@ echo "Install various packages..."
 sudo pacman -Sy \
   acpi \
   audacity \
+  autorandr \
   blueman \
   btop \
   github-cli \
