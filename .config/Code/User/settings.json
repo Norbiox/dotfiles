@@ -278,6 +278,7 @@
         "Abrahamowe",
         "Edenowe",
         "Fruchtenbaum",
+        "Pypi",
         "spowrotem",
         "zamieszkiwalną"
     ],
@@ -294,5 +295,6 @@
     "editor.minimap.enabled": false,
     "editor.formatOnSave": true,
     "html.format.enable": false,
-    "markdown-preview-enhanced.previewTheme": "one-dark.css"
+    "markdown-preview-enhanced.previewTheme": "one-dark.css",
+    "files.insertFinalNewline": true
 }

@@ -388,5 +388,9 @@
   {
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+'",
+    "command": "workbench.action.toggleEditorWidths"
   }
 ]
