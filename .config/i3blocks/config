@@ -8,8 +8,8 @@ markup=pango
 command=~/.scripts/hpr4-current-song
 interval=10
 
-[weather]
-interval=600
+# [weather]
+# interval=600
 
 [cpu_usage]
 label=🧮
