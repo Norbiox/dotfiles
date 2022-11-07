@@ -68,7 +68,7 @@
     "editor.minimap.maxColumn": 100,
     "editor.mouseWheelZoom": true,
     "editor.suggestSelection": "first",
-    "editor.wordWrap": "off",
+    "editor.wordWrap": "on",
     "editor.wordWrapColumn": 100,
     "explorer.autoReveal": false,
     "files.exclude": {
