@@ -57,7 +57,6 @@ font $font
 ################ Screen layout and workspaces   
 
 exec --no-startup-id .screenlayout/home.sh
-exec --no-startup-id nitrogen --restore
 
 bindsym $mod+Ctrl+s mode "$mode_screen_layout"
 
