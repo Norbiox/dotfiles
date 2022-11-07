@@ -13,7 +13,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'haya14busa/incsearch.vim'
 Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
