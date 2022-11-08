@@ -1,2 +1,2 @@
 #!/bin/bash
-rsync -aAXHv --delete --exclude '*/.cache' /home/norbert rsync://norbert@192.168.0.7:873/Precel/home
+rsync -aAXHv --delete --exclude={"*/.cache","*/Cache/","*/Cache*","*/cache*"} /home/norbert rsync://Norbert@192.168.0.7:873/Precel/home_backup
