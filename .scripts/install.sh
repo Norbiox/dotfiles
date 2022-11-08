@@ -13,6 +13,7 @@ sudo pacman -Sy \
   autorandr \
   blueman \
   btop \
+  dunst \
   github-cli \
   gvim \
   ipython \
