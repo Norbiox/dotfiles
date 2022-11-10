@@ -333,7 +333,7 @@ exec --no-startup-id redshift-gtk
 ################# system applications       
 
 exec --no-startup-id xfce4-power-manager &
-exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
 # ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
 # IF xfsettingsd is activated you can not change themes
 # exec --no-startup-id xfsettingsd &
