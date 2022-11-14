@@ -1,5 +1,7 @@
 #!/bin/bash
 
+USER=`whoami`
+
 echo "Fix time and date..."
 sudo timedatectl set-ntp true
 
@@ -90,5 +92,9 @@ pip install black idasen
 echo "Setup printing..."
 sudo systemctl enable cups.service
 sudo systemctl start cups.service
+
+echo "Setup wallpapers..."
+git clone https://gitlab.com/dwt1/wallpapers.git ~/.local/share/wallpapers
+sed "/dirs=/ s/$/\/home\/$USER\/.local\/share\/wallpapers;/" ~/.config/nitrogen/nitrogen.cfg -i
 
 echo "Installation done. Please reboot."
