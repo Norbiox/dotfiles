@@ -95,5 +95,12 @@ alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 # Make ranger change current directory after quit
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
+# GO packages
+export GOPATH=$HOME/.go
+
+# Fly.io
+export FLYCTL_INSTALL="$HOME/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
 # Zoxide setup
 eval "$(zoxide init bash)"
