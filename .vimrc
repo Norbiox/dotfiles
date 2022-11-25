@@ -18,6 +18,7 @@ Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'itchyny/calendar.vim'
 Plug 'tpope/vim-commentary'
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries' }
 call plug#end()
 
 """ Colorscheme
