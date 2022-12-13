@@ -422,7 +422,7 @@ for_window [instance="dropdownranger"] resize grow left 300, resize grow right 3
 for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, move scratchpad;
 for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
 for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
-for_window [instance="dropdown*"] border pixel 5
+for_window [instance="dropdown*"] border pixel 2
 for_window [instance="dropdown*"] scratchpad show
 
 # spawn or open dropdown terminal
@@ -561,7 +561,7 @@ popup_during_fullscreen smart
 # delete or uncomment the following lines if you do not have it or do not
 # want it
 
-for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] border pixel 1
 gaps inner 10
 gaps outer 0
 smart_gaps on
