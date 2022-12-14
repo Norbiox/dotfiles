@@ -422,6 +422,7 @@ for_window [instance="dropdownranger"] resize grow left 300, resize grow right 3
 for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, move scratchpad;
 for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
 for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
+for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
 for_window [instance="dropdown*"] border pixel 2
 for_window [instance="dropdown*"] scratchpad show
 
@@ -444,6 +445,8 @@ bindsym $mod+r              exec --no-startup-id spawn_dropdown dropdownranger
 # spawn or open dropdown pavucontrol
 bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownpavucontrol
 
+# spawn or open dropdown bluetooth manager
+bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownbluetooth
 
 ################# screenshots                      
 
@@ -533,7 +536,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease
 ################# bar toggle                       
 
 # bar toggle, hide or show
-bindsym $mod+b bar mode toggle
+# bindsym $mod+b bar mode toggle
 
 ################# border control                   
 
