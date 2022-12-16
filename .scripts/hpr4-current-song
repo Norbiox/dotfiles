@@ -6,7 +6,7 @@ import requests
 import subprocess
 import sys
 
-URL = "https://www.hpr.org/nowplaying/hpr4/hpr4playingnow.html"
+URL = "https://www.hpr.org/nowplaying/hpr4/hpr4playingnow.php"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Android; Tablet; rv:19.0) Gecko/19.0 Firefox/19.0"}
 FILE = ".hpr4_current_song"
 
