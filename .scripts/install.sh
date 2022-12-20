@@ -65,11 +65,17 @@ sudo systemctl start docker.service
 sudo systemctl enable containerd.service
 sudo systemctl start containerd.service
 
+echo "Install kubernetes..."
+sudo pacman -Sy minikube kubectl kubectx
+
 echo "Install various packages from AUR..."
 yay -S \
+  dmenu-bluetooth \
   hstr \
-  mongodb-compass
-  mongodb-tools
+  mongodb-compass \
+  mongodb-tools \
+  networkmanager-dmenu-git
+
 
 echo "Install additional fonts..."
 if [ ! -d "/usr/local/share/fonts" ]; then

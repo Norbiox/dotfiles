@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if ! [ -f "$HOME/.dmenurc" ]; then
+	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
+fi
+. $HOME/.dmenurc
+dmenu_cmd="dmenu $DMENU_OPTIONS"
+
+current_power_profile=`powerprofilesctl get`
+
+declare -a options=(
+"performance"
+"balanced"
+"power-saver"
+)
+
+chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Set power profile (current: $current_power_profile):")
+
+if [ "$chosen" ]; then
+        powerprofilesctl set $chosen
+else
+        echo "Program terminated" && exit 1
+fi
