@@ -71,29 +71,32 @@ mode "$mode_screen_layout" {
 
 ################# menus
 
-# dmenu
-bindsym $mod+Shift+colon        exec --no-startup-id dmenu-recency
-
-# xfce-appfinder
-bindsym $mod+Shift+apostrophe   exec --no-startup-id xfce4-appfinder
+# dmenu app launcher
+bindsym $mod1+Shift+colon        exec --no-startup-id source ~/.dmenurc && dmenu-recency $DMENU_OPTIONS
 
 # radio
-bindsym $mod+Shift+r            exec --no-startup-id dmenu-radio
+bindsym $mod1+Shift+r            exec --no-startup-id source ~/.dmenurc && dmenu-radio $DMENU_OPTIONS
 
 # configurations
-bindsym $mod1+Shift+c           exec --no-startup-id dmenu-configs
+bindsym $mod1+Shift+c           exec --no-startup-id source ~/.dmenurc && dmenu-configs $DMENU_OPTIONS
 
 # Idasen
-bindsym $mod1+Shift+i           exec --no-startup-id dmenu-idasen
+bindsym $mod1+Shift+i           exec --no-startup-id source ~/.dmenurc && dmenu-idasen $DMENU_OPTIONS
 
 # Soundcore headphones
-bindsym $mod1+Shift+h           exec --no-startup-id dmenu-soundcore
+bindsym $mod1+Shift+h           exec --no-startup-id source ~/.dmenurc && dmenu-soundcore $DMENU_OPTIONS
 
 # Wacom stylus
-bindsym $mod1+Shift+w           exec --no-startup-id dmenu-wacom
+bindsym $mod1+Shift+w           exec --no-startup-id source ~/.dmenurc && dmenu-wacom $DMENU_OPTIONS
 
 # Power profiles
-bindsym $mod1+Shift+p           exec --no-startup-id dmenu-powerprofile
+bindsym $mod1+Shift+p           exec --no-startup-id source ~/.dmenurc && dmenu-powerprofile $DMENU_OPTIONS
+
+# dmenu-bluetooth
+bindsym $mod1+Shift+b           exec --no-startup-id source ~/.dmenurc && dmenu-bluetooth $DMENU_OPTIONS
+
+# networkmanager_dmenu
+bindsym $mod1+Shift+n           exec --no-startup-id source ~/.dmenurc && networkmanager_dmenu $DMENU_OPTIONS
 
 ################# how to exit, logoff, suspend, ...
 
@@ -125,7 +128,7 @@ mode "$mode_system" {
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod1+Ctrl+r restart
 # reload the configuration file
-bindsym $mod1+Shift+r reload
+bindsym $mod+Shift+r reload
 
 ################# Stopping an application          
 
@@ -200,13 +203,13 @@ bindsym $mod+Ctrl+Shift+k   move workspace to output up
 bindsym $mod+Ctrl+Shift+l   move workspace to output right
 
 # next/previous workspace
-bindsym Mod1+Tab workspace next
-bindsym Mod1+Shift+Tab workspace prev
+bindsym $mod1+Tab workspace next
+bindsym $mod1+Shift+Tab workspace prev
 bindsym $mod+Tab workspace back_and_forth
 
 # navigate workspaces next / previous
-bindsym Mod1+Ctrl+Right workspace next
-bindsym Mod1+Ctrl+Left workspace prev
+bindsym $mod1+Ctrl+Right workspace next
+bindsym $mod1+Ctrl+Left workspace prev
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -296,7 +299,7 @@ bindsym $mod+Ctrl+l resize grow width 5 px or 5 ppt
 #exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 
 # Autotiling
-#exec_always --no-startup-id autotiling
+exec_always --no-startup-id autotiling
 
 # TRAY APPLICATIONS
 

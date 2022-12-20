@@ -16,6 +16,7 @@ sudo pacman -Sy \
   blueman \
   btop \
   dunst \
+  fd \
   github-cli \
   gvim \
   ipython \
