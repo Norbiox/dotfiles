@@ -451,6 +451,9 @@ bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownpavucont
 # spawn or open dropdown bluetooth manager
 bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownbluetooth
 
+# spawn or open dropdown Bito AI CLI
+bindsym $mod+a              exec --no-startup-id spawn_dropdown dropdownbito
+
 ################# screenshots                      
 
 bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
