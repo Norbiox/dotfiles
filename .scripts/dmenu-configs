@@ -11,6 +11,8 @@ declare -a options=(
 "i3 - $HOME/.config/i3/config"
 "i3blocks - $HOME/.config/i3blocks/config"
 "dmenu - $HOME/.dmenurc"
+"neovim - $HOME/.config/nvim/init.lua"
+"picom - $HOME/.config/i3/picom.conf"
 "quit"
 )
 
