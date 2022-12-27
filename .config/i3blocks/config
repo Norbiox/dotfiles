@@ -5,6 +5,7 @@ separator_block_width=20
 markup=pango
 
 [hpr4]
+label=🪕 
 command=~/.scripts/hpr4-current-song
 interval=10
 
@@ -29,7 +30,7 @@ interval=10
 min_width=💾 99G
 
 [temperature]
-label= 🌡️
+label=🌡️
 interval=5
 min_width=99.9CC
 
