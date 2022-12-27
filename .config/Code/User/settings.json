@@ -296,5 +296,6 @@
     "editor.formatOnSave": true,
     "html.format.enable": false,
     "markdown-preview-enhanced.previewTheme": "one-dark.css",
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "workbench.productIconTheme": "material-product-icons"
 }
