@@ -351,6 +351,8 @@ bindsym $mod+KP_Enter exec --no-startup-id $TERM;focus
 
 #browser
 bindsym $mod+Shift+b exec --no-startup-id brave;focus
+bindsym $mod+Ctrl+b exec --no-startup-id brave `xclip -o`;focus
+bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`;focus
 
 #vscode
 bindsym $mod+Shift+c exec --no-startup-id code;focus
