@@ -40,8 +40,9 @@ interval=30
 
 [volume-pulseaudio]
 markup=pango
-interval=once
+interval=persist
 signal=1
+SUBSCRIBE=1
 USE_ALSA_NAME=1
 DEFAULT_COLOR=#ABB2BF
 MUTED_COLOR=#5C6370
