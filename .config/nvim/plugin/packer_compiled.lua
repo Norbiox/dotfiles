@@ -126,6 +126,11 @@ _G.packer_plugins = {
     path = "/home/norbert/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["lazygit.nvim"] = {
+    loaded = true,
+    path = "/home/norbert/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
+    url = "https://github.com/kdheepak/lazygit.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/norbert/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -200,6 +205,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/norbert/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vim-floaterm"] = {
+    loaded = true,
+    path = "/home/norbert/.local/share/nvim/site/pack/packer/start/vim-floaterm",
+    url = "https://github.com/voldikss/vim-floaterm"
   },
   ["vim-fugitive"] = {
     loaded = true,

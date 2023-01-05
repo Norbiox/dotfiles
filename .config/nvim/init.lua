@@ -65,6 +65,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
+  use 'kdheepak/lazygit.nvim'
 
   -- Miscallenous
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
@@ -73,6 +74,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'sansyrox/vim-python-virtualenv' -- Python virtualenv support
   use 'jiangmiao/auto-pairs' -- Automatically closes brackets
+  use 'voldikss/vim-floaterm' -- Terminal in floating window
 
   -- Lualine
   use {
@@ -430,21 +432,22 @@ require('lspconfig').sumneko_lua.setup {
   },
 }
 
+-- tabnine setup
+local tabnine = require('cmp_tabnine.config')
+tabnine:setup({
+  max_lines=1000,
+  nax_num_results=20,
+  sort=true,
+  run_on_every_keystroke=true,
+  snippet_placeholder='..',
+  ignored_file_types={},
+  show_prediction_strength=false,
+})
+
+
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
-
--- local tabnine = require('cmp_tabnine.config')
--- tabnine:setup({
---   max_lines=1000,
---   nax_num_results=20,
---   sort=true,
---   run_on_every_keystroke=true,
---   snippet_placeholder='..',
---   ignored_file_types={},
---   show_prediction_strength=false,
--- })
---
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -482,7 +485,7 @@ cmp.setup {
     { name = 'cmp_tabnine' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-  },
+  }
 }
 
 -- nvim-tree setup
@@ -497,10 +500,22 @@ require("nvim-tree").setup({
 })
 vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
+-- Python virtualenv config
 vim.g.python3_host_prog = '/usr/bin/python'
 
--- black keymaps
-vim.api.nvim_set_keymap('n', '<leader>b', ':!black -l 100 %', {noremap = true, silent = true})
+-- Black keymaps
+vim.api.nvim_set_keymap('n', '<leader>b', ':!black -l 100 %<CR>', {noremap = true, silent = true})
+
+-- LazyGit keymaps
+vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', {noremap = true, silent = true})
+
+-- Map Esc to exit terminal mode
+vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = true})
+
+-- Keymap and settings for terminal floating window
+vim.api.nvim_set_keymap('n', '<leader>;', ':FloatermToggle<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>;', '<Esc>:FloatermToggle<CR>', {noremap = false, silent = true})
+vim.api.nvim_set_keymap('t', '<leader>;', '<C-\\><C-N>:FloatermToggle<CR>', {noremap = false, silent = true})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
