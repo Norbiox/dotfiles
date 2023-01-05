@@ -28,6 +28,7 @@ sudo pacman -Sy \
   nodejs \
   npm \
   openssh \
+  pasystray \
   python-pip \
   python-virtualenv \
   ranger \
