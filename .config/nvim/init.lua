@@ -75,6 +75,7 @@ require('packer').startup(function(use)
   use 'sansyrox/vim-python-virtualenv' -- Python virtualenv support
   use 'jiangmiao/auto-pairs' -- Automatically closes brackets
   use 'voldikss/vim-floaterm' -- Terminal in floating window
+  use 'ojroques/vim-oscyank' -- Copy from anywhere to system clipboard using ANSI OSC52 sequence
 
   -- Lualine
   use {
@@ -516,6 +517,9 @@ vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<leader>;', ':FloatermToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>;', '<Esc>:FloatermToggle<CR>', {noremap = false, silent = true})
 vim.api.nvim_set_keymap('t', '<leader>;', '<C-\\><C-N>:FloatermToggle<CR>', {noremap = false, silent = true})
+
+-- Keymap for OSCYank
+vim.api.nvim_set_keymap('v', '<leader>c', ':OSCYank<CR>', {noremap = true, silent = true})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -216,6 +216,11 @@ _G.packer_plugins = {
     path = "/home/norbert/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
+  ["vim-oscyank"] = {
+    loaded = true,
+    path = "/home/norbert/.local/share/nvim/site/pack/packer/start/vim-oscyank",
+    url = "https://github.com/ojroques/vim-oscyank"
+  },
   ["vim-python-virtualenv"] = {
     loaded = true,
     path = "/home/norbert/.local/share/nvim/site/pack/packer/start/vim-python-virtualenv",
