@@ -426,8 +426,8 @@ for_window [instance="dropdown*"] scratchpad show
 for_window [instance="dropdownranger"] resize grow left 300, resize grow right 300, resize grow down 200, resize grow up 200, move scratchpad;
 for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, move scratchpad;
 for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
-for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
-for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
+# for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
+# for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
 for_window [instance="dropdown*"] border pixel 2
 for_window [instance="dropdown*"] scratchpad show
 
