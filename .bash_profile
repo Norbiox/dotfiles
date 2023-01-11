@@ -5,8 +5,8 @@
 #export TERM="urxvt"
 export TERM="alacritty"
 export FILE="ranger"
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export BROWSER="brave"
 
 # if running bash
