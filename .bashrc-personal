@@ -1,14 +1,10 @@
+#!/bin/bash
 export TERM=alacritty
 export FILE=ranger
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export BROWSER=brave
 export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
-
-#---Add my scripts to PATH---#
-if [ -d "$HOME/.scripts" ] ;
-  then PATH="$HOME/.scripts:$PATH"
-fi
 
 #---History options---#
 export HISTSIZE=10000
@@ -97,10 +93,6 @@ alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir
 
 # GO packages
 export GOPATH=$HOME/.go
-
-# Fly.io
-export FLYCTL_INSTALL="$HOME/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # Zoxide setup
 eval "$(zoxide init bash)"

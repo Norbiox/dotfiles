@@ -17,7 +17,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
@@ -26,11 +25,20 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if [ -d "$HOME/.scripts" ] ;
+  then PATH="$HOME/.scripts:$PATH"
+fi
+
+if [ -d "$HOME/.fly" ] ;
+  then PATH="$HOME/.fly:$PATH"
+fi
+
+#---Add my scripts to PATH---#
 if [ -d "$HOME/.scripts" ] ; then
     PATH="$HOME/.scripts:$PATH"
 fi
 
-if [ -d "$HOME/.cargo/bin" ] ; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
