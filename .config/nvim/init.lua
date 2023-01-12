@@ -20,6 +20,9 @@ require('packer').startup(function(use)
 
       -- Useful status updates for LSP
       'j-hui/fidget.nvim',
+
+      -- Linters
+      'mfussenegger/nvim-lint',
     },
   }
 
@@ -162,6 +165,19 @@ require('onedark').setup {
   }
 }
 require('onedark').load()
+
+-- Set linters
+require('lint').linters_by_ft = {
+  python = {'pylint'}
+}
+vim.api.nvim_create_autocmd({"BufWritePost"}, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
+-- To make it use pylint from virtualenv
+require('lint').linters.pylint.cmd = 'python'
+require('lint').linters.pylint.args = {'-m', 'pylint', '-f', 'json'}
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
