@@ -34,6 +34,9 @@ require('packer').startup(function(use)
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
 
+  use { -- Pictograms in LSP
+    'onsails/lspkind.nvim'
+  }
 
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -457,7 +460,7 @@ require('lspconfig').sumneko_lua.setup {
   },
 }
 
--- tabnine setup
+-- Tabnine setup
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
   max_lines=1000,
@@ -468,11 +471,29 @@ tabnine:setup({
   ignored_file_types={},
   show_prediction_strength=false,
 })
-
+-- Make tabnine prefetch file on open
+local prefetch = vim.api.nvim_create_augroup("prefetch", {clear = true})
+vim.api.nvim_create_autocmd('BufRead', {
+  group = prefetch,
+  pattern = '*.*',
+  callback = function()
+    require('cmp_tabnine'):prefetch(vim.fn.expand('%:p'))
+  end
+})
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+local lspkind = require 'lspkind'
+local source_mapping = {
+	buffer = "[Buffer]",
+	nvim_lsp = "[LSP]",
+	nvim_lua = "[Lua]",
+	cmp_tabnine = "[TN]",
+	path = "[Path]",
+}
+local compare = require 'cmp.config.compare'
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -512,7 +533,43 @@ cmp.setup {
     { name = 'cmp_tabnine' },
     { name = 'luasnip' },
     { name = 'buffer' },
-  }
+  },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      require('cmp_tabnine.compare'),
+      compare.offset,
+      compare.exact,
+      compare.score,
+      compare.recently_used,
+      compare.kind,
+      compare.sort_text,
+      compare.length,
+      compare.order,
+    }
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      -- if you have lspkind installed, you can use it like
+      -- in the following line:
+      vim_item.kind = lspkind.symbolic(vim_item.kind, {mode = "symbol"})
+      vim_item.menu = source_mapping[entry.source.name]
+      if entry.source.name == "cmp_tabnine" then
+        local detail = (entry.completion_item.data or {}).detail
+        vim_item.kind = ""
+        if detail and detail:find('.*%%.*') then
+          vim_item.kind = vim_item.kind .. ' ' .. detail
+        end
+
+        if (entry.completion_item.data or {}).multiline then
+          vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
+        end
+      end
+      local maxwidth = 100
+      vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+      return vim_item
+    end,
+  },
 }
 
 -- nvim-tree setup

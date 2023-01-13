@@ -136,6 +136,11 @@ _G.packer_plugins = {
     path = "/home/norbert/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
     url = "https://github.com/ray-x/lsp_signature.nvim"
   },
+  ["lspkind.nvim"] = {
+    loaded = true,
+    path = "/home/norbert/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/norbert/.local/share/nvim/site/pack/packer/start/lualine.nvim",
