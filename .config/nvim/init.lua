@@ -23,6 +23,9 @@ require('packer').startup(function(use)
 
       -- Linters
       'mfussenegger/nvim-lint',
+
+      -- Signature
+      'ray-x/lsp_signature.nvim',
     },
   }
 
@@ -395,6 +398,9 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+-- Signature setup
+require('lsp_signature').setup()
+
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
@@ -499,9 +505,11 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'cmp_tabnine' },
+    { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp' },
+    { name = 'cmp_tabnine' },
     { name = 'luasnip' },
+    { name = 'buffer' },
   }
 }
 
