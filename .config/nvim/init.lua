@@ -402,7 +402,9 @@ end
 require('lsp_signature').setup()
 
 -- Setup mason so it can manage external tooling
-require('mason').setup()
+require('mason').setup({
+  PATH = "append",
+})
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
