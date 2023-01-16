@@ -623,5 +623,8 @@ vim.api.nvim_set_keymap('t', '<leader>;', '<C-\\><C-N>:FloatermToggle<CR>', {nor
 -- Keymap for OSCYank
 vim.api.nvim_set_keymap('v', '<leader>c', ':OSCYank<CR>', {noremap = true, silent = true})
 
+-- Vertical line
+vim.o.colorcolumn="80,100"
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
