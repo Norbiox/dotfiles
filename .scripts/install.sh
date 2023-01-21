@@ -36,6 +36,7 @@ sudo pacman -Sy \
   sysstat \
   teams \
   tldr \
+  tmux \
   translate-shell \
   unclutter \
   visual-studio-code-bin \
