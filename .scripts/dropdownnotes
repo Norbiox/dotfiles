@@ -1,2 +1,2 @@
 #!/bin/sh
-vim -c :VimwikiIndex
+nvim -c :VimwikiIndex
