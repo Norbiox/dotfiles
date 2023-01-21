@@ -92,7 +92,7 @@ require('packer').startup(function(use)
     config = function()
       vim.g.vimwiki_list = {
         {
-          path = '$HOME/vimwiki',
+          path = '$HOME/notes',
           syntax = 'markdown',
           ext = '.md',
         }
