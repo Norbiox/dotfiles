@@ -86,6 +86,20 @@ require('packer').startup(function(use)
   use 'voldikss/vim-floaterm' -- Terminal in floating window
   use 'ojroques/vim-oscyank' -- Copy from anywhere to system clipboard using ANSI OSC52 sequence
 
+  -- Vimwiki
+  use {
+    'vimwiki/vimwiki',
+    config = function()
+      vim.g.vimwiki_list = {
+        {
+          path = '$HOME/vimwiki',
+          syntax = 'markdown',
+          ext = '.md',
+        }
+    }
+    end
+  }
+
   -- Lualine
   use {
     'nvim-lualine/lualine.nvim',
@@ -163,11 +177,14 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 require('onedark').setup {
   style = 'dark',
   highlights = {
     ["@keyword"] = {fg = "$red"}
+  },
+  lualine = {
+    transparent = true
   }
 }
 require('onedark').load()
@@ -181,9 +198,6 @@ vim.api.nvim_create_autocmd({"BufWritePost"}, {
     require("lint").try_lint()
   end,
 })
--- To make it use pylint from virtualenv
-require('lint').linters.pylint.cmd = 'python'
-require('lint').linters.pylint.args = {'-m', 'pylint', '-f', 'json'}
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -282,6 +296,9 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+vim.keymap.set('n', '<leader>c', require('telescope.builtin').commands, { desc = '[C]ommands' })
+vim.keymap.set('n', '<leader>sc', require('telescope.builtin').command_history, { desc = '[S]earch [C]ommand History' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
