@@ -1,2 +1,2 @@
 #!/bin/sh
-nvim -c :VimwikiIndex
+cd $HOME/notes && nvim -c :VimwikiIndex
