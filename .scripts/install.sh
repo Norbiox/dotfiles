@@ -72,11 +72,15 @@ sudo pacman -Sy minikube kubectl kubectx
 
 echo "Install various packages from AUR..."
 yay -S \
+  diff-so-fancy \
   dmenu-bluetooth \
+  entr \
+  fdupes \
   hstr \
   mongodb-compass \
   mongodb-tools \
-  networkmanager-dmenu-git
+  networkmanager-dmenu-git \
+  scc
 
 
 echo "Install additional fonts..."
