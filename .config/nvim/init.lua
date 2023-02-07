@@ -31,7 +31,12 @@ require('packer').startup(function(use)
 
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+    },
   }
 
   use { -- Pictograms in LSP
@@ -111,6 +116,10 @@ require('packer').startup(function(use)
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+  -- Conjure - interactive evaluation for Neovim
+  use { 'Olical/conjure' }
+  use { 'PaterJason/cmp-conjure' }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -306,7 +315,7 @@ vim.keymap.set('n', '<leader>sc', require('telescope.builtin').command_history, 
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'clojure' },
 
   highlight = { enable = true },
   indent = { enable = true },
@@ -418,6 +427,7 @@ local on_attach = function(_, bufnr)
       vim.lsp.buf.formatting()
     end
   end, { desc = 'Format current buffer with LSP' })
+  nmap('<leader>lf', ':Format<CR>', '[L]SP [F]ormat buffer')
 end
 
 -- Signature setup
@@ -430,7 +440,7 @@ require('mason').setup({
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls', 'clojure_lsp'}
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -552,6 +562,7 @@ cmp.setup {
     { name = 'cmp_tabnine' },
     { name = 'luasnip' },
     { name = 'buffer' },
+    { name = 'path' },
   },
   sorting = {
     priority_weight = 2,
@@ -644,6 +655,10 @@ vim.api.nvim_set_keymap('v', '<leader>c', ':OSCYank<CR>', {noremap = true, silen
 
 -- Vertical line
 vim.o.colorcolumn="80,100"
+
+-- Keymap for saving/loading session
+vim.api.nvim_set_keymap('n', '<leader>ss', ':mksession! .nvimsession<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>sl', ':source .nvimsession<CR>', {noremap = true, silent = true})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
