@@ -33,16 +33,19 @@ if [ -d "$HOME/.go/bin" ] ; then
     PATH="$HOME/.go/bin:$PATH"
 fi
 
-if [ -d "$HOME/.scripts" ] ;
-  then PATH="$HOME/.scripts:$PATH"
+if [ -d "$HOME/.scripts" ] ; then 
+    PATH="$HOME/.scripts:$PATH"
 fi
 
-if [ -d "$HOME/.fly" ] ;
-  then PATH="$HOME/.fly:$PATH"
+if [ -d "$HOME/.fly" ] ; then 
+    PATH="$HOME/.fly:$PATH"
+fi
+
+if [ -d "$HOME/.local/share/nvim/site/pack/packer/start/vim-iced/bin" ] ; then
+    PATH="$HOME/.local/share/nvim/site/pack/packer/start/vim-iced/bin:$PATH"
 fi
 
 #---Add my scripts to PATH---#
 if [ -d "$HOME/.scripts" ] ; then
     PATH="$HOME/.scripts:$PATH"
 fi
-

@@ -4,6 +4,7 @@ alias df="df -h"                          # human-readable sizes
 alias free="free -m"                      # show sizes in MB
 alias np="nano -w PKGBUILD"
 alias ls="exa -l"
+alias b="buku --suggest"
 #alias cat="bat"
 #alias top="ytop"
 
