@@ -15,6 +15,7 @@ sudo pacman -Sy \
   autorandr \
   blueman \
   btop \
+  clojure \
   dunst \
   fd \
   github-cli \
@@ -22,6 +23,7 @@ sudo pacman -Sy \
   ipython \
   lastpass \
   lastpass-cli \
+  leiningen \
   libreoffice-fresh \
   mplayer \
   nmap \
