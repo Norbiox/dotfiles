@@ -608,9 +608,9 @@ vim.g.loaded_netrwPlugin = 1
 
 require("nvim-tree").setup({
   hijack_cursor = true,
-  update_focused_file = {
-    enable = true,
-  },
+  -- update_focused_file = {
+  --   enable = true,
+  -- },
   diagnostics = {
     enable = true,
   },
