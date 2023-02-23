@@ -82,6 +82,7 @@ yay -S \
   mongodb-compass \
   mongodb-tools \
   networkmanager-dmenu-git \
+  ncpamixer \
   scc
 
 
