@@ -129,6 +129,25 @@ require('packer').startup(function(use)
   use { 'Olical/conjure' }
   use { 'PaterJason/cmp-conjure' }
 
+  -- ChatGPT
+  use ({
+    'jackMort/ChatGPT.nvim',
+      config = function()
+        require("chatgpt").setup({
+          -- custom setup
+        })
+      end,
+      requires = {
+        'MunifTanjim/nui.nvim',
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim'
+      }
+  })
+
+  -- END OF PLUGINS --
+
+  -- START OF CONFIGS --
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -674,6 +693,8 @@ vim.o.colorcolumn="80,100"
 -- Keymap for saving/loading session
 vim.api.nvim_set_keymap('n', '<leader>ss', ':mksession! .nvimsession<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>sl', ':source .nvimsession<CR>', {noremap = true, silent = true})
+
+-- Keymap for ChatGTP
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
