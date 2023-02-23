@@ -98,6 +98,9 @@ bindsym $mod1+Shift+b           exec --no-startup-id source ~/.dmenurc && dmenu-
 # networkmanager_dmenu
 bindsym $mod1+Shift+n           exec --no-startup-id source ~/.dmenurc && networkmanager_dmenu $DMENU_OPTIONS
 
+# dmenu-emoji
+bindsym $mod1+Shift+e           exec --no-startup-id source ~/.dmenurc && dmenu-emoji $DMENU_OPTIONS
+
 ################# how to exit, logoff, suspend, ...
 
 bindsym $mod1+Escape exec --no-startup-id betterlockscreen -l dimblur -- --time-str="%H:%M"
@@ -447,8 +450,8 @@ bindsym $mod+t              exec --no-startup-id spawn_dropdown dropdowntranslat
 # spawn or open dropdown ranger
 bindsym $mod+r              exec --no-startup-id spawn_dropdown dropdownranger
 
-# spawn or open dropdown pavucontrol
-bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownpavucontrol
+# spawn or open dropdown ~~pavucontrol~~ ncpamixer
+bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownmixer
 
 # spawn or open dropdown bluetooth manager
 bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownbluetooth
