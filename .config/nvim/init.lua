@@ -75,6 +75,14 @@ require('packer').startup(function(use)
     requires = 'hrsh7th/nvim-cmp'
   }
 
+  -- Automatically closes brackets 
+  use {
+    'windwp/nvim-autopairs',
+    config = function () require('nvim-autopairs').setup {
+      fast_wrap = {},
+    } end
+  }
+
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
@@ -87,7 +95,7 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'sansyrox/vim-python-virtualenv' -- Python virtualenv support
-  use 'jiangmiao/auto-pairs' -- Automatically closes brackets
+  -- use 'jiangmiao/auto-pairs' -- Automatically closes brackets
   use 'voldikss/vim-floaterm' -- Terminal in floating window
   use 'ojroques/vim-oscyank' -- Copy from anywhere to system clipboard using ANSI OSC52 sequence
 
@@ -601,6 +609,13 @@ cmp.setup {
     end,
   },
 }
+
+-- Insert '(' after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 -- nvim-tree setup
 vim.g.loaded_netrw = 1
