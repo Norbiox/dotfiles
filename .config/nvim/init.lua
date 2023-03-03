@@ -43,6 +43,18 @@ require('packer').startup(function(use)
     'onsails/lspkind.nvim'
   }
 
+  use { -- Statusline with code context
+    'utilyre/barbecue.nvim',
+    requires = {
+      'SmiteshP/nvim-navic',
+      'neovim/nvim-lspconfig',
+    },
+    after = "nvim-web-devicons",
+    config = function()
+      require('barbecue').setup()
+    end
+  }
+
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -407,9 +419,12 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
+-- Setup navic
+local navic = require("nvim-navic")
+
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -455,6 +470,10 @@ local on_attach = function(_, bufnr)
     end
   end, { desc = 'Format current buffer with LSP' })
   nmap('<leader>lf', ':Format<CR>', '[L]SP [F]ormat buffer')
+
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 -- Signature setup
@@ -514,6 +533,11 @@ require('lspconfig').sumneko_lua.setup {
       telemetry = { enable = false },
     },
   },
+}
+
+-- Navic setup
+require('lspconfig').clangd.setup {
+  on_attach = on_attach,
 }
 
 -- Tabnine setup
@@ -666,6 +690,7 @@ require("nvim-tree").setup({
   }
 })
 vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+
 
 -- Python virtualenv config
 vim.g.python3_host_prog = '/usr/bin/python'
