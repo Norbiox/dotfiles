@@ -708,6 +708,12 @@ vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<leader>;', ':FloatermToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>;', '<Esc>:FloatermToggle<CR>', {noremap = false, silent = true})
 vim.api.nvim_set_keymap('t', '<leader>;', '<C-\\><C-N>:FloatermToggle<CR>', {noremap = false, silent = true})
+vim.api.nvim_set_keymap('t', '<leader><F4>', '<C-\\><C-N>:FloatermNew<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<leader><F5>', '<C-\\><C-N>:FloatermKill<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<leader><F6>', '<C-\\><C-N>:FloatermFirst<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<leader><F7>', '<C-\\><C-N>:FloatermPrev<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<leader><F8>', '<C-\\><C-N>:FloatermNext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<leader><F9>', '<C-\\><C-N>:FloatermLast<CR>', {noremap = true, silent = true})
 
 -- Keymap for OSCYank
 vim.api.nvim_set_keymap('v', '<leader>c', ':OSCYank<CR>', {noremap = true, silent = true})
