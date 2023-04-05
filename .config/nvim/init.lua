@@ -87,6 +87,9 @@ require('packer').startup(function(use)
     requires = 'hrsh7th/nvim-cmp'
   }
 
+  -- Codeium autocompletion
+  use 'Exafunction/codeium.vim'
+
   -- Automatically closes brackets 
   use {
     'windwp/nvim-autopairs',
@@ -99,7 +102,6 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
-  use 'kdheepak/lazygit.nvim'
 
   -- Miscallenous
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
@@ -542,24 +544,24 @@ require('lspconfig').clangd.setup {
 
 -- Tabnine setup
 local tabnine = require('cmp_tabnine.config')
-tabnine:setup({
-  max_lines=1000,
-  nax_num_results=20,
-  sort=true,
-  run_on_every_keystroke=true,
-  snippet_placeholder='..',
-  ignored_file_types={},
-  show_prediction_strength=false,
-})
--- Make tabnine prefetch file on open
-local prefetch = vim.api.nvim_create_augroup("prefetch", {clear = true})
-vim.api.nvim_create_autocmd('BufRead', {
-  group = prefetch,
-  pattern = '*.*',
-  callback = function()
-    require('cmp_tabnine'):prefetch(vim.fn.expand('%:p'))
-  end
-})
+-- tabnine:setup({
+--   max_lines=1000,
+--   nax_num_results=20,
+--   sort=true,
+--   run_on_every_keystroke=true,
+--   snippet_placeholder='..',
+--   ignored_file_types={},
+--   show_prediction_strength=false,
+-- })
+-- -- Make tabnine prefetch file on open
+-- local prefetch = vim.api.nvim_create_augroup("prefetch", {clear = true})
+-- vim.api.nvim_create_autocmd('BufRead', {
+--   group = prefetch,
+--   pattern = '*.*',
+--   callback = function()
+--     require('cmp_tabnine'):prefetch(vim.fn.expand('%:p'))
+--   end
+-- })
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -588,29 +590,29 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    -- ['<Tab>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
+    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_prev_item()
+    --   elseif luasnip.jumpable(-1) then
+    --     luasnip.jump(-1)
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
   },
   sources = {
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp' },
-    { name = 'cmp_tabnine' },
+    -- { name = 'cmp_tabnine' },
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
@@ -618,7 +620,7 @@ cmp.setup {
   sorting = {
     priority_weight = 2,
     comparators = {
-      require('cmp_tabnine.compare'),
+      -- require('cmp_tabnine.compare'),
       compare.offset,
       compare.exact,
       compare.score,
@@ -697,9 +699,6 @@ vim.g.python3_host_prog = '/usr/bin/python'
 
 -- Black keymaps
 vim.api.nvim_set_keymap('n', '<leader>b', ':!black -l 100 %<CR>', {noremap = true, silent = true})
-
--- LazyGit keymaps
-vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', {noremap = true, silent = true})
 
 -- Map Esc to exit terminal mode
 vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = true})
