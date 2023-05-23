@@ -161,6 +161,18 @@ require('packer').startup(function(use)
       }
   })
 
+  -- Surround - surround selections
+
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
+
   -- END OF PLUGINS --
 
   -- START OF CONFIGS --
