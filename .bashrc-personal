@@ -14,18 +14,21 @@ export HISTCONTROL=ignoreboth:erasedup                                          
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"     # append to the history file immediately instead of saving on closing session 
 shopt -s histappend                                                             # append to the history file, don't overwrite it 
 
-#---Terminal options---#
-shopt -s checkwinsize                                                           # check the window size after each command and, if necessary, update the values of LINES and COLUMNS. 
-
-# HSTR configuration
+## HSTR configuration
 alias hh=hstr                    # hh to be alias for hstr
-export HSTR_CONFIG=blacklist,prompt-bottom,raw-history-view
+export HSTR_CONFIG=blacklist,prompt-bottom,raw-history-view,hicolor
 export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
-# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
-if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
-if [[ $- =~ .*i.* ]]; then bind '"\C-f": "\C-a hstr -f \C-j"'; fi
-# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
-if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
+function hstrnotiocsti {
+    { READLINE_LINE="$( { </dev/tty hstr ${READLINE_LINE}; } 2>&1 1>&3 3>&- )"; } 3>&1;
+    READLINE_POINT=${#READLINE_LINE}
+}
+### if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind -x '"\C-r": "hstrnotiocsti"'; fi
+export HSTR_TIOCSTI=n
+
+
+#---Terminal options---#
+shopt -s checkwinsize                                                           # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
@@ -90,9 +93,6 @@ alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # Make ranger change current directory after quit
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-
-# GO packages
-export GOPATH=$HOME/.go
 
 # Zoxide setup
 eval "$(zoxide init bash)"
