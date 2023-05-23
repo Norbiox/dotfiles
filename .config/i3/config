@@ -409,7 +409,7 @@ bindsym $mod1+Ctrl+p exec --no-startup-id pamac-manager
 bindsym --release $mod1+Ctrl+Escape exec xkill
 
 #qv4l2 - camera settings
-bindsym $mod1+Ctrl+v exec --no-startup-id qv4l2
+# bindsym $mod1+Ctrl+v exec --no-startup-id qv4l2
 
 
 # Dropdowns
