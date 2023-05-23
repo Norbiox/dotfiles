@@ -400,7 +400,7 @@ bindsym $mod1+Ctrl+s exec --no-startup-id xfce4-settings-manager
 bindsym $mod1+Ctrl+k exec --no-startup-id arcolinux-logout
 
 #rofi theme selector
-bindsym $mod1+Ctrl+t exec --no-startup-id rofi-theme-selector
+# bindsym $mod1+Ctrl+t exec --no-startup-id rofi-theme-selector
 
 #pamac-manager
 bindsym $mod1+Ctrl+p exec --no-startup-id pamac-manager
