@@ -112,6 +112,7 @@ require('packer').startup(function(use)
   -- use 'jiangmiao/auto-pairs' -- Automatically closes brackets
   use 'voldikss/vim-floaterm' -- Terminal in floating window
   use 'ojroques/vim-oscyank' -- Copy from anywhere to system clipboard using ANSI OSC52 sequence
+  use 'stevearc/dressing.nvim'
 
   -- Vimwiki
   use {
@@ -143,8 +144,8 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
   -- Conjure - interactive evaluation for Neovim
-  use { 'Olical/conjure' }
-  use { 'PaterJason/cmp-conjure' }
+  -- use { 'Olical/conjure' }
+  -- use { 'PaterJason/cmp-conjure' }
 
   -- ChatGPT
   use ({
