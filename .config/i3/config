@@ -86,6 +86,8 @@ exec --no-startup-id xfce4-clipman
 # redshift
 exec --no-startup-id redshift-gtk
 
+# obsidian
+exec --no-startup-id i3-msg 'workspace 11:notes; exec obsidian'
 
 ################# system applications       
 
@@ -252,9 +254,6 @@ bindsym $mod+colon          exec --no-startup-id spawn_dropdown dropdownterminal
 bindsym $mod+p              exec --no-startup-id spawn_dropdown dropdownpython
 bindsym XF86Calculator      exec --no-startup-id spawn_dropdown dropdownpython
 
-# spawn or open dropdown notes
-bindsym $mod+n              exec --no-startup-id spawn_dropdown dropdownnotes
-
 # spawn or open dropdown translator
 bindsym $mod+t              exec --no-startup-id spawn_dropdown dropdowntranslator
 
@@ -327,6 +326,9 @@ bindsym $mod+Shift+Right move right
 
 ################# moving around workspaces         
 
+# named workspaces
+set $notes_ws "11:Notes"
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -338,6 +340,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+n workspace $notes_ws
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1; workspace 1
