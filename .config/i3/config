@@ -44,6 +44,58 @@ mode "$mode_screen_layout" {
     bindsym Escape mode "default"
 }
 
+################# autostart - execute applications at boot time
+
+# USER APPLICATIONS TO START AT BOOT
+
+# ArcoLinux Welcome App
+#exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+
+# Autotiling
+# exec_always --no-startup-id autotiling
+
+# TRAY APPLICATIONS
+
+# applications that are not installed will not start
+# you may see a wheel - hashtag out things you do not want/need
+
+# Authentication dialog
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Automatic lock on suspend
+exec --no-startup-id xss-lock -- ~/.config/i3/scripts/i3exit.sh lock
+
+# Updater
+#exec --no-startup-id pamac-tray
+
+# bluetooth
+exec --no-startup-id blueman-applet
+
+# network
+exec --no-startup-id nm-applet
+
+# num lock activated
+exec_always --no-startup-id numlockx on
+
+# volume
+exec --no-startup-id pasystray
+
+# clipman
+exec --no-startup-id xfce4-clipman
+
+# redshift
+exec --no-startup-id redshift-gtk
+
+
+################# system applications       
+
+exec --no-startup-id xfce4-power-manager &
+# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+# ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
+# IF xfsettingsd is activated you can not change themes
+# exec --no-startup-id xfsettingsd &
+
+
 ################# menus
 
 # dmenu app launcher
@@ -76,6 +128,7 @@ bindsym $mod1+Shift+n           exec --no-startup-id source ~/.dmenurc && networ
 # dmenu-emoji
 bindsym $mod1+Shift+e           exec --no-startup-id source ~/.dmenurc && dmenu-emoji $DMENU_OPTIONS
 
+
 ################# how to exit, logoff, suspend, ...
 
 bindsym $mod1+Escape exec --no-startup-id betterlockscreen -l dimblur -- --time-str="%H:%M"
@@ -100,6 +153,130 @@ mode "$mode_system" {
 # ArcoLinux Logout
 #bindsym $mod+Shift+e exec --no-startup-id archlinux-logout
 #bindsym $mod+X exec --no-startup-id archlinux-logout
+
+
+############## toggle vpn
+
+bindsym $mod1+Shift+v exec --no-startup-id vpn-toggle
+
+
+################# applications keyboard shortcuts  
+
+# terminal
+bindsym $mod+Return exec --no-startup-id $TERM;focus
+bindsym $mod+KP_Enter exec --no-startup-id $TERM;focus
+
+#browser
+bindsym $mod+Shift+b exec --no-startup-id brave;focus
+bindsym $mod+Ctrl+b exec --no-startup-id brave `xclip -o`;focus
+bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`;focus
+
+#vscode
+bindsym $mod+Shift+c exec --no-startup-id code;focus
+
+#dbeaver
+bindsym $mod+Shift+d exec --no-startup-id dbeaver;focus
+
+#slack
+bindsym $mod+Shift+s exec --no-startup-id slack;focus
+
+#slack
+bindsym $mod+Shift+t exec --no-startup-id teams;focus
+
+#thunar
+bindsym $mod+Shift+p exec --no-startup-id thunar;focus
+
+#ranger
+bindsym $mod+Shift+f exec --no-startup-id $TERM -e ranger;focus
+
+#guvcview
+bindsym $mod+Shift+v exec --no-startup-id guvcview;focus
+
+
+# SYSTEM CONTROL
+
+#System monitor
+bindsym Ctrl+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
+
+#ArcoLinux Tweak Tool
+bindsym $mod1+Ctrl+e exec --no-startup-id arcolinux-tweak-tool
+
+#pavucontrol
+bindsym $mod1+Shift+u exec --no-startup-id pavucontrol
+
+#settings
+bindsym $mod1+Ctrl+s exec --no-startup-id xfce4-settings-manager
+
+#arcolinux-logout
+bindsym $mod1+Ctrl+k exec --no-startup-id arcolinux-logout
+
+#rofi theme selector
+# bindsym $mod1+Ctrl+t exec --no-startup-id rofi-theme-selector
+
+#pamac-manager
+bindsym $mod1+Ctrl+p exec --no-startup-id pamac-manager
+
+#xkill
+bindsym --release $mod1+Ctrl+Escape exec xkill
+
+#qv4l2 - camera settings
+# bindsym $mod1+Ctrl+v exec --no-startup-id qv4l2
+
+
+# Dropdowns
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+#
+#---Dropdown Windows---#
+for_window [instance="dropdown*"] floating enable
+for_window [instance="dropdown*"] move scratchpad
+for_window [instance="dropdown*"] sticky enable
+for_window [instance="dropdown*"] scratchpad show
+for_window [instance="dropdownranger"] resize grow left 300, resize grow right 300, resize grow down 200, resize grow up 200, move scratchpad;
+for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, move scratchpad;
+for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
+# for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
+# for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
+for_window [instance="dropdown*"] border pixel 2
+for_window [instance="dropdown*"] scratchpad show
+
+# spawn or open dropdown terminal
+bindsym $mod+colon          exec --no-startup-id spawn_dropdown dropdownterminal
+
+# spawn or open dropdown python console
+bindsym $mod+p              exec --no-startup-id spawn_dropdown dropdownpython
+bindsym XF86Calculator      exec --no-startup-id spawn_dropdown dropdownpython
+
+# spawn or open dropdown notes
+bindsym $mod+n              exec --no-startup-id spawn_dropdown dropdownnotes
+
+# spawn or open dropdown translator
+bindsym $mod+t              exec --no-startup-id spawn_dropdown dropdowntranslator
+
+# spawn or open dropdown ranger
+bindsym $mod+r              exec --no-startup-id spawn_dropdown dropdownranger
+
+# spawn or open dropdown ~~pavucontrol~~ ncpamixer
+bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownmixer
+
+# spawn or open dropdown bluetooth manager
+bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownbluetooth
+
+# spawn or open dropdown Bito AI CLI
+bindsym $mod+a              exec --no-startup-id spawn_dropdown dropdownbito
+
+################# screenshots                      
+
+bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
+bindsym Control+Print exec --no-startup-id xfce4-screenshooter
+bindsym Control+Shift+Print exec --no-startup-id gnome-screenshot -i
+bindsym $mod+Control+Print exec --no-startup-id flameshot gui
+# bindsym shift+Print exec --no-startup-id shutter
 
 ################# reload changed configuration     
 
@@ -268,180 +445,6 @@ bindsym $mod+Ctrl+l resize grow width 5 px or 5 ppt
 # assign [class="Spotify|spotify"]                                                    → 10
 # fix for spotify not moving to workspace 10
 # for_window [class="Spotify"] move to workspace 10
-
-################# autostart - execute applications at boot time
-
-# USER APPLICATIONS TO START AT BOOT
-
-# ArcoLinux Welcome App
-#exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
-
-# Autotiling
-# exec_always --no-startup-id autotiling
-
-# TRAY APPLICATIONS
-
-# applications that are not installed will not start
-# you may see a wheel - hashtag out things you do not want/need
-
-# Authentication dialog
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# Automatic lock on suspend
-exec --no-startup-id xss-lock -- ~/.config/i3/scripts/i3exit.sh lock
-
-# Updater
-#exec --no-startup-id pamac-tray
-
-# bluetooth
-exec --no-startup-id blueman-applet
-
-# network
-exec --no-startup-id nm-applet
-
-# num lock activated
-exec_always --no-startup-id numlockx on
-
-# volume
-exec --no-startup-id pasystray
-
-# clipman
-exec --no-startup-id xfce4-clipman
-
-# redshift
-exec --no-startup-id redshift-gtk
-
-################# system applications       
-
-exec --no-startup-id xfce4-power-manager &
-# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
-# ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
-# IF xfsettingsd is activated you can not change themes
-# exec --no-startup-id xfsettingsd &
-
-################# applications keyboard shortcuts  
-
-# APPLICATIONS AND UTILITIES
-
-# terminal
-bindsym $mod+Return exec --no-startup-id $TERM;focus
-bindsym $mod+KP_Enter exec --no-startup-id $TERM;focus
-
-#browser
-bindsym $mod+Shift+b exec --no-startup-id brave;focus
-bindsym $mod+Ctrl+b exec --no-startup-id brave `xclip -o`;focus
-bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`;focus
-
-#vscode
-bindsym $mod+Shift+c exec --no-startup-id code;focus
-
-#dbeaver
-bindsym $mod+Shift+d exec --no-startup-id dbeaver;focus
-
-#slack
-bindsym $mod+Shift+s exec --no-startup-id slack;focus
-
-#slack
-bindsym $mod+Shift+t exec --no-startup-id teams;focus
-
-#thunar
-bindsym $mod+Shift+p exec --no-startup-id thunar;focus
-
-#ranger
-bindsym $mod+Shift+f exec --no-startup-id $TERM -e ranger;focus
-
-#guvcview
-bindsym $mod+Shift+v exec --no-startup-id guvcview;focus
-
-
-# SYSTEM CONTROL
-
-#System monitor
-bindsym Ctrl+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
-
-#ArcoLinux Tweak Tool
-bindsym $mod1+Ctrl+e exec --no-startup-id arcolinux-tweak-tool
-
-#conky
-bindsym $mod1+Ctrl+c exec --no-startup-id conky-toggle
-
-#pavucontrol
-bindsym $mod1+Shift+u exec --no-startup-id pavucontrol
-
-#settings
-bindsym $mod1+Ctrl+s exec --no-startup-id xfce4-settings-manager
-
-#arcolinux-logout
-bindsym $mod1+Ctrl+k exec --no-startup-id arcolinux-logout
-
-#rofi theme selector
-# bindsym $mod1+Ctrl+t exec --no-startup-id rofi-theme-selector
-
-#pamac-manager
-bindsym $mod1+Ctrl+p exec --no-startup-id pamac-manager
-
-#xkill
-bindsym --release $mod1+Ctrl+Escape exec xkill
-
-#qv4l2 - camera settings
-# bindsym $mod1+Ctrl+v exec --no-startup-id qv4l2
-
-
-# Dropdowns
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
-#
-#---Dropdown Windows---#
-for_window [instance="dropdown*"] floating enable
-for_window [instance="dropdown*"] move scratchpad
-for_window [instance="dropdown*"] sticky enable
-for_window [instance="dropdown*"] scratchpad show
-for_window [instance="dropdownranger"] resize grow left 300, resize grow right 300, resize grow down 200, resize grow up 200, move scratchpad;
-for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, move scratchpad;
-for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
-# for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
-# for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
-for_window [instance="dropdown*"] border pixel 2
-for_window [instance="dropdown*"] scratchpad show
-
-# spawn or open dropdown terminal
-bindsym $mod+colon          exec --no-startup-id spawn_dropdown dropdownterminal
-
-# spawn or open dropdown python console
-bindsym $mod+p              exec --no-startup-id spawn_dropdown dropdownpython
-bindsym XF86Calculator      exec --no-startup-id spawn_dropdown dropdownpython
-
-# spawn or open dropdown notes
-bindsym $mod+n              exec --no-startup-id spawn_dropdown dropdownnotes
-
-# spawn or open dropdown translator
-bindsym $mod+t              exec --no-startup-id spawn_dropdown dropdowntranslator
-
-# spawn or open dropdown ranger
-bindsym $mod+r              exec --no-startup-id spawn_dropdown dropdownranger
-
-# spawn or open dropdown ~~pavucontrol~~ ncpamixer
-bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownmixer
-
-# spawn or open dropdown bluetooth manager
-bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownbluetooth
-
-# spawn or open dropdown Bito AI CLI
-bindsym $mod+a              exec --no-startup-id spawn_dropdown dropdownbito
-
-################# screenshots                      
-
-bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
-bindsym Control+Print exec --no-startup-id xfce4-screenshooter
-bindsym Control+Shift+Print exec --no-startup-id gnome-screenshot -i
-bindsym $mod+Control+Print exec --no-startup-id flameshot gui
-# bindsym shift+Print exec --no-startup-id shutter
-
 ################# floating or tiled rules         
 
 # floating enabled from some programs - find with xprop
