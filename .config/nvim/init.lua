@@ -114,20 +114,6 @@ require('packer').startup(function(use)
   use 'ojroques/vim-oscyank' -- Copy from anywhere to system clipboard using ANSI OSC52 sequence
   use 'stevearc/dressing.nvim'
 
-  -- Vimwiki
-  use {
-    'vimwiki/vimwiki',
-    config = function()
-      vim.g.vimwiki_list = {
-        {
-          path = '$HOME/notes',
-          syntax = 'markdown',
-          ext = '.md',
-        }
-    }
-    end
-  }
-
   -- Markdown preview
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 

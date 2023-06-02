@@ -1,2 +1,0 @@
-#!/bin/sh
-cd $HOME/notes && nvim -c :VimwikiIndex

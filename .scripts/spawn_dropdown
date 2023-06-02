@@ -13,9 +13,7 @@ if xwininfo -tree -root | grep "\"$1\""; then
 else
 	echo "Window not detected... spawning.";
 
-	if [ "$1" == "dropdownnotes" ]; then
-		i3 "exec --no-startup-id alacritty --config-file .config/alacritty/notepad.yml -t $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -e $1";
-	elif [ "$1" == "dropdownpavucontrol" ]; then
+	if [ "$1" == "dropdownpavucontrol" ]; then
 		i3 "exec --no-startup-id pavucontrol --class $1";
 	elif [ "$1" == "dropdownbluetooth" ]; then
 		i3 "exec --no-startup-id blueman-manager --class $1";
