@@ -17,6 +17,10 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+if [ -f "$HOME/.thismachineonlyrc" ]; then
+    . "$HOME/.thismachineonlyrc"
+fi
+
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
