@@ -86,6 +86,14 @@ exec --no-startup-id xfce4-clipman
 # redshift
 exec --no-startup-id redshift-gtk
 
+# WORKSPACE APPLICATIONS
+
+# terminal
+# exec --no-startup-id i3-msg 'workspace 1; exec alacritty'
+
+# browser
+# exec --no-startup-id i3-msg 'workspace 2; exec brave'
+
 # obsidian
 exec --no-startup-id i3-msg 'workspace 11:notes; exec obsidian'
 
@@ -113,7 +121,7 @@ bindsym $mod1+Shift+c           exec --no-startup-id source ~/.dmenurc && dmenu-
 bindsym $mod1+Shift+i           exec --no-startup-id source ~/.dmenurc && dmenu-idasen $DMENU_OPTIONS
 
 # Soundcore headphones
-bindsym $mod1+Shift+h           exec --no-startup-id source ~/.dmenurc && dmenu-soundcore $DMENU_OPTIONS
+bindsym $mod1+Shift+s           exec --no-startup-id source ~/.dmenurc && dmenu-soundcore $DMENU_OPTIONS
 
 # Wacom stylus
 bindsym $mod1+Shift+w           exec --no-startup-id source ~/.dmenurc && dmenu-wacom $DMENU_OPTIONS
@@ -130,6 +138,8 @@ bindsym $mod1+Shift+n           exec --no-startup-id source ~/.dmenurc && networ
 # dmenu-emoji
 bindsym $mod1+Shift+e           exec --no-startup-id source ~/.dmenurc && dmenu-emoji $DMENU_OPTIONS
 
+# HAML
+bindsym $mod1+Shift+h           exec --no-startup-id source ~/.dmenurc && dmenu-haml $DMENU_OPTIONS
 
 ################# how to exit, logoff, suspend, ...
 
@@ -189,7 +199,7 @@ bindsym $mod+Shift+t exec --no-startup-id teams;focus
 bindsym $mod+Shift+p exec --no-startup-id thunar;focus
 
 #ranger
-bindsym $mod+Shift+f exec --no-startup-id $TERM -e ranger;focus
+# bindsym $mod+Shift+f exec --no-startup-id $TERM -e ranger;focus
 
 #guvcview
 bindsym $mod+Shift+v exec --no-startup-id guvcview;focus
@@ -384,8 +394,8 @@ default_orientation horizontal
 #bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-# Super + F in arcolinux is execute thunar
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle global
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout toggle tabbed splith
