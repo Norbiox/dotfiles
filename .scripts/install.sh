@@ -13,16 +13,18 @@ sudo pacman -Sy \
   acpi \
   audacity \
   autorandr \
+  bat \
   blueman \
   btop \
   clojure \
   dunst \
+  dust \
+  exa \
   fd \
   github-cli \
-  gvim \
+  hyperfine \
   ipython \
-  lastpass \
-  lastpass-cli \
+  jless \
   leiningen \
   libreoffice-fresh \
   mplayer \
@@ -31,13 +33,15 @@ sudo pacman -Sy \
   npm \
   openssh \
   pasystray \
+  procs \
   python-pip \
   python-virtualenv \
   ranger \
+  ripgrep \
+  sd \
   slack-desktop \
   sysstat \
-  teams \
-  tldr \
+  tealdeer \
   tmux \
   translate-shell \
   unclutter \
