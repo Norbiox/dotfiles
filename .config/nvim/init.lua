@@ -43,6 +43,15 @@ require('packer').startup(function(use)
     'onsails/lspkind.nvim'
   }
 
+  use { -- Displays popup with possible key bindings
+    "folke/which-key.nvim",
+    config = function ()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup { }
+    end
+  }
+
   use { -- Statusline with code context
     'utilyre/barbecue.nvim',
     requires = {
@@ -263,6 +272,9 @@ vim.o.cursorline = true
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Set default shiftwidth
+vim.bo.shiftwidth = 2
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
