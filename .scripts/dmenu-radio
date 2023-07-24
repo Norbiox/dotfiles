@@ -12,7 +12,9 @@ declare -a options=(
 "Radio Pielgrzym - kazania i reportaże - http://shoutcast.com.pl:9448/"
 "Radio Pielgrzym - kazania - http://shoutcast.com.pl:9450/"
 "CodeRadio - https://coderadio-relay-nyc.freecodecamp.org/radio/8010/radio.mp3"
-"HPR Gospel Bluegrass - https://us2.maindigitalstream.com/ssl/7739"
+"LoFi on Zeno.fm - https://stream-160.zeno.fm/0r0xa792kwzuv?zs=9qkW01L6QU66RZF0Y4RO6Q"
+"HPR1 Traditional Classic Country - https://us2.maindigitalstream.com/ssl/7713"
+"HPR4 Gospel Bluegrass - https://us2.maindigitalstream.com/ssl/7739"
 "quit"
 )
 
