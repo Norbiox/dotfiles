@@ -31,12 +31,15 @@ echo "$rooms[$chosen]"
 
 if [[ "$chosen" == "Random" ]]; then
         room=$(echo $RANDOM | md5sum | head -c 20)
-        $BROWSER https://meet.jit.si/$room --new-window
-
 elif [ "$chosen" ]; then
-        echo "Opening Jitsi room $chosen..."
-        $BROWSER https://meet.jit.si/${rooms[$chosen]} --new-window
-
+        room=${rooms[$chosen]}
 else
         echo "Program terminated" && exit 1
 fi
+
+echo "Opening Jitsi room $room..."
+link="https://meet.jit.si/${room}"
+$BROWSER $link --new-window
+
+echo $link | xclip -selection c
+echo "Link to room copied to clipboard"
