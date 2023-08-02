@@ -4,7 +4,6 @@ rooms_config_file=$HOME/.config/jitsi/rooms
 
 if ! [ -f "$rooms_config_file" ]; then
         echo "Example Room=exampleroom" > $rooms_config_file
-        echo "Random=" >> $rooms_config_file
 fi
 
 if ! [ -f "$HOME/.dmenurc" ]; then
@@ -24,6 +23,8 @@ for line in "${lines[@]}"; do
         rooms[${entry[0]}]="${entry[1]}"
 done
 
+options+=("Random")
+
 chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Room:")
 
 echo "$chosen"
@@ -42,4 +43,4 @@ link="https://meet.jit.si/${room}"
 $BROWSER $link --new-window
 
 echo $link | xclip -selection c
-echo "Link to room copied to clipboard"
+echo "Link to meeting copied to clipboard"
