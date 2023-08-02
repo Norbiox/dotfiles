@@ -4,6 +4,7 @@ rooms_config_file=$HOME/.config/jitsi/rooms
 
 if ! [ -f "$rooms_config_file" ]; then
         echo "Example Room=exampleroom" > $rooms_config_file
+        echo "Random=" >> $rooms_config_file
 fi
 
 if ! [ -f "$HOME/.dmenurc" ]; then
@@ -28,7 +29,11 @@ chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Room:")
 echo "$chosen"
 echo "$rooms[$chosen]"
 
-if [ "$chosen" ]; then
+if [[ "$chosen" == "Random" ]]; then
+        room=$(echo $RANDOM | md5sum | head -c 20)
+        $BROWSER https://meet.jit.si/$room --new-window
+
+elif [ "$chosen" ]; then
         echo "Opening Jitsi room $chosen..."
         $BROWSER https://meet.jit.si/${rooms[$chosen]} --new-window
 
