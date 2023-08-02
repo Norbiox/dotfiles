@@ -1,0 +1,37 @@
+#!/bin/bash
+
+rooms_config_file=$HOME/.config/jitsi/rooms
+
+if ! [ -f "$rooms_config_file" ]; then
+        echo "Example Room=exampleroom" > $rooms_config_file
+fi
+
+if ! [ -f "$HOME/.dmenurc" ]; then
+	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
+fi
+. $HOME/.dmenurc
+dmenu_cmd="dmenu $DMENU_OPTIONS"
+
+declare -a options
+declare -A rooms
+
+readarray -t lines < $rooms_config_file
+
+for line in "${lines[@]}"; do
+        IFS="=" read -r -a entry <<< "$line"
+        options+=("${entry[0]}")
+        rooms[${entry[0]}]="${entry[1]}"
+done
+
+chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Room:")
+
+echo "$chosen"
+echo "$rooms[$chosen]"
+
+if [ "$chosen" ]; then
+        echo "Opening Jitsi room $chosen..."
+        $BROWSER https://meet.jit.si/${rooms[$chosen]} --new-window
+
+else
+        echo "Program terminated" && exit 1
+fi

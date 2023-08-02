@@ -141,6 +141,9 @@ bindsym $mod1+Shift+e           exec --no-startup-id source ~/.dmenurc && dmenu-
 # HAML
 bindsym $mod1+Shift+h           exec --no-startup-id source ~/.dmenurc && dmenu-haml $DMENU_OPTIONS
 
+# Jitsi
+bindsym $mod1+Shift+j           exec --no-startup-id source ~/.dmenurc && dmenu-jitsi $DMENU_OPTIONS
+
 ################# how to exit, logoff, suspend, ...
 
 bindsym $mod1+Escape exec --no-startup-id betterlockscreen -l dimblur -- --time-str="%H:%M"
