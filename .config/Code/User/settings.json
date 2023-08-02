@@ -31,7 +31,8 @@
             100
         ],
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true
     },
     "[go]": {
         "editor.defaultFormatter": "golang.go"
@@ -289,7 +290,7 @@
     "editor.guides.indentation": false,
     "cSpell.language": "en,pl,pl-PL",
     "redhat.telemetry.enabled": true,
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Atom One Light",
     "editor.minimap.showSlider": "always",
     "editor.minimap.scale": 2,
     "editor.minimap.enabled": false,

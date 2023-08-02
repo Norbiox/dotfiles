@@ -40,6 +40,7 @@ sudo pacman -Sy \
   ripgrep \
   sd \
   slack-desktop \
+  sniffnet \
   sysstat \
   tealdeer \
   tmux \

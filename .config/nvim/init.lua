@@ -64,6 +64,14 @@ require('packer').startup(function(use)
     end
   }
 
+  use { -- Tabline enhancer
+    'romgrk/barbar.nvim',
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+      'lewis6991/gitsigns.nvim',
+    },
+  }
+
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -111,6 +119,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
+  use 'sindrets/diffview.nvim'
 
   -- Miscallenous
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
@@ -122,6 +131,7 @@ require('packer').startup(function(use)
   use 'voldikss/vim-floaterm' -- Terminal in floating window
   use 'ojroques/vim-oscyank' -- Copy from anywhere to system clipboard using ANSI OSC52 sequence
   use 'stevearc/dressing.nvim'
+  use 'nvim-tree/nvim-web-devicons' -- Icons
 
   -- Markdown preview
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
@@ -155,6 +165,11 @@ require('packer').startup(function(use)
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope.nvim'
       }
+  })
+
+  use ({
+    'ckipp01/nvim-jenkinsfile-linter',
+    requires = { "nvim-lua/plenary.nvim" }
   })
 
   -- Surround - surround selections
@@ -237,6 +252,9 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
+-- Vertical line
+vim.o.colorcolumn="80,100"
+
 -- Set colorscheme
 -- vim.opt.termguicolors = true
 require('onedark').setup {
@@ -275,14 +293,6 @@ vim.g.maplocalleader = ' '
 
 -- Set default shiftwidth
 vim.bo.shiftwidth = 2
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -436,12 +446,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
 -- Setup navic
 local navic = require("nvim-navic")
 
@@ -509,7 +513,7 @@ require('mason').setup({
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'gopls', 'clojure_lsp'}
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'gopls', 'clojure_lsp', 'groovyls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -564,7 +568,7 @@ require('lspconfig').clangd.setup {
 }
 
 -- Tabnine setup
-local tabnine = require('cmp_tabnine.config')
+-- local tabnine = require('cmp_tabnine.config')
 -- tabnine:setup({
 --   max_lines=1000,
 --   nax_num_results=20,
@@ -712,38 +716,102 @@ require("nvim-tree").setup({
     dotfiles = false,
   }
 })
-vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
+-- Setup Barbar
+require('barbar').setup({
+})
 
 -- Python virtualenv config
 vim.g.python3_host_prog = '/usr/bin/python'
 
+
+-------------
+-- KEYMAPS --
+-------------
+
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+-- NvimTree keymaps
+vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+
 -- Black keymaps
-vim.api.nvim_set_keymap('n', '<leader>b', ':!black -l 100 %<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>b', ':!black -l 100 %<CR>', {noremap = true, silent = true})
 
 -- Map Esc to exit terminal mode
-vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = true})
+vim.keymap.set('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = true})
 
 -- Keymap and settings for terminal floating window
-vim.api.nvim_set_keymap('n', '<leader>;', ':FloatermToggle<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>;', '<Esc>:FloatermToggle<CR>', {noremap = false, silent = true})
-vim.api.nvim_set_keymap('t', '<leader>;', '<C-\\><C-N>:FloatermToggle<CR>', {noremap = false, silent = true})
-vim.api.nvim_set_keymap('t', '<leader><F4>', '<C-\\><C-N>:FloatermNew<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<leader><F5>', '<C-\\><C-N>:FloatermKill<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<leader><F6>', '<C-\\><C-N>:FloatermFirst<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<leader><F7>', '<C-\\><C-N>:FloatermPrev<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<leader><F8>', '<C-\\><C-N>:FloatermNext<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<leader><F9>', '<C-\\><C-N>:FloatermLast<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>;', ':FloatermToggle<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>;', '<Esc>:FloatermToggle<CR>', {noremap = false, silent = true})
+vim.keymap.set('t', '<leader>;', '<C-\\><C-N>:FloatermToggle<CR>', {noremap = false, silent = true})
+vim.keymap.set('t', '<leader><F4>', '<C-\\><C-N>:FloatermNew<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader><F5>', '<C-\\><C-N>:FloatermKill<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader><F6>', '<C-\\><C-N>:FloatermFirst<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader><F7>', '<C-\\><C-N>:FloatermPrev<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader><F8>', '<C-\\><C-N>:FloatermNext<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader><F9>', '<C-\\><C-N>:FloatermLast<CR>', {noremap = true, silent = true})
 
 -- Keymap for OSCYank
-vim.api.nvim_set_keymap('v', '<leader>c', ':OSCYank<CR>', {noremap = true, silent = true})
-
--- Vertical line
-vim.o.colorcolumn="80,100"
+vim.keymap.set('v', '<leader>c', ':OSCYank<CR>', {noremap = true, silent = true})
 
 -- Keymap for saving/loading session
-vim.api.nvim_set_keymap('n', '<leader>ss', ':mksession! .nvimsession<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>sl', ':source .nvimsession<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>ss', ':mksession! .nvimsession<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>sl', ':source .nvimsession<CR>', {noremap = true, silent = true})
+
+-- Keymap for Barbar
+-- Move to previous/next
+vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>', {noremap = true, silent = true})
+-- Re-order to previous/next
+vim.keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>', {noremap = true, silent = true})
+-- Goto buffer in position...
+vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', {noremap = true, silent = true})
+-- Pin/unpin buffer
+vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>', {noremap = true, silent = true})
+-- Close buffer
+vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<A-x>', '<Cmd>BufferCloseAllButVisible<CR>', {noremap = true, silent = true})
+-- Wipeout buffer
+--                 :BufferWipeout
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+-- Magic buffer-picking mode
+vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>', {noremap = true, silent = true})
+-- Sort automatically by...
+vim.keymap.set('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', {noremap = true, silent = true})
+
+-- Keymap for DiffView
+vim.keymap.set('n', '<Space>do', '<Cmd>DiffviewOpen<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<Space>dc', '<Cmd>DiffviewClose<CR>', {noremap = true, silent = true})
 
 -- Keymap for ChatGTP
 

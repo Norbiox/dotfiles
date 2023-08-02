@@ -167,7 +167,7 @@ mode "$mode_system" {
 #bindsym $mod+X exec --no-startup-id archlinux-logout
 
 
-############## toggle vpn
+############## vpn
 
 bindsym $mod1+Shift+v exec --no-startup-id vpn-toggle
 
