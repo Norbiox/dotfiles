@@ -184,6 +184,28 @@ require('packer').startup(function(use)
     end
   })
 
+  -- Rainbow CSV for colourful CSV
+  use {
+      'cameron-wags/rainbow_csv.nvim',
+      config = function()
+          require 'rainbow_csv'.setup()
+      end,
+      -- optional lazy-loading below
+      module = {
+          'rainbow_csv',
+          'rainbow_csv.fns'
+      },
+      ft = {
+          'csv',
+          'tsv',
+          'csv_semicolon',
+          'csv_whitespace',
+          'csv_pipe',
+          'rfc_csv',
+          'rfc_semicolon'
+      }
+  }
+
   -- END OF PLUGINS --
 
   -- START OF CONFIGS --
@@ -382,6 +404,8 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 
 vim.keymap.set('n', '<leader>c', require('telescope.builtin').commands, { desc = '[C]ommands' })
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').command_history, { desc = '[S]earch [C]ommand History' })
+
+vim.keymap.set('n', '<leader>m', require('telescope.builtin').marks, { desc = '[M]arks' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
