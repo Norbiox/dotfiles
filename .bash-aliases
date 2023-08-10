@@ -23,6 +23,8 @@ v() {
         echo "Virtual environment has not beed detected in current directory."
     fi
 }
+# Set pwd as PYTHONPATH
+alias epp="export PYTHONPATH=`pwd`"
 
 # cd and then ls
 cdls() {
