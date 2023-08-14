@@ -86,6 +86,9 @@ exec --no-startup-id xfce4-clipman
 # redshift
 exec --no-startup-id redshift-gtk
 
+# variety - wallpaper changer
+exec --no-startup-id variety
+
 # WORKSPACE APPLICATIONS
 
 # terminal
