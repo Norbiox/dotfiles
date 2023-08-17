@@ -3,7 +3,8 @@
 #
 
 #export TERM="urxvt"
-export TERM="alacritty"
+export TERM="kitty"
+export TERM2="alacritty"
 export FILE="ranger"
 export EDITOR="nvim"
 export VISUAL="nvim"

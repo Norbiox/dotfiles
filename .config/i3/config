@@ -91,12 +91,6 @@ exec --no-startup-id variety
 
 # WORKSPACE APPLICATIONS
 
-# terminal
-# exec --no-startup-id i3-msg 'workspace 1; exec alacritty'
-
-# browser
-# exec --no-startup-id i3-msg 'workspace 2; exec brave'
-
 # obsidian
 exec --no-startup-id i3-msg 'workspace 11:notes; exec obsidian'
 
@@ -184,6 +178,10 @@ bindsym $mod1+Shift+v exec --no-startup-id vpn-toggle
 bindsym $mod+Return exec --no-startup-id $TERM;focus
 bindsym $mod+KP_Enter exec --no-startup-id $TERM;focus
 
+# second terminal
+bindsym $mod+$mod1+Return exec --no-startup-id $TERM2;focus
+bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERM2;focus
+
 #browser
 bindsym $mod+Shift+b exec --no-startup-id brave;focus
 bindsym $mod+Ctrl+b exec --no-startup-id brave `xclip -o`;focus
@@ -255,9 +253,9 @@ for_window [instance="dropdown*"] floating enable
 for_window [instance="dropdown*"] move scratchpad
 for_window [instance="dropdown*"] sticky enable
 for_window [instance="dropdown*"] scratchpad show
-for_window [instance="dropdownranger"] resize grow left 300, resize grow right 300, resize grow down 200, resize grow up 200, move scratchpad;
-for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, move scratchpad;
-for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
+for_window [instance="dropdownranger"] resize grow left 300, resize grow right 300, resize grow down 300, resize grow up 300, move scratchpad;
+for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, resize grow up 40, resize grow down 45, move scratchpad;
+# for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
 # for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
 # for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
 for_window [instance="dropdown*"] border pixel 2
@@ -520,6 +518,7 @@ for_window [class="Termite"] focus
 for_window [class="Terminator"] focus
 for_window [class="Urxvt"] focus
 for_window [class="Alacritty"] focus
+for_window [class="Kitty"] focus
 
 ################# audio settings                   
 

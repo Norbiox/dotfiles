@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Toggle floating dropdown alacritty terminal in i3, or start if non-existing.
+# Toggle floating dropdown terminal in i3, or start if non-existing.
 # $1 is	the script run in the terminal.
 # All other args are terminal settings.
 # Terminal names are in dropdown_* to allow easily setting i3 settings.
@@ -18,6 +18,6 @@ else
 	elif [ "$1" == "dropdownbluetooth" ]; then
 		i3 "exec --no-startup-id blueman-manager --class $1";
 	else
-		i3 "exec --no-startup-id alacritty -t $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -e $1";
+		i3 "exec --no-startup-id kitty -T $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -e $1";
 	fi
 fi
