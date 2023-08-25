@@ -738,6 +738,7 @@ require("nvim-tree").setup({
   },
   filters = {
     dotfiles = false,
+    custom = { '__pycache__' },
   }
 })
 
