@@ -130,3 +130,6 @@ alias hpr4=hpr4-current-song | while read song; do notify-send "$song"; done
 
 # test microphone
 alias test-mic="arecord -d 5 test-mic.wav && sleep 1 && aplay test-mic.wav && rm test-mic.wav"
+
+# kitty terminal oriented aliases
+alias kdiff="kitty +kitten diff"
