@@ -190,8 +190,8 @@ bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`;focus
 #vscode
 bindsym $mod+Shift+c exec --no-startup-id code;focus
 
-#dbeaver
-bindsym $mod+Shift+d exec --no-startup-id dbeaver;focus
+#discord
+bindsym $mod+Shift+d exec --no-startup-id discord;focus
 
 #slack
 bindsym $mod+Shift+s exec --no-startup-id slack;focus
