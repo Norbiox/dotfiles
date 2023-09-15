@@ -25,6 +25,7 @@ sudo pacman -Sy \
   hyperfine \
   ipython \
   jless \
+  kitty \
   leiningen \
   libreoffice-fresh \
   mplayer \
