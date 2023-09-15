@@ -13,16 +13,27 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Toggle python virtualenv
 v() {
-    if [[ -d "./venv" && -z "$VIRTUAL_ENV" ]]; then
-        source ./venv/bin/activate
-        echo "Virtual environment activated. Python version: `python --version | cut -d' ' -f2`"
-    elif [[ -n "$VIRTUAL_ENV" ]]; then
-        deactivate
-        echo "Virtual environment deactivated."
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        if [[ -d "./venv" ]]; then
+            deactivate
+            echo "Virtual environment deactivated."
+        elif [[ -f "poetry.lock" ]]; then
+            exit
+        else
+            echo "Don't know how to deactivate virtual environment."
+        fi
     else
-        echo "Virtual environment has not beed detected in current directory."
+        if [[ -d "./venv" ]]; then
+            source ./venv/bin/activate
+            echo "Virtual environment activated. Python version: `python --version | cut -d' ' -f2`"
+        elif [[ -f "poetry.lock" ]]; then
+            poetry shell
+        else
+            echo "Don't know how to activate virtual environment."
+        fi
     fi
 }
+
 # Set pwd as PYTHONPATH
 alias epp="export PYTHONPATH=`pwd`"
 
@@ -52,6 +63,8 @@ alias fgrep='fgrep --color=auto'
 # Aliases for software managment
 alias pacman='sudo pacman --color auto'
 alias update='sudo pacman -Syyu'
+# cleanup orphaned packages & pacman cache & yay cache
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq) && sudo pacman -Sc && yay -Sc'
 
 #pacman unlock
 alias unlock="sudo rm /var/lib/pacman/db.lck"
@@ -133,3 +146,9 @@ alias test-mic="arecord -d 5 test-mic.wav && sleep 1 && aplay test-mic.wav && rm
 
 # kitty terminal oriented aliases
 alias kdiff="kitty +kitten diff"
+
+# docker aliases
+alias dcu="docker compose up"
+alias dcud="docker compose up -d"
+alias dcd="docker compose down"
+alias dps="docker ps"
