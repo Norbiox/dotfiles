@@ -99,6 +99,7 @@ alias gundo='git reset --soft HEAD^' # Undoes the last commit and moves the file
 alias gco='git checkout'
 alias gpusho="git push origin ${parse_git_branch}"
 alias gpullo="git pull --rebase origin ${parse_git_branch}"
+alias gstart="git checkout main && git pull && git checkout -b "
 
 alias delete_pyc="find . -name \*.pyc -delete"
 
