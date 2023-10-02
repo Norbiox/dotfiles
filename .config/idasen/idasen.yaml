@@ -1,7 +1,7 @@
 mac_address: E5:67:DC:82:F1:3E
 positions:
-  bottom: 0.62
-  sit: 0.6562
-  stand: 1.07
   top: 1.195
   walk: 1.151
+  stand: 1.0497
+  sit: 0.6562
+  bottom: 0.62
