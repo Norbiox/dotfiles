@@ -352,9 +352,14 @@ require('Comment').setup({
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
+local indentation_highlight = {
+  "CursorColumn",
+  "Whitespace",
+}
+require("ibl").setup {
+  indent = { highlight = indentation_highlight, char = "" },
+  whitespace = { highlight = indentation_highlight, remove_blankline_trail = true },
+  scope = { enabled = true }
 }
 
 -- Gitsigns
