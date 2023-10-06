@@ -97,12 +97,8 @@ require('packer').startup(function(use)
     event = 'InsertEnter'
   }
 
-  -- TabNine autocompletion
-  use {
-    'tzachar/cmp-tabnine',
-    run = './install.sh',
-    requires = 'hrsh7th/nvim-cmp'
-  }
+  -- TabNine
+  use { 'codota/tabnine-nvim', run = './dl_binaries.sh' }
 
   -- Automatically closes brackets 
   use {
@@ -591,27 +587,6 @@ require('lspconfig').clangd.setup {
   on_attach = on_attach,
 }
 
--- Tabnine setup
--- local tabnine = require('cmp_tabnine.config')
--- tabnine:setup({
---   max_lines=1000,
---   nax_num_results=20,
---   sort=true,
---   run_on_every_keystroke=true,
---   snippet_placeholder='..',
---   ignored_file_types={},
---   show_prediction_strength=false,
--- })
--- -- Make tabnine prefetch file on open
--- local prefetch = vim.api.nvim_create_augroup("prefetch", {clear = true})
--- vim.api.nvim_create_autocmd('BufRead', {
---   group = prefetch,
---   pattern = '*.*',
---   callback = function()
---     require('cmp_tabnine'):prefetch(vim.fn.expand('%:p'))
---   end
--- })
-
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
@@ -620,7 +595,6 @@ local source_mapping = {
 	buffer = "[Buffer]",
 	nvim_lsp = "[LSP]",
 	nvim_lua = "[Lua]",
-	cmp_tabnine = "[TN]",
 	path = "[Path]",
 }
 local compare = require 'cmp.config.compare'
@@ -661,7 +635,6 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp' },
-    -- { name = 'cmp_tabnine' },
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
@@ -669,7 +642,6 @@ cmp.setup {
   sorting = {
     priority_weight = 2,
     comparators = {
-      -- require('cmp_tabnine.compare'),
       compare.offset,
       compare.exact,
       compare.score,
@@ -686,17 +658,6 @@ cmp.setup {
       -- in the following line:
       vim_item.kind = lspkind.symbolic(vim_item.kind, {mode = "symbol"})
       vim_item.menu = source_mapping[entry.source.name]
-      if entry.source.name == "cmp_tabnine" then
-        local detail = (entry.completion_item.data or {}).detail
-        vim_item.kind = ""
-        if detail and detail:find('.*%%.*') then
-          vim_item.kind = vim_item.kind .. ' ' .. detail
-        end
-
-        if (entry.completion_item.data or {}).multiline then
-          vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
-        end
-      end
       local maxwidth = 100
       vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
       return vim_item
@@ -749,6 +710,16 @@ require('barbar').setup({
 -- Python virtualenv config
 vim.g.python3_host_prog = '/usr/bin/python'
 
+-- Activate TabNine
+require('tabnine').setup({
+  disable_auto_comment = true,
+  accept_keymap = '<Tab>',
+  dismiss_keymap = '<C-]>',
+  debounce_ms = 500,
+  suggestion_color = { gui='#808080', cterm=244 },
+  exclude_filetypes = { 'TelescopePrompt', 'NvimTree' },
+  log_file_path = '.dev/tabnine.log',
+})
 
 -------------
 -- KEYMAPS --
