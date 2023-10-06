@@ -104,9 +104,6 @@ require('packer').startup(function(use)
     requires = 'hrsh7th/nvim-cmp'
   }
 
-  -- Codeium autocompletion
-  use 'Exafunction/codeium.vim'
-
   -- Automatically closes brackets 
   use {
     'windwp/nvim-autopairs',
