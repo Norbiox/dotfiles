@@ -1,0 +1,28 @@
+#!/bin/bash
+# Reset workspaces to their screens
+# Works only for 'home' autorandr configuration
+current_setup=$(autorandr --current)
+
+if [ $current_setup != 'home' ]; then
+  echo "Current setup is not 'home', exiting "
+  exit 1
+fi
+
+left="DP2-1"
+center="DP2-3"
+right="DP2-2"
+laptop="eDP1"
+
+i3-msg '[workspace="11"]' move workspace to output $right
+i3-msg '[workspace="4"]' move workspace to output $left
+i3-msg '[workspace="5"]' move workspace to output $left
+i3-msg '[workspace="6"]' move workspace to output $left
+i3-msg '[workspace="7"]' move workspace to output $left
+i3-msg '[workspace="8"]' move workspace to output $left
+i3-msg '[workspace="9"]' move workspace to output $right
+i3-msg '[workspace="10"]' move workspace to output $left
+
+i3-msg '[workspace="99"]' move workspace to output $laptop
+i3-msg '[workspace="3"]' move workspace to output $left
+i3-msg '[workspace="2"]' move workspace to output $right
+i3-msg '[workspace="1"]' move workspace to output $center
