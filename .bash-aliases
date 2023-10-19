@@ -112,7 +112,7 @@ alias cwait='config reset HEAD' # Unstages everything.
 alias cl='config log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
 alias cundo='config reset --soft HEAD^' # Undoes the last commit and moves the files in the commit to staging.
 alias cco='config checkout'
-alias cpush="git push"
+alias cpush="config push"
 
 # Remove .pyc files
 alias delete_pyc="find . -name \*.pyc -delete"
