@@ -282,9 +282,6 @@ bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownmixer
 # spawn or open dropdown bluetooth manager
 bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownbluetooth
 
-# spawn or open dropdown Bito AI CLI
-bindsym $mod+a              exec --no-startup-id spawn_dropdown dropdownbito
-
 ################# screenshots                      
 
 bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
@@ -343,7 +340,8 @@ bindsym $mod+Shift+Right move right
 ################# moving around workspaces         
 
 # named workspaces
-set $notes_ws "11:Notes"
+set $notes_ws "11:notes"
+set $empty_ws "99:empty"
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -357,6 +355,7 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+n workspace $notes_ws
+bindsym $mod+equal workspace $empty_ws
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1; workspace 1
@@ -410,10 +409,10 @@ bindsym $mod+e layout toggle split
 bindsym $mod+q split toggle
 
 # focus the parent container
-#bindsym $mod+a focus parent
+bindsym $mod+a focus parent
 
 # focus the child container
-# bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 ################# resize  
 
@@ -433,9 +432,8 @@ bindsym $mod+Ctrl+l resize grow width 5 px or 5 ppt
 # assign [class="Firefox|Vivaldi-stable|Vivaldi-snapshot|Opera"]                      → 3
 # assign [class="Chromium|Google-chrome"]                    → 3
 
-# Workspace 2 text editor related
-# assign [class="sublime-text|sublime_text|Sublime_text|subl|Subl|subl3|Subl3"]       → 2
-# assign [class="Xed|xed|Brackets|Atom|Code|Geany"]                                   → 2
+# Workspace 2 Browser
+# assign [class="Brave"] → 2
 
 # Workspace 3 Inkscape
 # assign [class="Inkscape"]                                                           → 3
@@ -448,8 +446,8 @@ bindsym $mod+Ctrl+l resize grow width 5 px or 5 ppt
 # assign [class="feh|gthumb|Gthumb|eog|Eog|Pinta|pixeluvo|Pixeluvo"]                  → 5
 # assign [class="Meld"]                                                               → 5
 
-# Workspace 6 all video related software
-# assign [class="Vlc|vlc"]                                                            → 6
+# Workspace 6 Slack
+assign [class="Slack"] → 6
 
 # Workspace 7 virtual machines and settings
 # assign [class="Vmplayer|VirtualBox"]						    → 7
@@ -464,6 +462,9 @@ bindsym $mod+Ctrl+l resize grow width 5 px or 5 ppt
 # assign [class="Spotify|spotify"]                                                    → 10
 # fix for spotify not moving to workspace 10
 # for_window [class="Spotify"] move to workspace 10
+
+# Workspace notes - Obsidian
+assign [class="obsidian"] → $notes_ws 
 ################# floating or tiled rules         
 
 # floating enabled from some programs - find with xprop
@@ -741,3 +742,6 @@ client.background       $background
 
 # get the mouse out of the way with unclutter
 exec --no-startup-id unclutter
+
+# setup workspaces on their monitors
+exec --no-startup-id reset-workspaces
