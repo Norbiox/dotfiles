@@ -17,6 +17,7 @@ radio_stations[LoFi on Zeno.fm]="https://stream-160.zeno.fm/0r0xa792kwzuv?zs=9qk
 radio_stations[Bluegrass Gospel Radio on Zeno.fm]="https://stream-153.zeno.fm/uv9m03e8h0hvv?zs=pgx81fu9QNaoJ9I9pEME"
 radio_stations[HPR1 Traditional Classic Country]="https://us2.maindigitalstream.com/ssl/7713"
 radio_stations[HPR4 Gospel Bluegrass]="https://us2.maindigitalstream.com/ssl/7739"
+radio_stations[Chillstep.info]="https://chillstep.info/radio/stream.ogg?1696871921731"
 
 chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | $dmenu_cmd -i -l 20 -p "Radio:")
 
@@ -30,7 +31,7 @@ elif [[ "$chosen" == "Turn Off" ]]; then
 elif [ "$chosen" ]; then
         echo "Turning radio $chosed..."
         pkill mplayer;
-        mplayer -nocache -afm ffmpeg ${radio_stations[$chosen]};
+        mplayer ${radio_stations[$chosen]};
 
 else
         echo "Program terminated" && exit 1
