@@ -464,7 +464,7 @@ assign [class="Slack"] → 6
 # for_window [class="Spotify"] move to workspace 10
 
 # Workspace notes - Obsidian
-assign [class="obsidian"] → $notes_ws 
+assign [class="obsidian"] → $notes_ws
 ################# floating or tiled rules         
 
 # floating enabled from some programs - find with xprop
