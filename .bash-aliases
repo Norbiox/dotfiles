@@ -14,7 +14,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # Toggle python virtualenv
 v() {
     if [[ -n "$VIRTUAL_ENV" ]]; then
-        if [[ -d "./venv" ]]; then
+        if [[ -d "./venv" || -d "./.venv" ]]; then
             deactivate
             echo "Virtual environment deactivated."
         elif [[ -f "poetry.lock" ]]; then
@@ -25,6 +25,9 @@ v() {
     else
         if [[ -d "./venv" ]]; then
             source ./venv/bin/activate
+            echo "Virtual environment activated. Python version: `python --version | cut -d' ' -f2`"
+        elif [[ -d "./.venv" ]]; then
+            source ./.venv/bin/activate
             echo "Virtual environment activated. Python version: `python --version | cut -d' ' -f2`"
         elif [[ -f "poetry.lock" ]]; then
             poetry shell
