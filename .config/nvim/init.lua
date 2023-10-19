@@ -561,7 +561,7 @@ require('mason').setup({
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'gopls', 'clojure_lsp', 'groovyls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'gopls', 'clojure_lsp', 'groovyls', 'yamlls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -739,15 +739,15 @@ require('barbar').setup({
 vim.g.python3_host_prog = '/usr/bin/python'
 
 -- Activate TabNine
-require('tabnine').setup({
-  disable_auto_comment = true,
-  accept_keymap = '<Tab>',
-  dismiss_keymap = '<C-]>',
-  debounce_ms = 500,
-  suggestion_color = { gui='#808080', cterm=244 },
-  exclude_filetypes = { 'TelescopePrompt', 'NvimTree' },
-  log_file_path = '.dev/tabnine.log',
-})
+-- require('tabnine').setup({
+--   disable_auto_comment = true,
+--   accept_keymap = '<Tab>',
+--   dismiss_keymap = '<C-]>',
+--   debounce_ms = 500,
+--   suggestion_color = { gui='#808080', cterm=244 },
+--   exclude_filetypes = { 'TelescopePrompt', 'NvimTree' },
+--   log_file_path = '.dev/tabnine.log',
+-- })
 
 -------------
 -- KEYMAPS --
