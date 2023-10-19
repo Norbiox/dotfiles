@@ -104,6 +104,17 @@ alias gpusho="git push origin ${parse_git_branch}"
 alias gpullo="git pull --rebase origin ${parse_git_branch}"
 alias gstart="git checkout main && git pull && git checkout -b "
 
+# Config management aliases
+alias cst='config status'
+alias cap='config add -p'
+alias ccm='config commit'
+alias cwait='config reset HEAD' # Unstages everything.
+alias cl='config log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias cundo='config reset --soft HEAD^' # Undoes the last commit and moves the files in the commit to staging.
+alias cco='config checkout'
+alias cpush="git push"
+
+# Remove .pyc files
 alias delete_pyc="find . -name \*.pyc -delete"
 
 # # ex = EXtractor for all kinds of archives
