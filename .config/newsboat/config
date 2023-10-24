@@ -34,8 +34,8 @@ color hint-description    yellow  white
 color article             white   black
 
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
-# browser linkhandler
-browser "brave %u"
+browser linkhandler
+# browser "brave %u"
 macro , open-in-browser
 macro t set browser "qndl" ; open-in-browser ; set browser linkhandler
 macro a set browser "tsp yt-dlp --embed-metadata -xic -f bestaudio/best --restrict-filenames" ; open-in-browser ; set browser linkhandler
