@@ -13,12 +13,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'haya14busa/incsearch.vim'
 Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'itchyny/calendar.vim'
 Plug 'tpope/vim-commentary'
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries' }
 call plug#end()
 
 """ Colorscheme
@@ -90,7 +88,7 @@ noremap <Right> <NOP>
 nnoremap <space> za
 
 """ Vimwiki
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/Notes/gtd', 'syntax': 'markdown', 'ext': '.md'}, {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'custom'
 
 """ Others
@@ -98,4 +96,3 @@ let @d = ":put =strftime('%d.%m.%Y')"
 
 set exrc
 set secure
-
