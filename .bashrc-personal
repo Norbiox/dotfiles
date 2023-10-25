@@ -89,5 +89,11 @@ alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 # Make ranger change current directory after quit
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
+# FZF settings
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+export FZF_CTRL_T_COMMAND='rg --hidden -l ""'
+
+
 # Zoxide setup
 eval "$(zoxide init bash)"
