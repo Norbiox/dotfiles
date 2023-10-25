@@ -18,6 +18,8 @@ radio_stations[Bluegrass Gospel Radio on Zeno.fm]="https://stream-153.zeno.fm/uv
 radio_stations[HPR1 Traditional Classic Country]="https://us2.maindigitalstream.com/ssl/7713"
 radio_stations[HPR4 Gospel Bluegrass]="https://us2.maindigitalstream.com/ssl/7739"
 radio_stations[Chillstep.info]="https://chillstep.info/radio/stream.ogg?1696871921731"
+radio_stations[10 Hours of Messianic Jewish Worship Music]="https://www.youtube.com/watch?v=fnuYjtMH-NA"
+radio_stations[Lofi Girl]="https://www.youtube.com/watch?v=jfKfPfyJRdk"
 
 chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | $dmenu_cmd -i -l 20 -p "Radio:")
 
@@ -26,12 +28,12 @@ if [[ "$chosen" == "quit" ]]; then
 
 elif [[ "$chosen" == "Turn Off" ]]; then
         echo "Turning radio down..."
-        pkill mplayer;
+        pkill mpv;
 
 elif [ "$chosen" ]; then
         echo "Turning radio $chosed..."
-        pkill mplayer;
-        mplayer ${radio_stations[$chosen]};
+        pkill mpv;
+        mpv --no-video ${radio_stations[$chosen]};
 
 else
         echo "Program terminated" && exit 1
