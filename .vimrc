@@ -87,9 +87,13 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 nnoremap <space> za
 
-""" Vimwiki
-let g:vimwiki_list = [{'path': '~/Notes/gtd', 'syntax': 'markdown', 'ext': '.md'}, {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+""" Notes settings
+let g:vimwiki_list = [{'path': '~/notes', 'syntax': 'markdown', 'ext': '.md'}, {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'custom'
+command NotesPush execute "! git add . && git commit -m 'batch update' && git push"
+command NotesPull execute "! git checkout -- . && git pull"
+au BufEnter ~/notes/{gtd.md} :NotesPull
+au BufWritePost ~/notes/* :NotesPush
 
 """ Others
 let @d = ":put =strftime('%d.%m.%Y')"
