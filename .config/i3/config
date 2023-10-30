@@ -257,6 +257,7 @@ for_window [instance="dropdown*"] sticky enable
 for_window [instance="dropdown*"] scratchpad show
 for_window [instance="dropdownranger"] resize grow left 300, resize grow right 300, resize grow down 300, resize grow up 300, move scratchpad;
 for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, resize grow up 40, resize grow down 45, move scratchpad;
+for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
 for_window [instance="dropdowngtd"] resize grow down 200, resize grow up 200, move scratchpad;
 # for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
 # for_window [instance="dropdowntranslator"] resize grow down 200, resize grow up 200, move scratchpad;
@@ -283,6 +284,9 @@ bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownmixer
 bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownbluetooth
 
 # spawn or open dropdown notes
+bindsym $mod+n              exec --no-startup-id spawn_dropdown dropdownnotes
+
+# spawn or open dropdown todolist
 bindsym $mod+g              exec --no-startup-id spawn_dropdown dropdowngtd
 
 ################# screenshots                      
@@ -343,7 +347,6 @@ bindsym $mod+Shift+Right move right
 ################# moving around workspaces         
 
 # named workspaces
-set $notes_ws "11:notes"
 set $empty_ws "99:empty"
 
 # switch to workspace
@@ -357,7 +360,6 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-bindsym $mod+n workspace $notes_ws
 bindsym $mod+equal workspace $empty_ws
 
 # move focused container to workspace
@@ -466,8 +468,6 @@ assign [class="Slack"] → 6
 # fix for spotify not moving to workspace 10
 # for_window [class="Spotify"] move to workspace 10
 
-# Workspace notes - Obsidian
-assign [class="obsidian"] → $notes_ws
 ################# floating or tiled rules         
 
 # floating enabled from some programs - find with xprop

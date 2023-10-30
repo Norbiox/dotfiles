@@ -1,2 +1,2 @@
 #!/bin/sh
-cd $HOME/Notes/gtd && vim -c :VimwikiIndex
+cd $HOME/notes && vim gtd.md
