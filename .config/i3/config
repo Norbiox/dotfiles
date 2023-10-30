@@ -106,7 +106,7 @@ exec --no-startup-id xfce4-power-manager &
 ################# menus
 
 # dmenu app launcher
-bindsym $mod1+Shift+colon        exec --no-startup-id source ~/.dmenurc && dmenu-recency $DMENU_OPTIONS
+bindsym $mod+Shift+colon        exec --no-startup-id source ~/.dmenurc && dmenu-recency $DMENU_OPTIONS
 
 # radio
 bindsym $mod1+Shift+r            exec --no-startup-id source ~/.dmenurc && dmenu-radio $DMENU_OPTIONS
