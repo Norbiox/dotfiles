@@ -22,6 +22,10 @@ if [ -f "$HOME/.thismachineonlyrc" ]; then
     . "$HOME/.thismachineonlyrc"
 fi
 
+if [ -f "$HOME/.dmenurc" ]; then
+    . "$HOME/.dmenurc"
+fi
+
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
