@@ -11,37 +11,17 @@ export VISUAL="nvim"
 export BROWSER="brave"
 export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
 
-if [ -f /.thismachineonlyrc ]; then
-    . /.thismachineonlyrc
-fi
+# Source important files
+[[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
+[[ -f ~/.dmenurc ]] && . ~/.dmenurc
 
-if [ -f ~/.dmenurc ]; then
-    . ~/.dmenurc
-fi
-
-if [ -d /.cargo/bin ] ; then
-    PATH=/.cargo/bin:$PATH
-fi
-
-if [ -d /.go/bin ] ; then
-    PATH=/.go/bin:$PATH
-fi
-
-if [ -d /.scripts ] ; then 
-    PATH=/.scripts:$PATH
-fi
-
-if [ -d /.fly ] ; then 
-    PATH=/.fly:$PATH
-fi
-
-if [ -d /.detaspace/bin ] ; then 
-    PATH=/.detaspace/bin:$PATH
-fi
-
-if [ -d /.local/share/nvim/site/pack/packer/start/vim-iced/bin ] ; then
-    PATH=/.local/share/nvim/site/pack/packer/start/vim-iced/bin:$PATH
-fi
+# Update PATH
+[[ -d ~/.scripts ]] && export PATH=$HOME/.scripts:$PATH
+[[ -d ~/.cargo/bin ]] && export PATH=$HOME/.cargo/bin:$PATH
+[[ -d ~/.go/bin ]] && export PATH=$HOME/.go/bin:$PATH
+[[ -d ~/.fly ]] && export PATH=$HOME/.fly:$PATH
+[[ -d ~/.detaspace/bin ]] && export PATH=$HOME/.detaspace/bin:$PATH
+[[ -d ~/.local/share/nvim/site/pack/packer/start/vim-iced/bin ]] && export PATH=$HOME/.local/share/nvim/site/pack/packer/start/vim-iced/bin:$PATH
 
 
 #---History options---#
