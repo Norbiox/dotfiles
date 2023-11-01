@@ -1,5 +1,5 @@
 # Main Readme
-This is a brief documentation of my dotfiles cleanup and organization. Also it should have all info needed to easily install all my stuff in freshly installed Arcolinux.
+This is a brief documentation of my dotfiles cleanup and organization. Also it should have all info needed to easily install and configure all my stuff in freshly installed Arcolinux.
 
 ## Storyline
 My Linux journey have started many years ago, and it quickly turned over to i3 and terminal-based workflow. Some of my configs are copied from Luke Smith's LARBS project, some from Distrotube's dotfiles, and some of changes are mine. However it's all a bit messy and not as quick to append to fresh linux installation. So by the way of another Arcolinux installation I've decided to install my stuff step-by-step, document it and store as a bare repository. This repo should contain all my dotfiles and installation scripts along with some necessary documentation.
