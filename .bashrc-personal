@@ -1,5 +1,48 @@
 #!/bin/bash
+# My personal .bashrc file complimentary to ArcoLinux .bashrc
+# This file is sources by ArcoLinux .bashrc
+
+export TERM="kitty"
+export TERM2="alacritty"
+export TERM3="urxvt"
+export FILE="ranger"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export BROWSER="brave"
 export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
+
+if [ -f /.thismachineonlyrc ]; then
+    . /.thismachineonlyrc
+fi
+
+if [ -f ~/.dmenurc ]; then
+    . ~/.dmenurc
+fi
+
+if [ -d /.cargo/bin ] ; then
+    PATH=/.cargo/bin:$PATH
+fi
+
+if [ -d /.go/bin ] ; then
+    PATH=/.go/bin:$PATH
+fi
+
+if [ -d /.scripts ] ; then 
+    PATH=/.scripts:$PATH
+fi
+
+if [ -d /.fly ] ; then 
+    PATH=/.fly:$PATH
+fi
+
+if [ -d /.detaspace/bin ] ; then 
+    PATH=/.detaspace/bin:$PATH
+fi
+
+if [ -d /.local/share/nvim/site/pack/packer/start/vim-iced/bin ] ; then
+    PATH=/.local/share/nvim/site/pack/packer/start/vim-iced/bin:$PATH
+fi
+
 
 #---History options---#
 export HISTSIZE=1000000
@@ -17,60 +60,25 @@ function hstrnotiocsti {
     { READLINE_LINE="$( { </dev/tty hstr ${READLINE_LINE}; } 2>&1 1>&3 3>&- )"; } 3>&1;
     READLINE_POINT=${#READLINE_LINE}
 }
+
 ### if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
 if [[ $- =~ .*i.* ]]; then bind -x '"\C-r": "hstrnotiocsti"'; fi
 export HSTR_TIOCSTI=n
 
 
 #---Terminal options---#
-shopt -s checkwinsize                                                           # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 
-#ignore upper and lowercase when TAB completion
-bind "set completion-ignore-case on"
+# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# PROMPT
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-color_prompt=yes
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;33m\][\t] \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\t \u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Alias definitions in ~/.bash_aliases.
-if [ -f ~/.bash-aliases ]; then
-    . ~/.bash-aliases
-fi
 
-# Everything that I need only on this particular machine
-if [ -f ~/.thismachineonlyrc ]; then
-    . ~/.thismachineonlyrc
-fi
+#---System options---#
 
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
@@ -80,20 +88,106 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
     source "$XDG_RUNTIME_DIR/ssh-agent.env" > /dev/null
 fi
 
-# Bare repo config
-alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
-# https://github.com/junegunn/fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# Make ranger change current directory after quit
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-
 # FZF settings
 # export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_CTRL_T_COMMAND='rg --hidden -l ""'
 
-
 # Zoxide setup
 eval "$(zoxide init bash)"
+alias cd='z'
+
+# for flutter development
+export CHROME_EXECUTABLE=/usr/bin/brave
+
+
+#---Aliases---#
+
+# Bare repo config
+alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# Make ranger change current directory after quit
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+
+# List
+alias ls="exa -l"
+alias cat="bat"
+alias top="ytop"
+
+# Add an "alert" alias for long running commands. Example usage:  sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Set pwd as PYTHONPATH
+alias epp="export PYTHONPATH=`pwd`"
+
+#pyclean - remove pyc files
+pyclean () {
+        find . -type f -name "*.py[co]" -delete
+        find . -type d -name "__pycache__" -delete
+} 
+
+# Toggle python virtualenv
+v() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        if [[ -d "./venv" || -d "./.venv" ]]; then
+            deactivate
+            echo "Virtual environment deactivated."
+        elif [[ -f "poetry.lock" ]]; then
+            exit
+        else
+            echo "Don't know how to deactivate virtual environment."
+        fi
+    else
+        if [[ -d "./venv" ]]; then
+            source ./venv/bin/activate
+            echo "Virtual environment activated. Python version: `python --version | cut -d' ' -f2`"
+        elif [[ -d "./.venv" ]]; then
+            source ./.venv/bin/activate
+            echo "Virtual environment activated. Python version: `python --version | cut -d' ' -f2`"
+        elif [[ -f "poetry.lock" ]]; then
+            poetry shell
+        else
+            echo "Don't know how to activate virtual environment."
+        fi
+    fi
+}
+
+
+# Git aliases
+alias gst='git status'
+alias gaa='git add -A'
+alias gap='git add -p'
+alias gcm='git commit'
+alias gcma='git commit -a -m'
+alias gwait='git reset HEAD' # Unstages everything.
+alias gl='git log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias gundo='git reset --soft HEAD^' # Undoes the last commit and moves the files in the commit to staging.
+alias gco='git checkout'
+alias gpusho="git push origin ${parse_git_branch}"
+alias gpullo="git pull --rebase origin ${parse_git_branch}"
+alias gstart="git checkout main && git pull && git checkout -b "
+
+# Config management aliases
+alias cst='config status'
+alias cap='config add -p'
+alias ccm='config commit'
+alias cwait='config reset HEAD' # Unstages everything.
+alias cl='config log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias cundo='config reset --soft HEAD^' # Undoes the last commit and moves the files in the commit to staging.
+alias cco='config checkout'
+alias cpush="config push"
+
+# docker aliases
+alias dcu="docker compose up"
+alias dcud="docker compose up -d"
+alias dcd="docker compose down"
+alias dps="docker ps"
+
+# current song in hpr4
+alias hpr4=hpr4-current-song | while read song; do notify-send "$song"; done
+
+# test microphone
+alias test-mic="arecord -d 5 test-mic.wav && sleep 1 && aplay test-mic.wav && rm test-mic.wav"
+
+# kitty terminal oriented aliases
+alias kdiff="kitty +kitten diff"

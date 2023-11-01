@@ -1,0 +1,20 @@
+[user]
+	name = Norbiox
+	email = norbertchmiel.it@gmail.com
+[core]
+	editor = vim
+	pager = less
+	excludesFile = /home/norbert/.gitignore
+[url "git@github.com:"]
+	insetadOf = https://github.com/
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+
+[includeIf "gitdir:~/Work/Onwelo/"]
+	path = ~/Work/Onwelo/.gitconfig
+[safe]
+	directory = /opt/flutter
+[push]
+	autoSetupRemote = true

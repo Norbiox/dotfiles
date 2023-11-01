@@ -77,7 +77,8 @@ let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 let g:fzf_files_options = '--preview "(cat {})"'
 
 """ Keymaps
-map <C-p> :Files<CR>
+map <C-f> :Files<CR>
+map <C-p> :Rg<CR>
 map <C-n> :NERDTreeToggle<CR>
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -90,8 +91,8 @@ nnoremap <space> za
 """ Notes settings
 let g:vimwiki_list = [{'path': '~/notes', 'syntax': 'markdown', 'ext': '.md'}, {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'custom'
-command NotesPush execute "! git add . && git commit -m 'batch update' && git push"
-command NotesPull execute "! git checkout -- . && git pull"
+command NotesPush execute "!git add . && git commit -m 'batch update' && git push"
+command NotesPull execute "!git checkout -- . && git pull"
 au BufEnter ~/notes/{gtd.md} :NotesPull
 au BufWritePost ~/notes/* :NotesPush
 
