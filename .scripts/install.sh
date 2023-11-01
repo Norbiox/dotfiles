@@ -56,9 +56,6 @@ sudo pacman -Sy \
   zathura-pdf-mupdf \
   zoxide
 
-echo "Install nvidia and CUDA..."
-sudo pacman -Sy nvidia opencl-nvidia cuda
-
 echo "Install power-profiles-daemon..."
 sudo pacman -Sy power-profiles-deamon
 sudo systemctl enable power-profiles-daemon.service
@@ -74,9 +71,6 @@ sudo systemctl enable docker.service
 sudo systemctl start docker.service
 sudo systemctl enable containerd.service
 sudo systemctl start containerd.service
-
-echo "Install kubernetes..."
-sudo pacman -Sy minikube kubectl kubectx
 
 echo "Install various packages from AUR..."
 yay -S \
@@ -101,15 +95,12 @@ sudo bsdtar -xf- VictorMonoAll.zip -C /usr/local/share/fonts
 fc-cache
 
 echo "Setup git..."
-git config --global user.name "Norbiox"
-git config --global user.email "norbertchmiel.it@gmail.com"
-git config --global core.editor "vim"
-git config --global diff.tool "vimdiff"
-git config --global difftool.prompt "false"
 gh auth login
 
 echo "Install python packages..."
-pip install black idasen
+pip install \
+  black \
+  idasen
 
 echo "Setup printing..."
 sudo systemctl enable cups.service
