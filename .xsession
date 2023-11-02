@@ -20,6 +20,8 @@ export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
 
 # Update PATH
 [[ -d ~/.scripts ]] && export PATH=$HOME/.scripts:$PATH
+[[ -d ~/.bin ]] && export PATH=$HOME/.bin:$PATH
+[[ -d ~/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 [[ -d ~/.cargo/bin ]] && export PATH=$HOME/.cargo/bin:$PATH
 [[ -d ~/.go/bin ]] && export PATH=$HOME/.go/bin:$PATH
 [[ -d ~/.fly ]] && export PATH=$HOME/.fly:$PATH
