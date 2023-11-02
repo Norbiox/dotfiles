@@ -1,4 +1,10 @@
 #!/bin/sh
+
+#
+# ~/.xsession
+#
+# Executed by xdm/gdm/kdm at login
+
 export TERM="kitty"
 export TERM2="alacritty"
 export TERM3="urxvt"
