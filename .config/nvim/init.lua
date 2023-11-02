@@ -86,6 +86,11 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+  use { -- Keep context in most high line
+    'nvim-treesitter/nvim-treesitter-context',
+    after = 'nvim-treesitter',
+  }
+
   -- Nvim-tree
   use {
     'nvim-tree/nvim-tree.lua',
@@ -574,7 +579,18 @@ require('mason').setup({
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'gopls', 'clojure_lsp', 'groovyls', 'yamlls' }
+local servers = {
+  'clangd',
+  'rust_analyzer',
+  'pyright',
+  -- 'python-lsp-server',
+  'tsserver',
+  'lua_ls',
+  'gopls',
+  'clojure_lsp',
+  'groovyls',
+  'yamlls'
+}
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
