@@ -1,0 +1,35 @@
+#!/bin/bash
+# This scripts uses dmenu to show list of projects directories and opens
+# the selected one.
+# NOTE: This script requires dmenu and following environment variables:
+# PROJECTS_DIRS - A list of projects directories (defaults to: $HOME/Projects)
+# TERM - Terminal emulator
+# DMENU_OPTIONS - dmenu options
+
+projects_dirs=${PROJECTS_DIRS:-"$HOME/Projects"}
+
+if ! [ -f "$HOME/.dmenurc" ]; then
+	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
+fi
+. $HOME/.dmenurc
+dmenu_cmd="dmenu $DMENU_OPTIONS"
+
+chosen=$(printf '%s\n' "${projects_dirs[@]}" | $dmenu_cmd -i -l 20 -p "Project directory:")
+
+echo "$chosen"
+echo "$rooms[$chosen]"
+
+if [[ "$chosen" == "Random" ]]; then
+        room=$(echo $RANDOM | md5sum | head -c 20)
+elif [ "$chosen" ]; then
+        room=${rooms[$chosen]}
+else
+        echo "Program terminated" && exit 1
+fi
+
+echo "Opening Jitsi room $room..."
+link="https://meet.jit.si/${room}"
+$BROWSER $link --new-window
+
+echo $link | xclip -selection c
+echo "Link to meeting copied to clipboard"

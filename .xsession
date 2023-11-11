@@ -19,6 +19,7 @@ export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
 [[ -f ~/.dmenurc ]] && . ~/.dmenurc
 
 # Update PATH
+[[ -d ~/.config/i3/scripts ]] && export PATH=$HOME/.config/i3/scripts:$PATH
 [[ -d ~/.scripts ]] && export PATH=$HOME/.scripts:$PATH
 [[ -d ~/.bin ]] && export PATH=$HOME/.bin:$PATH
 [[ -d ~/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH

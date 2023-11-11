@@ -1,0 +1,18 @@
+#!/bin/sh
+HERE="$(xdotool getwindowfocus)"
+ULX=$(xwininfo -id "$HERE" | grep "  Absolute upper-left X:" | awk '{print $4}')
+ULY=$(xwininfo -id "$HERE" | grep "  Absolute upper-left Y:" | awk '{print $4}')
+
+# If there is no window, ULX == 1 and ULY == 1.
+if [ "$ULX" != "-1" ] || [ "$ULY" != "-1" ]; then
+    eval "$(xdotool getwindowgeometry --shell "$HERE")"
+
+    # ((NX="$WIDTH"/3))
+    # ((NY="$HEIGHT"/3))
+    # ((NX="$WIDTH")) # right
+    # ((NY="$HEIGHT")) # bottom
+    ((NX="10")) # left
+    ((NY="20")) # top
+
+    xdotool mousemove --window "$WINDOW" "$NX" "$NY"
+fi

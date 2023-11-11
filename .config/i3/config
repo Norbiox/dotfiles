@@ -29,6 +29,7 @@ set $down j
 set $left h
 set $right l
 
+
 ################ Screen layout and workspaces   
 
 # exec --no-startup-id .screenlayout/home.sh
@@ -106,43 +107,41 @@ exec --no-startup-id xfce4-power-manager &
 ################# menus
 
 # dmenu app launcher
-bindsym $mod+Shift+colon        exec --no-startup-id source ~/.dmenurc && dmenu-recency $DMENU_OPTIONS
+bindsym $mod+Shift+colon        exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-recency $DMENU_OPTIONS
 
 # radio
-bindsym $mod1+Shift+r            exec --no-startup-id source ~/.dmenurc && dmenu-radio $DMENU_OPTIONS
+bindsym $mod1+Shift+r            exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-radio $DMENU_OPTIONS
 
 # configurations
-bindsym $mod1+Shift+c           exec --no-startup-id source ~/.dmenurc && dmenu-configs $DMENU_OPTIONS
+bindsym $mod1+Shift+c           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-configs $DMENU_OPTIONS
 
 # Idasen
-bindsym $mod1+Shift+i           exec --no-startup-id source ~/.dmenurc && dmenu-idasen $DMENU_OPTIONS
+bindsym $mod1+Shift+i           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-idasen $DMENU_OPTIONS
 
 # Soundcore headphones
-bindsym $mod1+Shift+s           exec --no-startup-id source ~/.dmenurc && dmenu-soundcore $DMENU_OPTIONS
+bindsym $mod1+Shift+s           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-soundcore $DMENU_OPTIONS
 
 # Wacom stylus
-bindsym $mod1+Shift+w           exec --no-startup-id source ~/.dmenurc && dmenu-wacom $DMENU_OPTIONS
+bindsym $mod1+Shift+w           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-wacom $DMENU_OPTIONS
 
 # Power profiles
-bindsym $mod1+Shift+p           exec --no-startup-id source ~/.dmenurc && dmenu-powerprofile $DMENU_OPTIONS
+bindsym $mod1+Shift+p           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-powerprofile $DMENU_OPTIONS
 
 # dmenu-bluetooth
-bindsym $mod1+Shift+b           exec --no-startup-id source ~/.dmenurc && dmenu-bluetooth $DMENU_OPTIONS
+bindsym $mod1+Shift+b           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-bluetooth $DMENU_OPTIONS
 
 # networkmanager_dmenu
 bindsym $mod1+Shift+n           exec --no-startup-id source ~/.dmenurc && networkmanager_dmenu $DMENU_OPTIONS
 
 # dmenu-emoji
-bindsym $mod1+Shift+e           exec --no-startup-id source ~/.dmenurc && dmenu-emoji $DMENU_OPTIONS
+bindsym $mod1+Shift+e           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-emoji $DMENU_OPTIONS
 
 # HAML
-bindsym $mod1+Shift+h           exec --no-startup-id source ~/.dmenurc && dmenu-haml $DMENU_OPTIONS
+bindsym $mod1+Shift+h           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-haml $DMENU_OPTIONS
 
 # Jitsi
-bindsym $mod1+Shift+j           exec --no-startup-id source ~/.dmenurc && dmenu-jitsi $DMENU_OPTIONS
+bindsym $mod1+Shift+j           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-jitsi $DMENU_OPTIONS
 
-# Open project
-bindsym $mod1+Shift+o           exec --no-startup-id source ~/.dmenurc && dmenu-openproject $DMENU_OPTIONS
 ################# how to exit, logoff, suspend, ...
 
 bindsym $mod1+Escape exec --no-startup-id betterlockscreen -l dimblur -- --time-str="%H:%M"
@@ -256,6 +255,7 @@ for_window [instance="dropdown*"] move scratchpad
 for_window [instance="dropdown*"] sticky enable
 for_window [instance="dropdown*"] scratchpad show
 for_window [instance="dropdownranger"] resize grow left 300, resize grow right 300, resize grow down 300, resize grow up 300, move scratchpad;
+for_window [instance="dropdownnewsboat"] resize grow left 300, resize grow right 300, resize grow down 300, resize grow up 300, move scratchpad;
 for_window [instance="dropdownterminal"] resize grow left 300, resize grow right 300, resize grow up 40, resize grow down 45, move scratchpad;
 for_window [instance="dropdownnotes"] resize grow down 200, resize grow up 200, move scratchpad;
 for_window [instance="dropdowngtd"] resize grow down 200, resize grow up 200, move scratchpad;
@@ -265,29 +265,29 @@ for_window [instance="dropdown*"] border pixel 2
 for_window [instance="dropdown*"] scratchpad show
 
 # spawn or open dropdown terminal
-bindsym $mod+colon          exec --no-startup-id spawn_dropdown dropdownterminal
+bindsym $mod+colon          exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownterminal
 
 # spawn or open dropdown python console
-bindsym $mod+p              exec --no-startup-id spawn_dropdown dropdownpython
-bindsym XF86Calculator      exec --no-startup-id spawn_dropdown dropdownpython
+bindsym $mod+p              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownpython
+bindsym XF86Calculator      exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownpython
 
 # spawn or open dropdown translator
-bindsym $mod+t              exec --no-startup-id spawn_dropdown dropdowntranslator
+bindsym $mod+t              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdowntranslator
 
 # spawn or open dropdown ranger
-bindsym $mod+r              exec --no-startup-id spawn_dropdown dropdownranger
+bindsym $mod+r              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownranger
 
 # spawn or open dropdown ~~pavucontrol~~ ncpamixer
-bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownmixer
+bindsym $mod+u              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownmixer
 
-# spawn or open dropdown bluetooth manager
-bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownbluetooth
+# spawn or open dropdown newsboat
+bindsym $mod+b              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownnewsboat
 
 # spawn or open dropdown notes
-bindsym $mod+n              exec --no-startup-id spawn_dropdown dropdownnotes
+bindsym $mod+n              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownnotes
 
 # spawn or open dropdown todolist
-bindsym $mod+g              exec --no-startup-id spawn_dropdown dropdowngtd
+bindsym $mod+g              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdowngtd
 
 ################# screenshots                      
 
