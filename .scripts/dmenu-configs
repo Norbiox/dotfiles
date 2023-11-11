@@ -25,15 +25,7 @@ if [[ "$chosen" == "quit" ]]; then
 
 elif [ "$chosen" ]; then
         filename=$(printf '%s\n' "${chosen}" | awk '{print $NF}')
-        case $filename in
-                *.lua*)
-                        $TERM -e nvim $filename
-                        ;;
-                *)
-                        $TERM -e $filename
-                        ;;
-        esac
-
+        $TERM -e nvim $filename
 else
         echo "Program terminated" && exit 1
 fi
