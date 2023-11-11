@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script install all my favourite software on Arch based system
 
 USER=`whoami`
 
@@ -8,106 +9,7 @@ sudo timedatectl set-ntp true
 echo "Merge xrdb..."
 xrdb -merge ~/.Xresources
 
-echo "Install various packages..."
-sudo pacman -Sy \
-  acpi \
-  audacity \
-  autorandr \
-  bat \
-  blueman \
-  btop \
-  clojure \
-  dunst \
-  dust \
-  exa \
-  fd \
-  github-cli \
-  hyperfine \
-  ipython \
-  jless \
-  kitty \
-  leiningen \
-  libreoffice-fresh \
-  mplayer \
-  nmap \
-  nodejs \
-  npm \
-  openssh \
-  pasystray \
-  procs \
-  python-pip \
-  python-virtualenv \
-  ranger \
-  ripgrep \
-  sd \
-  slack-desktop \
-  sniffnet \
-  sysstat \
-  tealdeer \
-  tmux \
-  translate-shell \
-  unclutter \
-  visual-studio-code-bin \
-  w3m \
-  wacom-settings-git \
-  xclip \
-  xss-lock \
-  zathura \
-  zathura-pdf-mupdf \
-  zoxide
-
-echo "Install power-profiles-daemon..."
-sudo pacman -Sy power-profiles-deamon
-sudo systemctl enable power-profiles-daemon.service
-sudo systemctl start power-profiles-daemon.service
-
-echo "Install docker..."
-sudo pacman -Sy docker docker-compose
-if [ -n $(getent group docker) ]; then
-  sudo groupadd docker 
-fi
-sudo usermod -aG docker $USER
-sudo systemctl enable docker.service
-sudo systemctl start docker.service
-sudo systemctl enable containerd.service
-sudo systemctl start containerd.service
-
-echo "Install various packages from AUR..."
-yay -S \
-  diff-so-fancy \
-  dmenu-bluetooth \
-  entr \
-  fdupes \
-  hstr \
-  mongodb-compass \
-  mongodb-tools \
-  networkmanager-dmenu-git \
-  ncpamixer \
-  scc
-
-
-echo "Install additional fonts..."
-if [ ! -d "/usr/local/share/fonts" ]; then
-  sudo mkdir /usr/local/share/fonts
-fi
-curl -s https://rubjo.github.io/victor-mono/VictorMonoAll.zip --output VictorMonoAll.zip
-sudo bsdtar -xf- VictorMonoAll.zip -C /usr/local/share/fonts
-fc-cache
-
-echo "Setup git..."
-gh auth login
-
-echo "Install python packages..."
-pip install \
-  black \
-  idasen
-
-echo "Setup printing..."
-sudo systemctl enable cups.service
-sudo systemctl start cups.service
-
-echo "Setup wallpapers..."
-git clone https://gitlab.com/dwt1/wallpapers.git ~/.local/share/wallpapers
-sed "/dirs=/ s/$/\/home\/$USER\/.local\/share\/wallpapers;/" ~/.config/nitrogen/nitrogen.cfg -i
+./install/base.sh
+./install/docker.sh
 
 echo "Installation done. Please reboot."
