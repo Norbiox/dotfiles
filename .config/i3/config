@@ -13,12 +13,14 @@
 # Print = PRINT key
 # Tab = TAB key
 
+
 ################# Define the $mod variable/key
 
 # Key to rule them all : Super(Windows) or Alt key - see definition above
 # set Super key
 set $mod Mod4
 set $mod1 Mod1
+
 
 ################# Define the movements keys - variables
 
@@ -28,6 +30,29 @@ set $up k
 set $down j
 set $left h
 set $right l
+
+
+################# how to exit, logoff, suspend, ...
+
+bindsym $mod1+Escape exec --no-startup-id betterlockscreen -l dimblur -- --time-str="%H:%M"
+
+bindsym $mod1+End mode "$mode_system"
+
+set $mode_system System loc(k), (l)ogout, s(u)spend, (h)ibernate, (r)eboot, (s)uspend, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym k exec --no-startup-id ~/.config/i3/scripts/i3exit.sh lock, mode "default"
+    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3exit.sh switch_user, mode "default"
+    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3exit.sh logout, mode "default"
+    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh suspend, mode "default"
+    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3exit.sh hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3exit.sh reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 
 ################ Screen layout and workspaces   
 
@@ -45,29 +70,28 @@ mode "$mode_screen_layout" {
     bindsym Escape mode "default"
 }
 
+
 ################# autostart - execute applications at boot time
 
 # USER APPLICATIONS TO START AT BOOT
 
-# ArcoLinux Welcome App
-#exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
-
 # Autotiling
-# exec_always --no-startup-id autotiling
+exec_always --no-startup-id autotiling
+
+# get the mouse out of the way with unclutter
+exec --no-startup-id unclutter
+
+# setup workspaces on their monitors
+exec --no-startup-id reset-workspaces
+
 
 # TRAY APPLICATIONS
-
-# applications that are not installed will not start
-# you may see a wheel - hashtag out things you do not want/need
 
 # Authentication dialog
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Automatic lock on suspend
 exec --no-startup-id xss-lock -- ~/.config/i3/scripts/i3exit.sh lock
-
-# Updater
-#exec --no-startup-id pamac-tray
 
 # bluetooth
 exec --no-startup-id blueman-applet
@@ -90,10 +114,11 @@ exec --no-startup-id redshift-gtk
 # variety - wallpaper changer
 exec --no-startup-id variety
 
-# WORKSPACE APPLICATIONS
 
-# obsidian
-exec --no-startup-id i3-msg 'workspace 11:notes; exec obsidian'
+############## vpn
+
+bindsym $mod1+Shift+v exec --no-startup-id .config/i3/scripts/vpn-toggle
+
 
 ################# system applications       
 
@@ -107,7 +132,7 @@ exec --no-startup-id xfce4-power-manager &
 ################# menus
 
 # dmenu app launcher
-bindsym $mod+Shift+colon        exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-recency $DMENU_OPTIONS
+bindsym $mod1+Shift+colon        exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-recency $DMENU_OPTIONS
 
 # radio
 bindsym $mod1+Shift+r            exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-radio $DMENU_OPTIONS
@@ -141,31 +166,6 @@ bindsym $mod1+Shift+h           exec --no-startup-id source ~/.dmenurc && .confi
 
 # Jitsi
 bindsym $mod1+Shift+j           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-jitsi $DMENU_OPTIONS
-
-################# how to exit, logoff, suspend, ...
-
-bindsym $mod1+Escape exec --no-startup-id betterlockscreen -l dimblur -- --time-str="%H:%M"
-
-bindsym $mod1+End mode "$mode_system"
-
-set $mode_system System loc(k), (l)ogout, s(u)spend, (h)ibernate, (r)eboot, (s)uspend, (Shift+s)hutdown
-mode "$mode_system" {
-    bindsym k exec --no-startup-id ~/.config/i3/scripts/i3exit.sh lock, mode "default"
-    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3exit.sh switch_user, mode "default"
-    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3exit.sh logout, mode "default"
-    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh suspend, mode "default"
-    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3exit.sh hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3exit.sh reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh shutdown, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-############## vpn
-
-bindsym $mod1+Shift+v exec --no-startup-id .config/i3/scripts/vpn-toggle
 
 
 ################# applications keyboard shortcuts  
@@ -226,15 +226,14 @@ bindsym $mod1+Ctrl+p exec --no-startup-id pamac-manager
 bindsym --release $mod1+Ctrl+Escape exec xkill
 
 
-#---Dropdown Windows---#
+################# dropdowns
+
 for_window [instance="dropdown*"] floating enable, sticky enable, move scratchpad;
-for_window [instance="dropdown*"] border pixel 2;
 for_window [instance="dropdownranger"] resize set 80 ppt 8 ppt;
 for_window [instance="dropdownnewsboat"] resize set 80 ppt 8 ppt;
 for_window [instance="dropdownterminal"] resize set 80 ppt 5 ppt;
 for_window [instance="dropdownnotes"] resize set 50 ppt 10 ppt;
 for_window [instance="dropdowngtd"] resize set 40 ppt 10 ppt;
-
 
 # spawn or open dropdown terminal
 bindsym $mod+colon          exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownterminal
@@ -261,6 +260,7 @@ bindsym $mod+n              exec --no-startup-id ~/.config/i3/scripts/spawn_drop
 # spawn or open dropdown todolist
 bindsym $mod+g              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdowngtd
 
+
 ################# screenshots                      
 
 bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
@@ -269,6 +269,7 @@ bindsym Control+Shift+Print exec --no-startup-id gnome-screenshot -i
 bindsym $mod+Control+Print exec --no-startup-id flameshot gui
 # bindsym shift+Print exec --no-startup-id shutter
 
+
 ################# reload changed configuration     
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -276,10 +277,12 @@ bindsym $mod1+Ctrl+r restart
 # reload the configuration file
 bindsym $mod+Shift+r reload
 
+
 ################# Stopping an application          
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
 
 ################# Moving around in i3              
 
@@ -315,6 +318,7 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
 
 ################# moving around workspaces         
 
@@ -364,16 +368,11 @@ bindsym $mod1+Ctrl+Left workspace prev
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
+
 ################# Tiling parameters                
 
 # orientation for new workspaces
 default_orientation horizontal
-
-# split in horizontal orientation
-#bindsym $mod+h split h
-
-# split in vertical orientation
-#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -390,6 +389,7 @@ bindsym $mod+a focus parent
 
 # focus the child container
 bindsym $mod+d focus child
+
 
 ################# resize  
 
@@ -440,12 +440,11 @@ assign [class="Slack"] → 6
 # fix for spotify not moving to workspace 10
 # for_window [class="Spotify"] move to workspace 10
 
+
 ################# floating or tiled rules         
 
-# floating enabled from some programs - find with xprop
-
 for_window [class="Arcolinux-welcome-app.py"] floating enable
-# for_window [class="Archlinux-tweak-tool.py"] floating enable
+for_window [class="Archlinux-tweak-tool.py"] floating enable
 for_window [class="Arcolinux-calamares-tool.py"] floating enable
 for_window [class="Bleachbit"] floating disable
 for_window [class="Blueberry.py"] floating enable
@@ -458,7 +457,7 @@ for_window [class="^Gpick$"] floating enable
 for_window [class="Hexchat"] floating disable
 for_window [class="Imagewriter"] floating enable
 for_window [class="Font-manager"] floating enable
-# for_window [class="qt5ct|Lxappearance] floating enable
+for_window [class="qt5ct|Lxappearance"] floating enable
 for_window [class="Nitrogen"] floating disable
 for_window [class="Pavucontrol"] floating disable
 for_window [class="Peek"] floating enable
@@ -474,7 +473,7 @@ for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="Xfce4-settings-manager"] floating disable
 for_window [class="Xfce4-taskmanager"] floating enable
 
-# for_window [instance="gimp"] floating disable
+for_window [instance="gimp"] floating disable
 for_window [instance="script-fu"] border normal
 for_window [instance="variety"] floating disable
 for_window [instance="pavucontrol"] floating enable
@@ -484,10 +483,11 @@ for_window [title="Deleting"] floating enable
 for_window [title="Moving"] floating enable
 for_window [title="^Terminator Preferences$"] floating enable
 
-# for_window [window_role="^gimp-toolbox-color-dialog$"] floating enable
+for_window [window_role="^gimp-toolbox-color-dialog$"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="^Preferences$"] floating enable
 for_window [window_role="setup"] floating enable
+
 
 ################# give focus to applications       
 
@@ -497,6 +497,7 @@ for_window [class="Terminator"] focus
 for_window [class="Urxvt"] focus
 for_window [class="Alacritty"] focus
 for_window [class="Kitty"] focus
+
 
 ################# audio settings                   
 
@@ -508,25 +509,18 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioStop exec --no-startup-id playerctl stop
-# bindsym XF86AudioPlay exec --no-startup-id "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-# bindsym XF86AudioNext exec --no-startup-id "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-# bindsym XF86AudioPrev exec --no-startup-id "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-# bindsym XF86AudioStop exec --no-startup-id "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+
 
 ################# xbacklight                       
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
 
-################# bar toggle                       
-
-# bar toggle, hide or show
-# bindsym $mod+b bar mode toggle
 
 ################# border control                   
 
 # Border control
-hide_edge_borders none
+hide_edge_borders smart
 #bindsym $mod+shift+b exec --no-startup-id i3-msg border toggle
 
 #changing border style
@@ -534,13 +528,15 @@ hide_edge_borders none
 #bindsym $mod+y border pixel 2
 #bindsym $mod+u border none
 
-new_window pixel 2
-new_float normal
+default_border pixel 1
+default_floating_border pixel 2
+
 
 ################# Popups  control                  
 
 # Popups during fullscreen mode
 popup_during_fullscreen smart
+
 
 ################# i3 gaps next                     
 
@@ -549,11 +545,13 @@ popup_during_fullscreen smart
 # delete or uncomment the following lines if you do not have it or do not
 # want it
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 1;
+for_window [instance="^dropdown*"] border pixel 2;
 gaps inner 10
 gaps outer 0
 smart_gaps on
 smart_borders on
+
 
 ################# i3 gaps change                   
 
@@ -594,6 +592,7 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+
 ################# picom of i3wm                  
 
 # if you want transparency on non-focused windows, ...
@@ -623,10 +622,12 @@ set_from_resource $color13    color13
 set_from_resource $color14    color14
 set_from_resource $color15    color15
 
+
 ################# font settings
 
 set $font "xft:Victor Mono Bold 16px"
 font $font
+
 
 ################# bar settings
 
@@ -674,49 +675,3 @@ client.background       $background
     ##STOP THEMING WM
 
 ######################################## THE END 
-
-################# Scratchpad
-
-# NOT USED - I'm using scratchpad for keeping my dropdowns
-
-# move the currently focused window to the scratchpad
-# bindsym Mod1+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-# bindsym Mod1+minus scratchpad show
-
-################# mouse settings in i3             
-
-# NOT USED
-
-# mouse settings
-# The middle button over a titlebar kills the window
-# bindsym --release button2 kill
-
-# The middle button and a modifer over any part of the window kills the window
-# bindsym --whole-window $mod+button2 kill
-
-# The right button toggles floating
-# bindsym button3 floating toggle
-# bindsym $mod+button3 floating toggle
-
-# The side buttons move the window around
-# bindsym button9 move left
-# bindsym button8 move right
-
-################# keyboard control                 
-
-# NOT USED
-
-# Settings of arcolinux will be applied
-# exec --no-startup-id setxkbmap be
-# exec --no-startup-id setxkbmap us
-
-################# unclutter                        
-
-# get the mouse out of the way with unclutter
-exec --no-startup-id unclutter
-
-# setup workspaces on their monitors
-exec --no-startup-id reset-workspaces
