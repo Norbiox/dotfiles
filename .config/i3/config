@@ -128,7 +128,7 @@ bindsym $mod1+Shift+w           exec --no-startup-id source ~/.dmenurc && .confi
 bindsym $mod1+Shift+p           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-powerprofile $DMENU_OPTIONS
 
 # dmenu-bluetooth
-bindsym $mod1+Shift+b           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-bluetooth $DMENU_OPTIONS
+bindsym $mod1+Shift+b           exec --no-startup-id source ~/.dmenurc && dmenu-bluetooth $DMENU_OPTIONS
 
 # networkmanager_dmenu
 bindsym $mod1+Shift+n           exec --no-startup-id source ~/.dmenurc && networkmanager_dmenu $DMENU_OPTIONS
