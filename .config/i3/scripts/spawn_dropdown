@@ -7,10 +7,7 @@
 
 [ -z "$1" ] && exit
 
-if xwininfo -tree -root | grep "\"$1\""; then
-	echo "Window detected.";
-	i3 "[instance=\"$1\"] scratchpad show; [instance=\"$1\"]";
-else
+if [ -z `xwininfo -tree -root | grep "\"$1\""`]; then
 	echo "Window not detected... spawning.";
 
 	if [ "$1" == "dropdownpavucontrol" ]; then
@@ -21,3 +18,10 @@ else
 		i3 "exec --no-startup-id kitty -T $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -e ~/.config/i3/scripts/$1";
 	fi
 fi
+
+until xwininfo -tree -root | grep "\"$1\""; do
+	echo "Waiting for window to be open..."
+	sleep 0.1
+done
+
+i3 "[instance=\"$1\"] scratchpad show, move position center; [instance=\"$1\"]";
