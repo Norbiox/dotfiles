@@ -170,7 +170,7 @@ mode "$mode_system" {
 
 ############## vpn
 
-bindsym $mod1+Shift+v exec --no-startup-id vpn-toggle
+bindsym $mod1+Shift+v exec --no-startup-id .config/i3/scripts/vpn-toggle
 
 
 ################# applications keyboard shortcuts  
