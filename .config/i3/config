@@ -29,17 +29,17 @@ set $down j
 set $left h
 set $right l
 
-
 ################ Screen layout and workspaces   
 
-# exec --no-startup-id .screenlayout/home.sh
+# Set screen layout on startup
+exec --no-startup-id autorandr --change
 
 bindsym $mod+Ctrl+s mode "$mode_screen_layout"
 
 set $mode_screen_layout (1) laptop, (2) home
 mode "$mode_screen_layout" {
-    bindsym 1 exec --no-startup-id .screenlayout/single.sh, mode "default"
-    bindsym 2 exec --no-startup-id .screenlayout/home.sh, mode "default"
+    bindsym 1 exec --no-startup-id autorandr --load laptop, mode "default"
+    bindsym 2 exec --no-startup-id autorandr --load home, mode "default"
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
