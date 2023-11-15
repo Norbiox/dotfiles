@@ -253,6 +253,20 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = vim.fn.expand '$MYVIMRC',
 })
 
+-- Custom files assosiations
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+  pattern = {'Jenkinsfile', 'jenkinsfile'},
+  command = 'setlocal filetype=groovy',
+})
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+  pattern = {'.pylintrc'},
+  command = 'setlocal filetype=ini',
+})
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+  pattern = {'supervisord.conf'},
+  command = 'setlocal filetype=ini',
+})
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
