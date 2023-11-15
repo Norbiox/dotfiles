@@ -10,13 +10,12 @@
 if [ -z `xwininfo -tree -root | grep "\"$1\""`]; then
 	echo "Window not detected... spawning.";
 
-	if [ "$1" == "dropdownpavucontrol" ]; then
-		i3 "exec --no-startup-id pavucontrol --class $1";
-	elif [ "$1" == "dropdownbluetooth" ]; then
-		i3 "exec --no-startup-id blueman-manager --class $1";
-	else
-		i3 "exec --no-startup-id kitty -T $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -e ~/.config/i3/scripts/$1";
-	fi
+	case "$1" in
+		dropdownpavucontrol) i3 "exec --no-startup-id pavucontrol --class $1";;
+		dropdownbluetooth) i3 "exec --no-startup-id blueman-manager --class $1";;
+		dropdownnotes|dropdowngtd|dropdownnewsboat) i3 "exec --no-startup-id kitty -T $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -c ~/.config/kitty/kitty.notes.conf -e ~/.config/i3/scripts/$1";;
+		*) i3 "exec --no-startup-id kitty -T $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -e ~/.config/i3/scripts/$1";;
+	esac
 fi
 
 until xwininfo -tree -root | grep "\"$1\""; do
