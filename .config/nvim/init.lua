@@ -306,6 +306,9 @@ vim.o.colorcolumn="80,100"
 -- vim.opt.termguicolors = true
 require('onedark').setup {
   style = 'dark',
+  code_style = {
+    comments = 'italic',
+  },
   highlights = {
     ["@keyword"] = {fg = "$red"}
   },
@@ -467,7 +470,48 @@ vim.keymap.set('n', '<leader>m', require('telescope.builtin').marks, { desc = '[
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'clojure' },
+  modules = {},
+  ensure_installed = {
+    'bash',
+    'c',
+    'clojure',
+    'cpp',
+    'css',
+    'csv',
+    'dart',
+    'dockerfile',
+    'diff',
+    'dot',
+    'fish',
+    'git_config',
+    'git_rebase',
+    'gitattributes',
+    'gitcommit',
+    'gitignore',
+    'go',
+    'gpg',
+    'groovy',
+    'help',
+    'html',
+    'ini',
+    'json',
+    'json5',
+    'java',
+    'lua',
+    'markdown',
+    'nix',
+    'python',
+    'requirements',
+    'ssh_config',
+    'rust',
+    'toml',
+    'typescript',
+    'vim',
+    'yaml',
+  },
+  sync_install = true,
+  auto_install = true,
+  ignore_install = { },
 
   highlight = { enable = true },
   indent = { enable = true },
@@ -598,6 +642,7 @@ local servers = {
   'rust_analyzer',
   'pyright',
   -- 'python-lsp-server',
+  -- 'pylsp',
   'tsserver',
   'lua_ls',
   'gopls',
@@ -607,9 +652,9 @@ local servers = {
 }
 
 -- Ensure the servers above are installed
-require('mason-lspconfig').setup {
-  ensure_installed = servers,
-}
+-- require('mason-lspconfig').setup {
+--   ensure_installed = servers,
+-- }
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
