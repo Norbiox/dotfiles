@@ -12,6 +12,7 @@ export FILE="ranger"
 export EDITOR="vim"
 export VISUAL="nvim"
 export BROWSER="brave"
+export PAGER="bat"
 export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
 
 # Source important files
