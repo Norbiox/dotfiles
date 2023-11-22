@@ -8,7 +8,8 @@ dmenu_cmd="dmenu $DMENU_OPTIONS"
 
 declare -A radio_stations
 
-radio_stations[Turn Off]=""
+radio_stations[TURN OFF]=""
+radio_stations[SEARCH YOUTUBE]=""
 radio_stations[Radio Pielgrzym - pieśni]="http://shoutcast.com.pl:9444/"
 radio_stations[Radio Pielgrzym - kazania i reportaże]="http://shoutcast.com.pl:9448/"
 radio_stations[Radio Pielgrzym - kazania]="http://shoutcast.com.pl:9450/"
@@ -24,9 +25,14 @@ chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | $dmenu_cmd -i -l 20 -
 if [[ "$chosen" == "quit" ]]; then
         echo "Program terminated" && exit 1
 
-elif [[ "$chosen" == "Turn Off" ]]; then
+elif [[ "$chosen" == "TURN OFF" ]]; then
         echo "Turning radio down..."
         pkill mpv;
+
+elif [[ "$chosen" == "SEARCH YOUTUBE" ]]; then
+        echo "Starting ytfzf..."
+        pkill mpv;
+        ytfzf -D --detach --url-handler-opts='--no-video';
 
 elif [ "$chosen" ]; then
         echo "Turning radio $chosed..."
