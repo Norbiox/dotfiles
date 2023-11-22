@@ -114,7 +114,7 @@ v() {
 # Git aliases
 alias gst='git status'
 alias gaa='git add -A'
-alias gap='git add -p'
+alias ga='git add -p'
 alias gcm='git commit'
 alias gcma='git commit -a -m'
 alias gwait='git reset HEAD' # Unstages everything.
@@ -124,10 +124,17 @@ alias gco='git checkout'
 alias gpusho="git push origin ${parse_git_branch}"
 alias gpullo="git pull --rebase origin ${parse_git_branch}"
 alias gstart="git checkout main && git pull && git checkout -b "
+nah () {
+    git reset --hard
+    git clean -df
+    if [ -d ".git/rebase-apply" ] || [ -d ".git/rebase-merge" ]; then
+        git rebase --abort
+    fi
+}
 
 # Config management aliases
 alias cst='config status'
-alias cap='config add -p'
+alias ca='config add -p'
 alias ccm='config commit'
 alias cwait='config reset HEAD' # Unstages everything.
 alias cl='config log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
