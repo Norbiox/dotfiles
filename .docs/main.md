@@ -39,7 +39,7 @@ gh auth login
 ```bash
 echo ".dotfiles" >> .gitignore
 git clone --bare <PUT_REPO_URL_HERE> $HOME/.dotfiles
-alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME
+alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 config checkout
 ```
 
