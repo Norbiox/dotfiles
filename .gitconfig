@@ -23,3 +23,5 @@
 	followTags = true
 [alias]
 	root = rev-parse --show-toplevel
+[merge]
+	tool = vimdiff
