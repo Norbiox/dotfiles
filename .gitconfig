@@ -16,5 +16,10 @@
 	path = ~/Work/Onwelo/.gitconfig
 [safe]
 	directory = /opt/flutter
+	directory = /home/norbert/Work/Onwelo/repos/ce-ocr/
+	directory = /home/norbert/Work/Onwelo/repos/ce-ocr
 [push]
 	autoSetupRemote = true
+	followTags = true
+[alias]
+	root = rev-parse --show-toplevel
