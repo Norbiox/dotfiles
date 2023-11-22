@@ -115,6 +115,7 @@ v() {
 alias gst='git status'
 alias gaa='git add -A'
 alias ga='git add -p'
+alias gai='git add -i'
 alias gcm='git commit'
 alias gcma='git commit -a -m'
 alias gwait='git reset HEAD' # Unstages everything.
@@ -135,6 +136,7 @@ nah () {
 # Config management aliases
 alias cst='config status'
 alias ca='config add -p'
+alias cai='config add -i'
 alias ccm='config commit'
 alias cwait='config reset HEAD' # Unstages everything.
 alias cl='config log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
