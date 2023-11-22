@@ -9,13 +9,17 @@ markup=pango
 # command=~/.scripts/hpr4-current-song
 # interval=10
 
-[pomodoro]
-label=🍅
-interval=1
+# [pomodoro]
+# label=🍅
+# interval=1
 
 [bandwidth2]
 label=
 interval=persist
+WARN_RX=512000
+WARN_TX=51200
+CRIT_RX=1024000
+CRIT_TX=102400
 
 [cpu_usage]
 label= 
