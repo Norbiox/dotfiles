@@ -159,4 +159,9 @@ alias test-mic="arecord -d 5 test-mic.wav && sleep 1 && aplay test-mic.wav && rm
 # kitty terminal oriented aliases
 alias kdiff="kitty +kitten diff"
 
+# copy to clipboard/primary/secondary
+alias copy="xclip -sel clipboard"  # by default works with by vim setup
+alias copyp="xclip -sel clipboard"
+alias copys="xclip -sel clipboard"
+
 eval "$(starship init bash)"
