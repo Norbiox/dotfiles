@@ -119,7 +119,7 @@ alias gai='git add -i'
 alias gcm='git commit'
 alias gcma='git commit -a -m'
 alias gwait='git reset HEAD' # Unstages everything.
-alias gl='git log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias gl='git log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --date=relative'
 alias gundo='git reset --soft HEAD^' # Undoes the last commit and moves the files in the commit to staging.
 alias gco='git checkout'
 alias gpusho="git push origin ${parse_git_branch}"
