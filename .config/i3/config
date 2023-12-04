@@ -231,8 +231,8 @@ for_window [instance="dropdown*"] floating enable, sticky enable, move scratchpa
 for_window [instance="dropdownranger"] resize set 80 ppt 8 ppt;
 for_window [instance="dropdownnewsboat"] resize set 80 ppt 8 ppt;
 for_window [instance="dropdownterminal"] resize set 80 ppt 5 ppt;
-for_window [instance="dropdownnotes"] resize set 50 ppt 10 ppt;
-for_window [instance="dropdowngtd"] resize set 40 ppt 10 ppt;
+for_window [instance="dropdownnotes"] resize set 50 ppt 8 ppt;
+for_window [instance="dropdowngtd"] resize set 40 ppt 8 ppt;
 
 # spawn or open dropdown terminal
 bindsym $mod+colon          exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownterminal
