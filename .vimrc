@@ -96,10 +96,6 @@ command NotesPull execute "!git checkout -- . && git pull"
 au BufEnter ~/notes/{gtd.md} :NotesPull
 au BufWritePost ~/notes/* :NotesPush
 
-""" Others
-let @d = ":put =strftime('%d.%m.%Y')"
-command OpenDailyNote execute ":exe 'e journal/'.strftime('%d-%m-%Y').'.md'"
-
 
 set exrc
 set secure
