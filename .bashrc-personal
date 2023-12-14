@@ -110,6 +110,7 @@ v() {
     fi
 }
 
+alias pybeautify="git status -s | grep '??' | cut -f2 -d' ' | xargs -I __ sh -c 'echo __ && isort __ && black -l 100 __'"
 
 # Git aliases
 alias gst='git status'
@@ -117,7 +118,7 @@ alias gaa='git add -A'
 alias ga='git add -p'
 alias gai='git add -i'
 alias gcm='git commit'
-alias gcma='git commit -a -m'
+alias gcma='git commit -a'
 alias gwait='git reset HEAD' # Unstages everything.
 alias gl='git log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --date=relative'
 alias gundo='git reset --soft HEAD^' # Undoes the last commit and moves the files in the commit to staging.
