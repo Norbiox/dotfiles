@@ -839,7 +839,7 @@ vim.g.python3_host_prog = '/usr/bin/python'
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -912,14 +912,17 @@ vim.keymap.set('n', '<A-x>', '<Cmd>BufferCloseAllButVisible<CR>', {noremap = tru
 -- Magic buffer-picking mode
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>', {noremap = true, silent = true})
 -- Sort automatically by...
-vim.keymap.set('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', {noremap = true, silent = true})
 
 -- Keymap for DiffView
-vim.keymap.set('n', '<Space>do', '<Cmd>DiffviewOpen<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<Space>dc', '<Cmd>DiffviewClose<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>do', '<Cmd>DiffviewOpen<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>dc', '<Cmd>DiffviewClose<CR>', {noremap = true, silent = true})
+
+-- Keymap for fugitive
+vim.keymap.set('n', '<leader>gg', ':G<CR>', {noremap = true, silent = true})
 
 -- Keymap for ChatGTP
 
