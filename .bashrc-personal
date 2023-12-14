@@ -165,4 +165,7 @@ alias copy="xclip -sel clipboard"  # by default works with by vim setup
 alias copyp="xclip -sel clipboard"
 alias copys="xclip -sel clipboard"
 
+# source .thismachineonlyrc
+[[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
+
 eval "$(starship init bash)"
