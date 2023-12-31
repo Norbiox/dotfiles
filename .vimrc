@@ -80,6 +80,9 @@ let g:fzf_files_options = '--preview "(cat {})"'
 map <C-f> :Files<CR>
 map <C-p> :Rg<CR>
 map <C-n> :NERDTreeToggle<CR>
+nnoremap <space>sf :Files<CR>
+nnoremap <space>sg :Rg<CR>
+nnoremap <space>n :NERDTreeToggle<CR>
 inoremap jk <Esc>
 inoremap kj <Esc>
 noremap <Up> <NOP>
