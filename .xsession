@@ -14,6 +14,7 @@ export VISUAL="nvim"
 export BROWSER="brave"
 export PAGER="bat"
 export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
+export OPENER="rifle"
 
 # Source important files
 [[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
