@@ -2,6 +2,8 @@
 # My personal .bashrc file complimentary to ArcoLinux .bashrc
 # This file is sources by ArcoLinux .bashrc
 
+export OPENER="rifle"
+
 #---History options---#
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
