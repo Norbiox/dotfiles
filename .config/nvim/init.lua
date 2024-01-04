@@ -66,14 +66,6 @@ require('packer').startup(function(use)
     end
   }
 
-  use { -- Tabline enhancer
-    'romgrk/barbar.nvim',
-    requires = {
-      'nvim-tree/nvim-web-devicons',
-      'lewis6991/gitsigns.nvim',
-    },
-  }
-
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -815,10 +807,6 @@ require("nvim-tree").setup({
   }
 })
 
--- Setup Barbar
-require('barbar').setup({
-})
-
 -- Python virtualenv config
 vim.g.python3_host_prog = '/usr/bin/python'
 
@@ -877,45 +865,6 @@ vim.keymap.set('v', '<leader>c', ':OSCYank<CR>', {noremap = true, silent = true}
 -- Keymap for saving/loading session
 vim.keymap.set('n', '<leader>ss', ':mksession! .nvimsession<CR>', {noremap = true, silent = true})
 vim.keymap.set('n', '<leader>sl', ':source .nvimsession<CR>', {noremap = true, silent = true})
-
--- Keymap for Barbar
--- Move to previous/next
-vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>', {noremap = true, silent = true})
--- Re-order to previous/next
-vim.keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>', {noremap = true, silent = true})
--- Goto buffer in position...
-vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', {noremap = true, silent = true})
--- Pin/unpin buffer
-vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>', {noremap = true, silent = true})
--- Close buffer
-vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<A-x>', '<Cmd>BufferCloseAllButVisible<CR>', {noremap = true, silent = true})
--- Wipeout buffer
---                 :BufferWipeout
--- Close commands
---                 :BufferCloseAllButCurrent
---                 :BufferCloseAllButPinned
---                 :BufferCloseAllButCurrentOrPinned
---                 :BufferCloseBuffersLeft
---                 :BufferCloseBuffersRight
--- Magic buffer-picking mode
-vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>', {noremap = true, silent = true})
--- Sort automatically by...
-vim.keymap.set('n', '<leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', {noremap = true, silent = true})
 
 -- Keymap for DiffView
 vim.keymap.set('n', '<leader>do', '<Cmd>DiffviewOpen<CR>', {noremap = true, silent = true})
