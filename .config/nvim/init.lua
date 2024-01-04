@@ -434,11 +434,17 @@ require('telescope').setup {
   defaults = {
     mappings = {
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
+        ['<esc>'] = require('telescope.actions').close,
+        ['jk'] = require('telescope.actions').close,
+        ['<C-d>'] = require('telescope.actions').delete_buffer,
       },
     },
   },
+  extensions = {
+    media_files = { },
+    fzf = { },
+    undo = { }
+  }
 }
 
 -- Enable telescope fzf native, if installed
