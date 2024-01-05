@@ -16,14 +16,18 @@
 	path = ~/Work/Onwelo/.gitconfig
 [safe]
 	directory = /opt/flutter
-	directory = /home/norbert/Work/Onwelo/repos/ce-ocr/
-	directory = /home/norbert/Work/Onwelo/repos/ce-ocr
 [push]
 	autoSetupRemote = true
 	followTags = true
 	default = upstream
 [alias]
 	root = rev-parse --show-toplevel
+	start = "!f() { \
+		git checkout -b \"$1\"; \
+		}; f"
+	back = "checkout -"
+	master = "!git checkout master && git pull -a"
+	main = "!git checkout main && git pull -a"
 [merge]
 	tool = vimdiff
 [rerere]
