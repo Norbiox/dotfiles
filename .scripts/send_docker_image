@@ -1,0 +1,56 @@
+#!/bin/bash
+# Send docker image to another host through ssh
+set -euo pipefail
+
+show_help() {
+cat << EOF
+Usage: ${0##*/} [-f FILE] [IMAGE] [TARGET_HOST]
+Save docker IMAGE to tar, send to TARGET_HOST through ssh, load it there and remove tar file.
+If FILE is given skips saving IMAGE to tar and send specified FILE.
+
+		-f FILE		tar file with image to be send
+EOF
+}
+
+tar_file=""
+
+OPTIND=1
+while getopts f: opt; do
+		case $opt in
+				f) 	tar_file=$OPTARG
+					 	;;
+				*)
+						show_help >&2
+						exit 1
+						;;
+		esac
+done
+shift "$((OPTIND-1))" 	# Discard the options and sentinel --
+
+# Exit if path is not given
+if [[ -z $1 || -z $2 ]]; then
+		show_help >&2
+		exit 1
+fi
+
+# Save image into tar file
+if [[ -z "$tar_file" ]]; then
+		tar_file=`echo $1 | sed 's/:/_/g'`
+		tar_file="${tar_file}.tar"
+		echo "Saving $1 to $tar_file"
+		docker save -o "$tar_file" "$1"
+fi
+
+# Send tar file
+echo "Sending $tar_file to $2"
+echo "scp $tar_file $2:"
+scp "$tar_file" "$2:"
+
+# Load image from tar file on the target host
+echo "Loading docker image from $tar_file on $2"
+ssh -t "$2" "docker load -i $tar_file"
+
+# Remove tar file locally and on the target host
+echo "Removing $tar_file"
+rm "$tar_file"
+ssh -t "$2" "rm $tar_file" 
