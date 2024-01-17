@@ -1,0 +1,7 @@
+.aider*
+.dev
+.dotfiles
+.nvimsession
+.vscode
+.venv
+venv/
