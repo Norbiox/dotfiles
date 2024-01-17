@@ -197,8 +197,8 @@ bindsym $mod+Shift+t exec --no-startup-id teams;focus
 #thunar
 bindsym $mod+Shift+p exec --no-startup-id thunar;focus
 
-#guvcview
-bindsym $mod+Shift+v exec --no-startup-id guvcview;focus
+# webcam settings
+bindsym $mod+Shift+v exec --no-startup-id qv4l2 -d /dev/video2;focus
 
 
 # SYSTEM CONTROL
