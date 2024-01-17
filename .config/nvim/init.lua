@@ -679,7 +679,13 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Turn on lsp status information
-require('fidget').setup()
+require('fidget').setup({
+  integration = {
+    ["nvim-tree"] = {
+      enable = false,
+    },
+  },
+})
 
 -- Example custom configuration for lua
 --
@@ -814,7 +820,7 @@ require("nvim-tree").setup({
 })
 
 -- Python virtualenv config
-vim.g.python3_host_prog = '/usr/bin/python'
+vim.g.python3_host_prog = '/usr/bin/python3.10'
 
 -- Activate TabNine
 -- require('tabnine').setup({
