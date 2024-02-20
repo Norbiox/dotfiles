@@ -215,6 +215,9 @@ require('packer').startup(function(use)
     end
   }
 
+  -- Todoist integration
+  use 'romgrk/todoist.nvim'
+
   -- END OF PLUGINS --
 
   -- START OF CONFIGS --
