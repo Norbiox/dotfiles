@@ -20,6 +20,7 @@ radio_stations[HPR4 Gospel Bluegrass]="https://us2.maindigitalstream.com/ssl/773
 radio_stations[Chillstep.info]="https://chillstep.info/radio/stream.ogg?1696871921731"
 radio_stations[10 Hours of Messianic Jewish Worship Music]="https://www.youtube.com/watch?v=fnuYjtMH-NA"
 radio_stations[Lofi Girl]="https://www.youtube.com/watch?v=jfKfPfyJRdk"
+radio_stations[Classical Piano]="https://www.youtube.com/watch?v=tSlOlKRuudU"
 
 chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | $dmenu_cmd -i -l 20 -p "Radio:")
 
