@@ -2,6 +2,15 @@
 # My personal .bashrc file complimentary to ArcoLinux .bashrc
 # This file is sources by ArcoLinux .bashrc
 
+export TERM="kitty"
+export TERM2="alacritty"
+export TERM3="urxvt"
+export FILE="ranger"
+export EDITOR="vim"
+export VISUAL="nvim"
+export BROWSER="brave"
+export PAGER="bat"
+export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
 export OPENER="rifle"
 
 #---History options---#
@@ -164,8 +173,8 @@ alias kdiff="kitty +kitten diff"
 
 # copy to clipboard/primary/secondary
 alias copy="xclip -sel clipboard"  # by default works with by vim setup
-alias copyp="xclip -sel clipboard"
-alias copys="xclip -sel clipboard"
+alias copyp="xclip -sel primary"
+alias copys="xclip -sel secondary"
 
 # source .thismachineonlyrc
 [[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
