@@ -22,6 +22,7 @@ sudo pacman -Sy \
   npm \
   openssh \
   pasystray \
+  peco \
   python-pipx \
   ranger \
   ripgrep \
@@ -50,7 +51,8 @@ yay -S \
   hstr \
   networkmanager-dmenu-git \
   ncpamixer \
-  scc
+  scc \
+  todoist
 
 echo "Install power-profiles-daemon..."
 sudo pacman -Sy power-profiles-deamon
