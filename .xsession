@@ -30,4 +30,5 @@ export OPENER="rifle"
 [[ -d ~/.fly ]] && export PATH=$HOME/.fly:$PATH
 [[ -d ~/.detaspace/bin ]] && export PATH=$HOME/.detaspace/bin:$PATH
 [[ -d ~/.local/share/nvim/site/pack/packer/start/vim-iced/bin ]] && export PATH=$HOME/.local/share/nvim/site/pack/packer/start/vim-iced/bin:$PATH
+[[ -d ~/.nimble/bin ]] && export PATH=$HOME/.nimble/bin:$PATH
 
