@@ -290,7 +290,7 @@
     "editor.guides.indentation": false,
     "cSpell.language": "en,pl,pl-PL",
     "redhat.telemetry.enabled": true,
-    "workbench.colorTheme": "Atom One Light",
+    "workbench.colorTheme": "One Dark Pro",
     "editor.minimap.showSlider": "always",
     "editor.minimap.scale": 2,
     "editor.minimap.enabled": false,
@@ -298,5 +298,20 @@
     "html.format.enable": false,
     "markdown-preview-enhanced.previewTheme": "one-dark.css",
     "files.insertFinalNewline": true,
-    "workbench.productIconTheme": "material-product-icons"
+    "workbench.productIconTheme": "material-product-icons",
+    "workbench.editor.tabActionLocation": "left",
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp",
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
+        "editor.rulers": [
+            120
+        ],
+        "editor.semanticHighlighting.enabled": true
+    }
 }
