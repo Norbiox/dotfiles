@@ -513,6 +513,7 @@ require('nvim-treesitter.configs').setup {
     'java',
     'lua',
     'markdown',
+    'nim',
     'nix',
     'python',
     'requirements',
@@ -659,11 +660,13 @@ local servers = {
   -- 'pylsp',
   'tsserver',
   'lua_ls',
+  'nim_langserver',
   'gopls',
   'clojure_lsp',
   'groovyls',
-  'yamlls'
+  'yamlls',
 }
+
 
 -- Ensure the servers above are installed
 -- require('mason-lspconfig').setup {
