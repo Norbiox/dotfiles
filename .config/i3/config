@@ -228,11 +228,11 @@ bindsym --release $mod1+Ctrl+Escape exec xkill
 ################# dropdowns
 
 for_window [instance="dropdown*"] floating enable, sticky enable, move scratchpad;
-for_window [instance="dropdownranger"] resize set 80 ppt 8 ppt;
-for_window [instance="dropdownnewsboat"] resize set 80 ppt 8 ppt;
-for_window [instance="dropdownterminal"] resize set 80 ppt 5 ppt;
-for_window [instance="dropdownnotes"] resize set 50 ppt 8 ppt;
-for_window [instance="dropdowngtd"] resize set 40 ppt 8 ppt;
+for_window [instance="dropdownranger"] resize set 1700 px 900 px;
+for_window [instance="dropdownnewsboat"] resize set 1000 px 900 px;
+for_window [instance="dropdownterminal"] resize set 1400 px 600 px;
+for_window [instance="dropdownnotes"] resize set 1000 px 900 px;
+for_window [instance="dropdowngtd"] resize set 1000 px 900 px;
 
 # spawn or open dropdown terminal
 bindsym $mod+colon          exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownterminal
