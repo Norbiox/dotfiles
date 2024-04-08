@@ -30,5 +30,7 @@ export OPENER="rifle"
 [[ -d ~/.fly ]] && export PATH=$HOME/.fly:$PATH
 [[ -d ~/.detaspace/bin ]] && export PATH=$HOME/.detaspace/bin:$PATH
 [[ -d ~/.local/share/nvim/site/pack/packer/start/vim-iced/bin ]] && export PATH=$HOME/.local/share/nvim/site/pack/packer/start/vim-iced/bin:$PATH
-[[ -d ~/.nimble/bin ]] && export PATH=$HOME/.nimble/bin:$PATH
+[[ -d ~/.nimble/bin ]] && export PATH=$HOME/.nimble/bin:$PATH  # Nim packages
+[[ -d ~/.pub-cache/bin ]] && export PATH=$HOME/.pub-cache/bin:$PATH  # Dart packages
+[[ -s ~/Dev/Android/SDK/tools/bin ]] && export PATH=$HOME/Dev/Android/SDK/tools/bin:$PATH
 
