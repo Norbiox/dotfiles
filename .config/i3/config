@@ -233,6 +233,7 @@ for_window [instance="dropdownnewsboat"] resize set 1000 px 900 px;
 for_window [instance="dropdownterminal"] resize set 1400 px 600 px;
 for_window [instance="dropdownnotes"] resize set 1000 px 900 px;
 for_window [instance="dropdowngtd"] resize set 1000 px 900 px;
+for_window [instance="dropdowntranslator"] resize set 1000 px 900 px;
 
 # spawn or open dropdown terminal
 bindsym $mod+colon          exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownterminal
