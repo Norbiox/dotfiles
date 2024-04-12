@@ -12,8 +12,6 @@
 [difftool]
 	prompt = false
 
-[includeIf "gitdir:~/Work/Onwelo/"]
-	path = ~/Work/Onwelo/.gitconfig
 [safe]
 	directory = /opt/flutter
 [push]
