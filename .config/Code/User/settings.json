@@ -4,7 +4,7 @@
         "editor.tabSize": 2
     },
     "[css]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": "vscode.css-language-features",
         "editor.tabSize": 2
     },
     "[javascript]": {
@@ -157,9 +157,6 @@
     "terminal.integrated.lineHeight": 1,
     // *** END OF TERMINAL SPECIFIC FONT SETTINGS ***
     "terminal.external.linuxExec": "alacritty",
-    "terminal.integrated.automationShell.linux": "/bin/bash",
-    "terminal.integrated.rendererType": "dom",
-    "terminal.integrated.shell.linux": "/bin/bash",
     "vim.changeWordIncludesWhitespace": true,
     "vim.handleKeys": {
         "<C-E>": false,
@@ -233,7 +230,7 @@
         "*.ipynb": "jupyter-notebook"
     },
     "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "mervin.markdown-formatter"
     },
     "editor.inlineSuggest.enabled": true,
     "diffEditor.wordWrap": "off",
@@ -241,26 +238,6 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "j",
-                "k"
-            ],
-            "after": [
-                "<esc>"
-            ]
-        },
-        {
-            "before": [
-                "k",
-                "j"
-            ],
-            "after": [
-                "<esc>"
-            ]
-        }
-    ],
     "github.copilot.enable": {
         "*": true,
         "yaml": false,
@@ -274,22 +251,9 @@
     "workbench.editor.pinnedTabSizing": "shrink",
     "tabnine.experimentalAutoImports": true,
     "workbench.editor.tabSizing": "shrink",
-    "workbench.editor.tabCloseButton": "left",
-    "cSpell.userWords": [
-        "Abrahamowe",
-        "Edenowe",
-        "Fruchtenbaum",
-        "Pypi",
-        "spowrotem",
-        "zamieszkiwalną"
-    ],
-    "cSpell.ignoreWords": [
-        "ὀρθοτομέω"
-    ],
     "workbench.reduceMotion": "on",
     "editor.guides.indentation": false,
     "cSpell.language": "en,pl,pl-PL",
-    "redhat.telemetry.enabled": true,
     "workbench.colorTheme": "One Dark Pro",
     "editor.minimap.showSlider": "always",
     "editor.minimap.scale": 2,
