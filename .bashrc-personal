@@ -238,5 +238,15 @@ fi
 
 ###-end-flutter-completion-###
 
+### yy shell wrapper for changing current directory when exitin yazi
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 ## Generated 2024-03-01 05:30:29.250293Z
 ## By /home/norbert/snap/flutter/common/flutter/bin/cache/flutter_tools.snapshot

@@ -38,6 +38,7 @@ sudo pacman -Sy \
   xclip \
   xss-lock \
   yay \
+  yazi \
   zathura \
   zathura-pdf-mupdf \
   zoxide
@@ -79,5 +80,8 @@ sudo systemctl start cups.service
 echo "Setup wallpapers..."
 git clone https://gitlab.com/dwt1/wallpapers.git ~/.local/share/wallpapers
 sed "/dirs=/ s/$/\/home\/$USER\/.local\/share\/wallpapers;/" ~/.config/nitrogen/nitrogen.cfg -i
+
+echo "Install yazi..."
+sudo pacman -S yazi ffmpegthumbnailer unarchiver jq poppler fd ripgrep fzf zoxide
 
 echo "Installation done"
