@@ -1,0 +1,9 @@
+[manager]
+ratio=[1, 4, 3]
+linemode="mtime"
+scrolloff=5
+
+[opener]
+open = [
+  { run = 'zathura --fork "$@"', orphan = true, desc = "zathura", for = "linux" }
+]
