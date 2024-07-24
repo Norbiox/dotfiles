@@ -505,6 +505,7 @@ require('nvim-treesitter.configs').setup {
     'go',
     'gpg',
     'groovy',
+    'gleam',
     'help',
     'html',
     'ini',
