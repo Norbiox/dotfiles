@@ -68,11 +68,6 @@ curl -s https://rubjo.github.io/victor-mono/VictorMonoAll.zip --output VictorMon
 sudo bsdtar -xf- VictorMonoAll.zip -C /usr/local/share/fonts
 fc-cache
 
-echo "Install python packages..."
-pipx install \
-  black \
-  idasen
-
 echo "Setup printing..."
 sudo systemctl enable cups.service
 sudo systemctl start cups.service
