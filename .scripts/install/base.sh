@@ -52,6 +52,7 @@ yay -S \
   hstr \
   networkmanager-dmenu-git \
   ncpamixer \
+  nvm \
   scc \
   todoist
 
