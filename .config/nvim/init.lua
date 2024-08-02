@@ -125,9 +125,6 @@ require('packer').startup(function(use)
   use 'stevearc/dressing.nvim'
   use 'nvim-tree/nvim-web-devicons' -- Icons
 
-  -- Markdown preview
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-
   -- Lualine
   use {
     'nvim-lualine/lualine.nvim',
@@ -218,6 +215,34 @@ require('packer').startup(function(use)
   -- Todoist integration
   use 'romgrk/todoist.nvim'
 
+  -- Obsidian integration
+  use {
+    'epwalsh/obsidian.nvim',
+    tag = '*',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      require('obsidian').setup({
+          workspaces = {
+            {
+              name = "myallnotes",
+              path = "~/Notes/MyAllNotes"
+            }
+          }
+        })
+    end,
+  }
+
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" }
+  }
+  --
   -- END OF PLUGINS --
 
   -- START OF CONFIGS --
@@ -302,6 +327,9 @@ vim.wo.signcolumn = 'yes'
 
 -- Vertical line
 vim.o.colorcolumn="80,100"
+
+-- Enable formatting concealment features
+vim.o.conceallevel = 1
 
 -- Set colorscheme
 -- vim.opt.termguicolors = true
@@ -862,7 +890,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
 -- Black keymaps
-vim.keymap.set('n', '<leader>b', ':!black -l 100 %<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>f', ':!black -l 100 %<CR>', {noremap = true, silent = true})
 
 -- Map Esc to exit terminal mode
 vim.keymap.set('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = true})
@@ -871,12 +899,12 @@ vim.keymap.set('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = true})
 vim.keymap.set('n', '<leader>;', ':FloatermToggle<CR>', {noremap = true, silent = true})
 vim.keymap.set('n', '<leader>;', '<Esc>:FloatermToggle<CR>', {noremap = false, silent = true})
 vim.keymap.set('t', '<leader>;', '<C-\\><C-N>:FloatermToggle<CR>', {noremap = false, silent = true})
-vim.keymap.set('t', '<leader><F4>', '<C-\\><C-N>:FloatermNew<CR>', {noremap = true, silent = true})
-vim.keymap.set('t', '<leader><F5>', '<C-\\><C-N>:FloatermKill<CR>', {noremap = true, silent = true})
-vim.keymap.set('t', '<leader><F6>', '<C-\\><C-N>:FloatermFirst<CR>', {noremap = true, silent = true})
-vim.keymap.set('t', '<leader><F7>', '<C-\\><C-N>:FloatermPrev<CR>', {noremap = true, silent = true})
-vim.keymap.set('t', '<leader><F8>', '<C-\\><C-N>:FloatermNext<CR>', {noremap = true, silent = true})
-vim.keymap.set('t', '<leader><F9>', '<C-\\><C-N>:FloatermLast<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader>bc', '<C-\\><C-N>:FloatermNew<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader>bk', '<C-\\><C-N>:FloatermKill<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader>bf', '<C-\\><C-N>:FloatermFirst<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader>bp', '<C-\\><C-N>:FloatermPrev<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader>bn', '<C-\\><C-N>:FloatermNext<CR>', {noremap = true, silent = true})
+vim.keymap.set('t', '<leader>bl', '<C-\\><C-N>:FloatermLast<CR>', {noremap = true, silent = true})
 
 -- Keymap for OSCYank
 vim.keymap.set('v', '<leader>c', ':OSCYank<CR>', {noremap = true, silent = true})
