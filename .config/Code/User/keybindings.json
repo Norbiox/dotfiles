@@ -165,6 +165,16 @@
     "when": "breadcrumbsPossible"
   },
   {
+    "key": "ctrl+shift+'",
+    "command": "breadcrumbs.focus",
+    "when": "breadcrumbsPossible && breadcrumbsVisible"
+  },
+  {
+    "key": "ctrl+shift+;",
+    "command": "-breadcrumbs.focus",
+    "when": "breadcrumbsPossible && breadcrumbsVisible"
+  },
+  {
     "key": "ctrl+a c",
     "command": "workbench.action.terminal.new",
     "when": "terminalFocus"
@@ -397,5 +407,19 @@
     "key": "ctrl+p",
     "command": "-extension.vim_ctrl+p",
     "when": "editorTextFocus && vim.active && vim.use<C-p> && !inDebugRepl || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'SearchInProgressMode'"
+  },
+  {
+    "key": "ctrl+shift+;",
+    "command": "workbench.action.quickOpenTerm"
+  },
+  {
+    "key": "space e",
+    "command": "editor.action.showHover",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+k ctrl+i",
+    "command": "-editor.action.showHover",
+    "when": "editorTextFocus"
   }
 ]

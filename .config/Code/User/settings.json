@@ -31,8 +31,9 @@
             100
         ],
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "ms-python.python",
-        "editor.formatOnType": true
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true,
+        "testing.pytestEnabled": true
     },
     "[go]": {
         "editor.defaultFormatter": "golang.go"
@@ -99,7 +100,9 @@
     ],
     "prettier.printWidth": 1000,
     "problems.showCurrentInStatus": true,
-    "python.analysis.autoImportCompletions": false,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.userFileIndexingLimit": 10000,
     "python.formatting.blackArgs": [
         "-l",
         "100",
@@ -107,7 +110,6 @@
     "python.formatting.provider": "black",
     "python.jediEnabled": false,
     "python.languageServer": "Pylance",
-    "python.pythonPath": "/usr/local/bin/python",
     "python.sortImports.args": [
         "-rc",
         "-w 100",
@@ -289,5 +291,11 @@
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": "off"
     },
-    "editor.cursorSurroundingLines": 3
+    "editor.cursorSurroundingLines": 3,
+    "black-formatter.args": [
+        "-l",
+        "100"
+    ],
+    "cloudcode.project": "bks-gemini-dev-eu-w1",
+    "cloudcode.duetAI.project": "bks-gemini-dev-eu-w1"
 }

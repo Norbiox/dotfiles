@@ -349,7 +349,8 @@ require('onedark').load()
 
 -- Set linters
 require('lint').linters_by_ft = {
-  python = {'pylint'}
+  -- python = {'pylint'}
+  python = {'ruff'}
 }
 vim.api.nvim_create_autocmd({"BufWritePost"}, {
   callback = function()
@@ -687,6 +688,7 @@ local servers = {
   'pyright',
   -- 'python-lsp-server',
   -- 'pylsp',
+  'ruff_lsp',
   'tsserver',
   'lua_ls',
   'nim_langserver',
@@ -890,7 +892,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
 -- Black keymaps
-vim.keymap.set('n', '<leader>f', ':!black -l 100 %<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>f', ':Format<CR>', {noremap = true, silent = true})
 
 -- Map Esc to exit terminal mode
 vim.keymap.set('t', '<esc>', '<C-\\><C-N>', {noremap = true, silent = true})
