@@ -1,0 +1,107 @@
+#!/usr/bin/env python
+import argparse
+import asyncio
+import os
+import random
+import subprocess
+import yaml
+
+IDASEN_CONFIG_FILE = f"/home/{os.getlogin()}/.config/idasen/idasen.yaml"
+DEFAULT_POSITIONS = ["corechair", "stand"]
+
+
+def get_current_position(config: dict):
+    height = float(
+        subprocess.run(["idasen", "height"], capture_output=True)
+        .stdout.decode()
+        .split()[0]
+    )
+    position = min(config["positions"].items(), key=lambda x: abs(x[1] - height))[0]
+    return position
+
+
+def get_time(time: int, randomize: bool):
+    if not randomize:
+        return time
+
+    return int(time * random.uniform(0.5, 1.5))
+
+
+async def main(
+    config: dict, user_positions: list[str], starting_position: str, time: int
+):
+    subprocess.call(["notify-send", f"IDASEN LOOP starting on position {starting_position} ..."])
+    current_position_index = DEFAULT_POSITIONS.index(starting_position)
+    while True:
+        position = user_positions[current_position_index]
+        subprocess.call(["notify-send", f"IDASEN setting position: {position}"])
+        subprocess.call(["idasen", position])
+
+        time = get_time(time, args.random)
+        subprocess.call(["notify-send", f"IDASEN next position in {time} minutes"])
+        await asyncio.sleep(time * 60)
+        current_position_index = (current_position_index + 1) % len(user_positions)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="ATM IO Connector")
+    parser.add_argument(
+        "-c",
+        "--config",
+        type=str,
+        default=IDASEN_CONFIG_FILE,
+        help="Path to idasen configuration file",
+    )
+    parser.add_argument(
+        "-p",
+        "--positions",
+        type=list[str],
+        default=DEFAULT_POSITIONS,
+        help="Positions to roll over",
+    )
+    parser.add_argument(
+        "-s",
+        "--starting-position",
+        type=str,
+        default=None,
+        help="Position to start from",
+    )
+    parser.add_argument(
+        "-t",
+        "--time",
+        type=int,
+        default=30,
+        help="Minutes to stay in one position",
+    )
+    parser.add_argument(
+        "-r",
+        "--random",
+        action="store_true",
+        default=True,
+        help="Randomize time between positions (always time +- 0.5*time)",
+    )
+    args = parser.parse_args()
+
+    with open(args.config, "r") as f:
+        config = yaml.safe_load(f)
+
+    print("Current position:", get_current_position(config))
+
+    for position in args.positions:
+        assert (
+            position in config["positions"]
+        ), f"Position '{position}' not found in config"
+    assert args.starting_position in args.positions
+
+    if args.starting_position is not None:
+        assert (
+            args.starting_position in args.positions
+        ), f"Position '{args.starting_position}' not in positions"
+        assert (
+            args.starting_position in config["positions"]
+        ), f"Position '{args.starting_position}' not in config"
+        starting_position = args.starting_position
+    else:
+        starting_position = get_current_position(config)
+
+    asyncio.run(main(config, args.positions, args.starting_position, args.time))
