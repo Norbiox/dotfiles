@@ -160,9 +160,6 @@ bindsym $mod1+Shift+n           exec --no-startup-id source ~/.dmenurc && networ
 # dmenu-emoji
 bindsym $mod1+Shift+e           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-emoji $DMENU_OPTIONS
 
-# HAML
-bindsym $mod1+Shift+h           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-haml $DMENU_OPTIONS
-
 # Jitsi
 bindsym $mod1+Shift+j           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-jitsi $DMENU_OPTIONS
 
@@ -190,9 +187,6 @@ bindsym $mod+Shift+d exec --no-startup-id discord;focus
 
 #slack
 bindsym $mod+Shift+s exec --no-startup-id slack;focus
-
-#slack
-bindsym $mod+Shift+t exec --no-startup-id teams;focus
 
 #thunar
 bindsym $mod+Shift+p exec --no-startup-id thunar;focus

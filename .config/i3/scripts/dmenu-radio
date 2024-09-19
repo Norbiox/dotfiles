@@ -35,6 +35,11 @@ elif [[ "$chosen" == "SEARCH YOUTUBE" ]]; then
         echo "Starting ytfzf..."
         pkill mpv;
         ytfzf -D --detach --url-handler-opts='--no-video';
+        retVal=$?
+        if [ $retVal -eq 4 ]; then
+                notify-send "ytfzf (dmenu-radio): No results scraped"
+        fi
+        exit $retVal
 
 elif [ "$chosen" ]; then
         echo "Turning radio $chosed..."

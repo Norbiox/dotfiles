@@ -25,7 +25,6 @@ chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Pick Idasen pos
 if [ "$chosen" ]; then
         position_name=$(printf '%s\n' "${chosen}" | sed s/://g | awk '{print $1}')
         notify-send "Idasen" "Setting Idasen desk to position: $position_name..." -t 5000 
-        idasen $position_name && sleep 1800 && notify-send "Idasen" "It's time to change position!" --action 'change position' -t 600000 | grep "0" && dmenu-idasen &
 else
         echo "Program terminated" && exit 1
 fi

@@ -1,13 +1,14 @@
 #!/bin/bash
 
-mac_address=`bluetoothctl paired-devices | grep "Soundcore" | cut -f2 -d" "`
-card="bluez_card.AC_12_2F_D2_1B_84"
-input="bluez_input.AC_12_2F_D2_1B_84.headset-head-unit"
+mac_address=`bluetoothctl devices | grep "Soundcore" | cut -f2 -d" "`
 
 if [ -z $mac_address ] ; then
-    echo "No Soundcore device paired";
+    echo "No Soundcore device found";
     exit 1
 fi
+
+card="bluez_card.${mac_address}"
+input="bluez_input.${mac_address}.headset-head-unit"
 
 connect() {
     bluetoothctl connect $mac_address;
@@ -22,14 +23,14 @@ reconnect() {
 }
 
 set_profile_a2dp_ldac() {
-    pactl set-card-profile $card a2dp-sink-ldac;
-    pactl set-default-source effect_output.rnnoise;
+    echo $card
+    pactl set-card-profile $card a2dp_sink
+    pactl send-message /card/${card}/bluez switch-codec '"ldac_sq"'
 }
 
 set_profile_hhu_msbc() {
-    pactl set-card-profile $card headset-head-unit-msbc;
-    pactl set-default-source $input;
-    pactl set-default-source effect_output.rnnoise;
+    pactl set-card-profile $card handsfree_head_unit
+    pactl set-default-source bluez_source.${mac_address}.handsfree_head_unit
 }
 
 help() {
