@@ -6,6 +6,8 @@
 ! Xorg issue nov 2021 - use and change if needed
 Xft.dpi: 96
 
+Xcursor.theme: Banana
+Xcursor.size: 32
 
 ! general settings
 URxvt.saveLines:        50000

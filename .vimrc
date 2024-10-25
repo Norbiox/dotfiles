@@ -17,6 +17,7 @@ Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'itchyny/calendar.vim'
 Plug 'tpope/vim-commentary'
+Plug 'Exafunction/codeium.vim'
 call plug#end()
 
 """ Colorscheme

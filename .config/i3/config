@@ -178,12 +178,14 @@ bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERM2;focus
 bindsym $mod+Shift+b exec --no-startup-id brave;focus
 bindsym $mod+Ctrl+b exec --no-startup-id brave `xclip -o`;focus
 bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`;focus
+bindsym $mod+Shift+m exec --no-startup-id brave --app=https://meet.google.com
+bindsym $mod+Shift+w exec --no-startup-id brave --app=https://messages.google.com/web/conversations
 
-#vscode
-bindsym $mod+Shift+c exec --no-startup-id code;focus
+# Discord
+bindsym $mod+Shift+d exec --no-startup-id discord
 
-#discord
-bindsym $mod+Shift+d exec --no-startup-id discord;focus
+#IDE
+bindsym $mod+Shift+c exec --no-startup-id cursor;focus
 
 #slack
 bindsym $mod+Shift+s exec --no-startup-id slack;focus
@@ -444,6 +446,7 @@ for_window [class="Bleachbit"] floating disable
 for_window [class="Blueberry.py"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [class="Brasero"] floating disable
+for_window [class="Brave-browser"] floating disable
 for_window [class="Galculator"] floating enable
 for_window [class="Gnome-disks"] floating disable
 for_window [class="^Gnome-font-viewer$"] floating enable

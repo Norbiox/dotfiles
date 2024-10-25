@@ -8,7 +8,7 @@ dmenu_cmd="dmenu $DMENU_OPTIONS"
 
 declare -A radio_stations
 
-radio_stations[TURN OFF]=""
+radio_stations[0 TURN OFF]=""
 radio_stations[SEARCH YOUTUBE]=""
 radio_stations[Radio Pielgrzym - pieśni]="http://shoutcast.com.pl:9444/"
 radio_stations[Radio Pielgrzym - kazania i reportaże]="http://shoutcast.com.pl:9448/"
@@ -20,7 +20,9 @@ radio_stations[HPR4 Gospel Bluegrass]="https://us2.maindigitalstream.com/ssl/773
 radio_stations[Chillstep.info]="https://chillstep.info/radio/stream.ogg?1696871921731"
 radio_stations[10 Hours of Messianic Jewish Worship Music]="https://www.youtube.com/watch?v=fnuYjtMH-NA"
 radio_stations[Lofi Girl]="https://www.youtube.com/watch?v=jfKfPfyJRdk"
+radio_stations[Synthwave Boy]="https://www.youtube.com/watch?v=4xDzrJKXOOY"
 radio_stations[Classical Piano]="https://www.youtube.com/watch?v=tSlOlKRuudU"
+radio_stations[Productivity Music | ADHD Relief Music]="https://www.youtube.com/watch?v=7pDy0K1h8cw"
 
 chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | $dmenu_cmd -i -l 20 -p "Radio:")
 
