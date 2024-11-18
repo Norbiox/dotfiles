@@ -87,7 +87,6 @@ require('packer').startup(function(use)
   use {
     'nvim-tree/nvim-tree.lua',
     requires = { 'nvim-tree/nvim-web-devicons' },
-    tag = 'nightly'
   }
 
   -- Better escape with jk and kj
@@ -112,10 +111,11 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
   use 'sindrets/diffview.nvim'
+  use 'f-person/git-blame.nvim'
 
   -- Miscallenous
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  -- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'sansyrox/vim-python-virtualenv' -- Python virtualenv support
@@ -436,17 +436,17 @@ require('Comment').setup({
   ignore = '^$'
 })
 
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
-local indentation_highlight = {
-  "CursorColumn",
-  "Whitespace",
-}
-require("ibl").setup {
-  indent = { highlight = indentation_highlight, char = "" },
-  whitespace = { highlight = indentation_highlight, remove_blankline_trail = true },
-  scope = { enabled = true }
-}
+-- -- Enable `lukas-reineke/indent-blankline.nvim`
+-- -- See `:help indent_blankline.txt`
+-- local indentation_highlight = {
+--   "CursorColumn",
+--   "Whitespace",
+-- }
+-- require("ibl").setup {
+--   indent = { highlight = indentation_highlight, char = "" },
+--   whitespace = { highlight = indentation_highlight, remove_blankline_trail = true },
+--   scope = { enabled = true }
+-- }
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -458,6 +458,12 @@ require('gitsigns').setup {
     topdelete = { text = '‾' },
     changedelete = { text = '~' },
   },
+}
+
+-- Gitblame
+require('gitblame').setup {
+     --Note how the `gitblame_` prefix is omitted in `setup`
+    enabled = true,
 }
 
 -- [[ Configure Telescope ]]
@@ -687,8 +693,7 @@ local servers = {
   'pyright',
   -- 'python-lsp-server',
   -- 'pylsp',
-  'ruff_lsp',
-  'tsserver',
+  -- 'tsserver',
   'lua_ls',
   'nim_langserver',
   'gopls',
