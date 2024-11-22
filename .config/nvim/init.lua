@@ -10,22 +10,17 @@ end
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+  
+  -- Automatically install LSPs to stdpath for neovim
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
 
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
-
-      -- Linters
-      'mfussenegger/nvim-lint',
-
-      -- Signature
-      'ray-x/lsp_signature.nvim',
+      'j-hui/fidget.nvim', -- Useful status updates for LSP
+      'mfussenegger/nvim-lint', -- Linters
+      'ray-x/lsp_signature.nvim', -- Signature
     },
   }
 
@@ -201,16 +196,8 @@ require('packer').startup(function(use)
       }
   }
 
-  use {
-    'Exafunction/codeium.vim',
-    config = function ()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-      vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-    end
-  }
+  -- Codeium AI-completion
+  use 'Exafunction/codeium.vim'
 
   -- Todoist integration
   use 'romgrk/todoist.nvim'
@@ -687,8 +674,8 @@ local servers = {
   'pyright',
   -- 'python-lsp-server',
   -- 'pylsp',
-  'ruff_lsp',
-  'tsserver',
+  'ruff',
+  'ts_ls',
   'lua_ls',
   'nim_langserver',
   'gopls',
