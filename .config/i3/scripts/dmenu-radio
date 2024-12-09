@@ -29,24 +29,36 @@ chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | $dmenu_cmd -i -l 20 -
 if [[ "$chosen" == "quit" ]]; then
         echo "Program terminated" && exit 1
 
-elif [[ "$chosen" == "TURN OFF" ]]; then
+elif [[ "$chosen" == "0 TURN OFF" ]]; then
         echo "Turning radio down..."
         pkill mpv;
 
 elif [[ "$chosen" == "SEARCH YOUTUBE" ]]; then
         echo "Starting ytfzf..."
-        pkill mpv;
         ytfzf -D --detach --url-handler-opts='--no-video';
         retVal=$?
         if [ $retVal -eq 4 ]; then
                 notify-send "ytfzf (dmenu-radio): No results scraped"
+        elif [ $retVal -eq 0]; then
+                pkill mpv;
         fi
         exit $retVal
 
-elif [ "$chosen" ]; then
+elif [[ "${radio_stations[$chosen]}" != "" ]]; then
         echo "Turning radio $chosed..."
         pkill mpv;
         mpv --no-video ${radio_stations[$chosen]};
+
+elif [[ "$chosen" != "" ]]; then
+        echo "Starting ytfzf..."
+        ytfzf -D --detach --url-handler-opts='--no-video' $chosen;
+        retVal=$?
+        if [ $retVal -eq 4 ]; then
+                notify-send "ytfzf (dmenu-radio): No results scraped"
+        elif [ $retVal -eq 0]; then
+                pkill mpv;
+        fi
+        exit $retVal
 
 else
         echo "Program terminated" && exit 1
