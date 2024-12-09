@@ -178,7 +178,7 @@ bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERM2;focus
 bindsym $mod+Shift+b exec --no-startup-id brave;focus
 bindsym $mod+Ctrl+b exec --no-startup-id brave `xclip -o`;focus
 bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`;focus
-bindsym $mod+Shift+m exec --no-startup-id brave --app=https://meet.google.com
+bindsym $mod+Shift+m exec --no-startup-id brave --app=https://meet.google.com/landing?authuser=2
 bindsym $mod+Shift+w exec --no-startup-id brave --app=https://messages.google.com/web/conversations
 
 # Discord
@@ -622,7 +622,7 @@ set_from_resource $color15    color15
 
 ################# font settings
 
-set $font "xft:Victor Mono Bold 16px"
+set $font "xft:Victor Mono Bold 14px"
 font $font
 
 
@@ -636,10 +636,10 @@ bar {
     status_command i3blocks -c ~/.config/i3blocks/config
     i3bar_command i3bar
     position top
-    height 24
+    height 22
     workspace_buttons yes
     workspace_min_width 10
-	  strip_workspace_numbers yes
+    strip_workspace_numbers yes
     tray_output primary
     separator_symbol "|"
 
