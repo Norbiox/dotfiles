@@ -7,7 +7,7 @@
 Xft.dpi: 96
 
 Xcursor.theme: Banana
-Xcursor.size: 32
+Xcursor.size: 48
 
 ! general settings
 URxvt.saveLines:        50000

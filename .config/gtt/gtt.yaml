@@ -1,0 +1,29 @@
+destination:
+    border_color: blue
+    language:
+        apertium: English
+        argos: English
+        bing: English
+        chatgpt: English
+        deepl: English
+        deeplx: English
+        google: Polish
+        libre: English
+        reverso: English
+hide_below: false
+osc52: false
+source:
+    border_color: red
+    language:
+        apertium: English
+        argos: English
+        bing: English
+        chatgpt: English
+        deepl: English
+        deeplx: English
+        google: English
+        libre: English
+        reverso: English
+theme: gruvbox
+translator: Google
+transparent: false
