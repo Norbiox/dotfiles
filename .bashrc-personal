@@ -256,4 +256,7 @@ function yy() {
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+### Maven
+alias mvn21="JAVA_HOME=/usr/lib/jvm/java-21-openjdk/ mvn"
+
 fastfetch -c ~/.config/fastfetch/config.json
