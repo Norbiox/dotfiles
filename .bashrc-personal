@@ -80,8 +80,7 @@ alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir
 
 # List
 alias ls="exa -l"
-alias cat="bat"
-alias top="ytop"
+# alias cat="bat"
 
 # Add an "alert" alias for long running commands. Example usage:  sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
