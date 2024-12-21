@@ -258,4 +258,16 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 ### Maven
 alias mvn21="JAVA_HOME=/usr/lib/jvm/java-21-openjdk/ mvn"
 
+### Search and replace with vim
+vsed() {
+    search=$1
+    replace=$2
+    shift
+    shift
+    vim -c "bufdo! set eventignore-=Syntax| %s/$search/$replace/gce" $*
+}
+
+### PS with grep
+alias pg="ps auxw | grep -v grep | grep $1"
+
 fastfetch -c ~/.config/fastfetch/config.json
