@@ -22,7 +22,7 @@ radio_stations[10 Hours of Messianic Jewish Worship Music]="https://www.youtube.
 radio_stations[Lofi Girl]="https://www.youtube.com/watch?v=jfKfPfyJRdk"
 radio_stations[Synthwave Boy]="https://www.youtube.com/watch?v=4xDzrJKXOOY"
 radio_stations[Classical Piano]="https://www.youtube.com/watch?v=tSlOlKRuudU"
-radio_stations[Productivity Music | ADHD Relief Music]="https://www.youtube.com/watch?v=7pDy0K1h8cw"
+radio_stations[Productivity Music | ADHD Relief Music]="https://www.youtube.com/watch?v=RG2IK8oRZNA"
 
 chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | $dmenu_cmd -i -l 20 -p "Radio:")
 
