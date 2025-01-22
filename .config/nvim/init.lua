@@ -33,6 +33,7 @@ require('packer').startup(function(use)
       'hrsh7th/cmp-path',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets',
     },
   }
 
@@ -744,6 +745,9 @@ require('lspconfig').lua_ls.setup {
 require('lspconfig').clangd.setup {
   on_attach = on_attach,
 }
+
+-- Load snippets
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
