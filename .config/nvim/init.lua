@@ -82,7 +82,6 @@ require('packer').startup(function(use)
   use {
     'nvim-tree/nvim-tree.lua',
     requires = { 'nvim-tree/nvim-web-devicons' },
-    tag = 'nightly'
   }
 
   -- Better escape with jk and kj
@@ -229,6 +228,8 @@ require('packer').startup(function(use)
     end,
     ft = { "markdown" }
   }
+
+  --
   --
   -- END OF PLUGINS --
 
@@ -846,7 +847,7 @@ require("nvim-tree").setup({
 -- Python virtualenv config
 vim.g.python3_host_prog = '/usr/bin/python3.10'
 
--- Activate TabNine
+-- -- Activate TabNine
 -- require('tabnine').setup({
 --   disable_auto_comment = true,
 --   accept_keymap = '<Tab>',
