@@ -167,12 +167,12 @@ bindsym $mod1+Shift+j           exec --no-startup-id source ~/.dmenurc && .confi
 ################# applications keyboard shortcuts  
 
 # terminal
-bindsym $mod+Return exec --no-startup-id $TERM;focus
-bindsym $mod+KP_Enter exec --no-startup-id $TERM;focus
+bindsym $mod+Return exec --no-startup-id $TERMINAL_CMD;focus
+bindsym $mod+KP_Enter exec --no-startup-id $TERMINAL_CMD;focus
 
 # second terminal
-bindsym $mod+$mod1+Return exec --no-startup-id $TERM2;focus
-bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERM2;focus
+bindsym $mod+$mod1+Return exec --no-startup-id $TERMINAL_CMD2;focus
+bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERMINAL_CMD2;focus
 
 #browser
 bindsym $mod+Shift+b exec --no-startup-id brave;focus

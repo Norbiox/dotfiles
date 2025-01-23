@@ -2,9 +2,6 @@
 # My personal .bashrc file complimentary to ArcoLinux .bashrc
 # This file is sources by ArcoLinux .bashrc
 
-export TERM="kitty"
-export TERM2="alacritty"
-export TERM3="urxvt"
 export FILE="ranger"
 export EDITOR="vim"
 export VISUAL="nvim"

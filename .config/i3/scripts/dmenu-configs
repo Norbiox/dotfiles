@@ -27,7 +27,7 @@ if [[ "$chosen" == "quit" ]]; then
 
 elif [ "$chosen" ]; then
         filename=$(printf '%s\n' "${chosen}" | awk '{print $NF}')
-        $TERM -e nvim $filename
+        $TERMINAL_CMD -e nvim $filename
 else
         echo "Program terminated" && exit 1
 fi

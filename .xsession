@@ -5,11 +5,10 @@
 #
 # Executed by xdm/gdm/kdm at login
 
-export TERM="kitty"
-export TERM2="alacritty"
-export TERM3="urxvt"
+export TERMINAL_CMD="kitty"
+export TERMINAL_CMD2="alacritty"
 export FILE="ranger"
-export EDITOR="vim"
+export EDITOR="nvim"
 export VISUAL="nvim"
 export BROWSER="brave"
 export PAGER="bat"
