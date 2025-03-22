@@ -4,6 +4,7 @@ return {
   clangd = {},
   rust_analyzer = {},
   pyright = {},
+  ruff = {},
   ts_ls = {},
   nim_langserver = {},
   gopls = {},
@@ -18,6 +19,9 @@ return {
       Lua = {
         completion = {
           callSnippet = 'Replace',
+        },
+        diagnostics = {
+          globals = { 'vim' },
         },
         -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
         -- diagnostics = { disable = { 'missing-fields' } },

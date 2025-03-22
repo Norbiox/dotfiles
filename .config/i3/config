@@ -175,11 +175,10 @@ bindsym $mod+$mod1+Return exec --no-startup-id $TERMINAL_CMD2;focus
 bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERMINAL_CMD2;focus
 
 #browser
-bindsym $mod+Shift+b exec --no-startup-id brave;focus
-bindsym $mod+Ctrl+b exec --no-startup-id brave `xclip -o`;focus
-bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`;focus
-bindsym $mod+Shift+m exec --no-startup-id brave --app=https://meet.google.com/landing?authuser=2
-bindsym $mod+Shift+w exec --no-startup-id brave --app=https://messages.google.com/web/conversations
+bindsym $mod+Shift+b exec --no-startup-id dmenu-brave
+bindsym $mod+Ctrl+b exec --no-startup-id dmenu-brave `xclip -o`
+bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`
+bindsym $mod+Shift+m exec --no-startup-id dmenu-brave --app=https://meet.google.com/
 
 # Discord
 bindsym $mod+Shift+d exec --no-startup-id discord
@@ -494,6 +493,7 @@ for_window [class="Terminator"] focus
 for_window [class="Urxvt"] focus
 for_window [class="Alacritty"] focus
 for_window [class="Kitty"] focus
+for_window [class="Brave-browser"] focus
 
 
 ################# audio settings                   

@@ -12,4 +12,6 @@ require("lazy").setup({
   require "plugins.treesitter",
   require "plugins.lsp",
   require "plugins.completion",
+  require "plugins.editor",
+  require "plugins.misc",
 })

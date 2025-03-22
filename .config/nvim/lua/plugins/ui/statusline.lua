@@ -43,7 +43,7 @@ return {
       inactive_winbar = {},
       extensions = {
         'fugitive',
-        'nvim-tree',
+        'neo-tree',
       }
     }
   end
