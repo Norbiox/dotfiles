@@ -6,7 +6,7 @@ return {
       "CursorColumn",
       "Whitespace",
     }
-    require("ibl").setup ({
+    require("ibl").setup({
       indent = { highlight = indentation_highlight, char = "" },
       whitespace = { highlight = indentation_highlight, remove_blankline_trail = true },
       scope = { enabled = true }

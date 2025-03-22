@@ -1,2 +1,2 @@
-  -- Codeium AI completion
-return {'Exafunction/codeium.vim'}
+-- Codeium AI completion
+return { 'Exafunction/codeium.vim' }
