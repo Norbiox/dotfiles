@@ -178,7 +178,7 @@ bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERMINAL_CMD2;focus
 bindsym $mod+Shift+b exec --no-startup-id dmenu-brave
 bindsym $mod+Ctrl+b exec --no-startup-id dmenu-brave `xclip -o`
 bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`
-bindsym $mod+Shift+m exec --no-startup-id dmenu-brave --app=https://meet.google.com/
+bindsym $mod+Shift+m exec --no-startup-id dmenu-meet
 
 # Discord
 bindsym $mod+Shift+d exec --no-startup-id discord

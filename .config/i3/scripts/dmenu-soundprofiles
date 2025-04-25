@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if ! [ -f "$HOME/.dmenurc" ]; then
+	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
+fi
+. $HOME/.dmenurc
+dmenu_cmd="dmenu $DMENU_OPTIONS"
+
+declare -a options=(
+"a2dp-ldac"
+"hhu-msbc"
+"connect"
+"reconnect"
+"disconnect"
+)
+
+chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Soundcore headphones:")
+
+if [ "$chosen" ]; then
+        option=$(printf '%s\n' "${chosen}" | awk '{print $1}')
+        echo $option
+        soundcore $option
+else
+        echo "Program terminated" && exit 1
+fi

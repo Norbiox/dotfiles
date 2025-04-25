@@ -1,0 +1,50 @@
+#!/bin/bash
+
+if ! [ -f "$HOME/.dmenurc" ]; then
+	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
+fi
+. $HOME/.dmenurc
+dmenu_cmd="dmenu $DMENU_OPTIONS"
+
+declare -a profiles=(
+"Private: Default"
+"Ari10: Profile 1"
+)
+
+declare -a options=(
+"Main page"
+"New meeting"
+"Join a meeting (from clipboard)"
+)
+
+# Pick Brave Profile
+profile=$(printf '%s\n' "${profiles[@]}" | $dmenu_cmd -i -l 20 -p "Pick Brave profile:")
+if [ "$profile" ]; then
+        # take everything after the colon
+        profile=$(printf '%s\n' "${profile}" | awk '{split($0,a,": "); print a[2]}')
+        echo $profile
+else
+        echo "Program terminated" && exit 1
+fi
+
+# Pick Google Meet option
+chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Pick Google Meet option:")
+if [ "$chosen" == "Main page" ]; then
+        link="https://meet.google.com/"
+elif [ "$chosen" == "New meeting" ]; then
+        link="https://meet.google.com/new"
+elif [ "$chosen" == "Join a meeting (from clipboard)" ]; then
+        # get link from clipboard
+        echo "Getting link from clipboard..."
+        link=`xclip -o`
+        echo $link
+        if [ "$link" ]; then
+                echo "Opening Google Meet meeting $link..."
+        else
+                echo "Program terminated - no link in clipboard" && exit 1
+        fi
+else
+        echo "Program terminated" && exit 1
+fi
+
+brave --profile-directory="$option" --app="$link"
