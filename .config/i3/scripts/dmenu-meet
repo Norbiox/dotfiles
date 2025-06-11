@@ -47,4 +47,4 @@ else
         echo "Program terminated" && exit 1
 fi
 
-brave --profile-directory="$option" --app="$link"
+brave --profile-directory="$profile" --app="$link"
