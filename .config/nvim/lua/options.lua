@@ -48,7 +48,7 @@ vim.o.cursorline = true
 vim.bo.shiftwidth = 2
 
 -- Python virtualenv config
-vim.g.python3_host_prog = '/usr/bin/python3.10'
+-- vim.g.python3_host_prog = '/usr/bin/python3.10'
 
 -- Hide mode
 vim.o.showmode = false
@@ -67,7 +67,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)

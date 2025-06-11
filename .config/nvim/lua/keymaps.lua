@@ -32,8 +32,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('t', '<esc>', '<C-\\><C-N>', { noremap = true, silent = true })
 
 -- Keymap for saving/loading session
-vim.keymap.set('n', '<leader>ss', ':mksession! .nvimsession<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>sl', ':source .nvimsession<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>S', ':mksession! .nvimsession<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>L', ':source .nvimsession<CR>', { noremap = true, silent = true })
 
 -- Keymap and settings for terminal floating window
 vim.keymap.set('n', '<leader>;', ':FloatermToggle<CR>', {noremap = true, silent = true})
@@ -45,3 +45,4 @@ vim.keymap.set('t', '<leader>bf', '<C-\\><C-N>:FloatermFirst<CR>', {noremap = tr
 vim.keymap.set('t', '<leader>bp', '<C-\\><C-N>:FloatermPrev<CR>', {noremap = true, silent = true})
 vim.keymap.set('t', '<leader>bn', '<C-\\><C-N>:FloatermNext<CR>', {noremap = true, silent = true})
 vim.keymap.set('t', '<leader>bl', '<C-\\><C-N>:FloatermLast<CR>', {noremap = true, silent = true})
+

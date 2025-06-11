@@ -1,0 +1,7 @@
+{
+    "mypy ignore": {
+        "prefix": "#type",
+        "body": "# type: ignore",
+        "description": "Ignore mypy error"
+    }
+}

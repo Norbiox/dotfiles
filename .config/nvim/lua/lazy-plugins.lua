@@ -4,6 +4,10 @@
 --    :Lazy
 
 require("lazy").setup({
+  checker = {
+    enabled = true,  -- automatically check for plugin updates
+    notify = false,   -- get a notification when new updates are found
+  },
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   require "plugins.ui",

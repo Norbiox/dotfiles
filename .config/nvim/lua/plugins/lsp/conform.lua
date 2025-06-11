@@ -34,8 +34,19 @@ return {
     -- end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      python = { "ruff", "black", "isort" },
+      python = function(bufnr)
+        if require("conform").get_formatter_info("ruff_format", bufnr).available then
+          return { "ruff_format" }
+        else
+          return { "isort", "black" }
+        end
+      end,
       javascript = { "prettierd", "prettier", stop_after_first = true },
+      yaml = { "yamlls" },
+      html = { "prettierd", "prettier", stop_after_first = true },
+      css = { "prettierd", "prettier", stop_after_first = true },
+      markdown = { "prettierd", "prettier", stop_after_first = true },
+      json = { "prettierd", "prettier", stop_after_first = true },
     },
   },
 }
