@@ -1,26 +1,46 @@
 #!/bin/bash
 
-# Toggle floating dropdown terminal in i3, or start if non-existing.
-# $1 is	the script run in the terminal.
-# All other args are terminal settings.
-# Terminal names are in dropdown_* to allow easily setting i3 settings.
+# Opens a dropdown terminal in i3, or toggles it if already open.
+# $1 is the option to pass to the terminal.
+# The option might be one of the following:
+# - terminal
+# - files
+# - news
+# - notes
+# - gtd
+# - python
+# - translator
+# - mixer
+# - any other command to be executed in a terminal
+#
+# The script uses terminal class to determine if the window is already open.
+# It names the window with the class name, so that it can be easily identified.
+# The class name is "dropdown" + the option name.
 
 [ -z "$1" ] && exit
 
-if [ -z `xwininfo -tree -root | grep "\"$1\""`]; then
+class=dropdown$1
+spawn_kitty="exec --no-startup-id kitty -T $class --class $class $(echo '$@' | cut -d ' ' -f2-) -e"
+
+if [ -z `xwininfo -tree -root | grep "\"$class\""`]; then
 	echo "Window not detected... spawning.";
 
 	case "$1" in
-		dropdownpavucontrol) i3 "exec --no-startup-id pavucontrol --class $1";;
-		dropdownbluetooth) i3 "exec --no-startup-id blueman-manager --class $1";;
-		dropdownnotes|dropdowngtd|dropdownnewsboat) i3 "exec --no-startup-id kitty -T $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -c ~/.config/kitty/kitty.notes.conf -e ~/.config/i3/scripts/$1";;
-		*) i3 "exec --no-startup-id kitty -T $1 --class $1 $(echo '$@' | cut -d ' ' -f2-) -e ~/.config/i3/scripts/$1";;
+		files) i3 "$spawn_kitty yazi";;
+		gtd) i3 "$spawn_kitty bash -c 'cd $HOME/notes && vim gtd.md'";;
+		mixer) i3 "$spawn_kitty ncpamixer";;
+		news) i3 "$spawn_kitty newsboat";;
+		notes) i3 "$spawn_kitty bash -c 'cd $HOME/notes && vim -c :VimwikiIndex'";;
+		python) i3 "$spawn_kitty ipython --no-banner";;
+		terminal) i3 "$spawn_kitty tmux";;
+		translator) i3 "$spawn_kitty gtt";;
+		*) i3 "$spawn_kitty $1";;
 	esac
 fi
 
-until xwininfo -tree -root | grep "\"$1\""; do
+until xwininfo -tree -root | grep "\"$class\""; do
 	echo "Waiting for window to be open..."
 	sleep 0.1
 done
 
-i3 "[instance=\"$1\"] scratchpad show, move position center; [instance=\"$1\"]";
+i3 "[instance=\"$class\"] scratchpad show, move position center; [instance=\"$class\"]"

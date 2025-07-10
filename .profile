@@ -16,7 +16,7 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 [[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
 [[ -f ~/.dmenurc ]] && . ~/.dmenurc
 
-# Update PATH
+# Add custom paths
 [[ -d ~/.config/i3/scripts ]] && export PATH=$HOME/.config/i3/scripts:$PATH
 [[ -d ~/.config/sway/scripts ]] && export PATH=$HOME/.config/i3/scripts:$PATH
 [[ -d ~/.scripts ]] && export PATH=$HOME/.scripts:$PATH

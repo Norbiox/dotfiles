@@ -1,2 +1,0 @@
-#!/bin/sh
-echo "Python3" && ipython --no-banner

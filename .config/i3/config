@@ -223,37 +223,37 @@ bindsym --release $mod1+Ctrl+Escape exec xkill
 ################# dropdowns
 
 for_window [instance="dropdown*"] floating enable, sticky enable, move scratchpad;
-for_window [instance="dropdownranger"] resize set 1700 px 900 px;
-for_window [instance="dropdownnewsboat"] resize set 1000 px 900 px;
+for_window [instance="dropdownfiles"] resize set 1700 px 900 px;
+for_window [instance="dropdownnews"] resize set 1000 px 900 px;
 for_window [instance="dropdownterminal"] resize set 1400 px 600 px;
 for_window [instance="dropdownnotes"] resize set 1000 px 900 px;
 for_window [instance="dropdowngtd"] resize set 1000 px 900 px;
 for_window [instance="dropdowntranslator"] resize set 1000 px 900 px;
 
 # spawn or open dropdown terminal
-bindsym $mod+colon          exec --no-startup-id spawn_dropdown dropdownterminal
+bindsym $mod+colon          exec --no-startup-id spawn_dropdown terminal
 
 # spawn or open dropdown python console
-bindsym $mod+p              exec --no-startup-id spawn_dropdown dropdownpython
-bindsym XF86Calculator      exec --no-startup-id spawn_dropdown dropdownpython
+bindsym $mod+p              exec --no-startup-id spawn_dropdown python
+bindsym XF86Calculator      exec --no-startup-id spawn_dropdown python
 
 # spawn or open dropdown translator
-bindsym $mod+t              exec --no-startup-id spawn_dropdown dropdowntranslator
+bindsym $mod+t              exec --no-startup-id spawn_dropdown translator
 
-# spawn or open dropdown ranger
-bindsym $mod+r              exec --no-startup-id spawn_dropdown dropdownranger
+# spawn or open dropdown files
+bindsym $mod+r              exec --no-startup-id spawn_dropdown files
 
 # spawn or open dropdown ~~pavucontrol~~ ncpamixer
-bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownmixer
+bindsym $mod+u              exec --no-startup-id spawn_dropdown mixer
 
 # spawn or open dropdown newsboat
-bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownnewsboat
+bindsym $mod+b              exec --no-startup-id spawn_dropdown news
 
 # spawn or open dropdown notes
-bindsym $mod+n              exec --no-startup-id spawn_dropdown dropdownnotes
+bindsym $mod+n              exec --no-startup-id spawn_dropdown notes
 
 # spawn or open dropdown todolist
-bindsym $mod+g              exec --no-startup-id spawn_dropdown dropdowngtd
+bindsym $mod+g              exec --no-startup-id spawn_dropdown gtd
 
 
 ################# screenshots                      
