@@ -40,13 +40,13 @@ bindsym $mod1+End mode "$mode_system"
 
 set $mode_system System loc(k), (l)ogout, s(u)spend, (h)ibernate, (r)eboot, (s)uspend, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym k exec --no-startup-id ~/.config/i3/scripts/i3exit.sh lock, mode "default"
-    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3exit.sh switch_user, mode "default"
-    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3exit.sh logout, mode "default"
-    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh suspend, mode "default"
-    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3exit.sh hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3exit.sh reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh shutdown, mode "default"
+    bindsym k exec --no-startup-id i3exit.sh lock, mode "default"
+    bindsym u exec --no-startup-id i3exit.sh switch_user, mode "default"
+    bindsym l exec --no-startup-id i3exit.sh logout, mode "default"
+    bindsym s exec --no-startup-id i3exit.sh suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit.sh hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit.sh reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit.sh shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -90,7 +90,7 @@ exec --no-startup-id reset-workspaces
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Automatic lock on suspend
-exec --no-startup-id xss-lock -- ~/.config/i3/scripts/i3exit.sh lock
+exec --no-startup-id xss-lock -- i3exit.sh lock
 
 # bluetooth
 exec --no-startup-id blueman-applet
@@ -231,29 +231,29 @@ for_window [instance="dropdowngtd"] resize set 1000 px 900 px;
 for_window [instance="dropdowntranslator"] resize set 1000 px 900 px;
 
 # spawn or open dropdown terminal
-bindsym $mod+colon          exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownterminal
+bindsym $mod+colon          exec --no-startup-id spawn_dropdown dropdownterminal
 
 # spawn or open dropdown python console
-bindsym $mod+p              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownpython
-bindsym XF86Calculator      exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownpython
+bindsym $mod+p              exec --no-startup-id spawn_dropdown dropdownpython
+bindsym XF86Calculator      exec --no-startup-id spawn_dropdown dropdownpython
 
 # spawn or open dropdown translator
-bindsym $mod+t              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdowntranslator
+bindsym $mod+t              exec --no-startup-id spawn_dropdown dropdowntranslator
 
 # spawn or open dropdown ranger
-bindsym $mod+r              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownranger
+bindsym $mod+r              exec --no-startup-id spawn_dropdown dropdownranger
 
 # spawn or open dropdown ~~pavucontrol~~ ncpamixer
-bindsym $mod+u              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownmixer
+bindsym $mod+u              exec --no-startup-id spawn_dropdown dropdownmixer
 
 # spawn or open dropdown newsboat
-bindsym $mod+b              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownnewsboat
+bindsym $mod+b              exec --no-startup-id spawn_dropdown dropdownnewsboat
 
 # spawn or open dropdown notes
-bindsym $mod+n              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdownnotes
+bindsym $mod+n              exec --no-startup-id spawn_dropdown dropdownnotes
 
 # spawn or open dropdown todolist
-bindsym $mod+g              exec --no-startup-id ~/.config/i3/scripts/spawn_dropdown dropdowngtd
+bindsym $mod+g              exec --no-startup-id spawn_dropdown dropdowngtd
 
 
 ################# screenshots                      
@@ -595,7 +595,7 @@ mode "$mode_gaps_outer" {
 # if you want transparency on non-focused windows, ...
 exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
 
-bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
+bindsym control+mod1+o exec --no-startup-id picom-toggle.sh
 
 
 ############## Define colors
