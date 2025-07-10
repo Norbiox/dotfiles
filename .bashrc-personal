@@ -2,13 +2,9 @@
 # My personal .bashrc file complimentary to ArcoLinux .bashrc
 # This file is sources by ArcoLinux .bashrc
 
-# export FILE="ranger"
-# export EDITOR="nvim"
-# export VISUAL="nvim"
-# export BROWSER="brave"
-# export PAGER="bat"
-# export SUDO_ASKPASS=$HOME/.scripts/dmenu-askpass
-# export OPENER="rifle"
+export EDITOR='nvim'
+export VISUAL='nvim'
+export PAGER='bat'
 
 #---History options---#
 export HISTSIZE=1000000
