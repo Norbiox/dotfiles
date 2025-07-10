@@ -2,12 +2,7 @@
 
 # Originally based on code by Dieter Plaetinck.
 # Pretty much re-written by Mina Nagy (mnzaki)
-# Edited by Chrysostomus to create/source .dmenurc
-
-if ! [ -f "$HOME/.dmenurc" ]; then
-	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-fi
-. $HOME/.dmenurc
+# Edited by Chrysostomus to create/source .menurc
 
 if [ -z "$TERMINAL_CMD" ]; then
   if [ "$(which terminal)" ]; then
@@ -30,16 +25,14 @@ if [ -z "$TERMINAL_CMD" ]; then
   TERMINAL_CMD="xterm -e"
   fi
 fi
-echo "$DMENU_OPTIONS"
-dmenu_cmd="dmenu $DMENU_OPTIONS"
 max_recent=199 # Number of recent commands to track
 
-cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/dmenu-recent"
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/menu-recent"
 recent_cache="$cache_dir/recent"
 rest_cache="$cache_dir/all"
 known_types=" background terminal terminal_hold "
 
-config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/dmenu-recent"
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/menu-recent"
 mkdir -p "$cache_dir"
 mkdir -p "$config_dir"
 touch "$recent_cache"
@@ -53,7 +46,7 @@ if stest -dqr -n "$rest_cache" $PATH 2>/dev/null; then
 fi
 
 IFS=" "
-cmd=$(cat "$recent_cache" "$rest_cache" | $dmenu_cmd -p run: "$@") || exit
+cmd=$(cat "$recent_cache" "$rest_cache" | menu -p Run: "$@") || exit
 
 if ! grep -qx "$cmd" "$recent_cache" &> /dev/null; then
     grep -vx "$cmd" "$rest_cache" > "$rest_cache.$$"
@@ -76,7 +69,7 @@ word0=${cmd%% *}
 match="^$word0$"
 
 get_type () {
-    while type=$(echo $known_types | xargs -n1 | $dmenu_cmd -p Type:); do
+    while type=$(echo $known_types | xargs -n1 | menu -p Type:); do
         [[ $known_types =~ " $type " ]] || continue
         echo "$word0" >> "$config_dir/$type"
         break

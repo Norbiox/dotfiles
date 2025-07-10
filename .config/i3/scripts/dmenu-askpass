@@ -1,6 +1,0 @@
-#!/bin/bash
-
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
-
-$dmenu_cmd -p "Password:" -nb "#282C34" -nf "#282C34" <&- && echo

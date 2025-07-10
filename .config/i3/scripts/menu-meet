@@ -1,11 +1,5 @@
 #!/bin/bash
 
-if ! [ -f "$HOME/.dmenurc" ]; then
-	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-fi
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
-
 declare -a profiles=(
 "Private: Default"
 "Ari10: Profile 1"
@@ -18,7 +12,7 @@ declare -a options=(
 )
 
 # Pick Brave Profile
-profile=$(printf '%s\n' "${profiles[@]}" | $dmenu_cmd -i -l 20 -p "Pick Brave profile:")
+profile=$(printf '%s\n' "${profiles[@]}" | menu -i -l 20 -p "Pick Brave profile:")
 if [ "$profile" ]; then
         # take everything after the colon
         profile=$(printf '%s\n' "${profile}" | awk '{split($0,a,": "); print a[2]}')
@@ -28,7 +22,7 @@ else
 fi
 
 # Pick Google Meet option
-chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Pick Google Meet option:")
+chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Pick Google Meet option:")
 if [ "$chosen" == "Main page" ]; then
         link="https://meet.google.com/"
 elif [ "$chosen" == "New meeting" ]; then

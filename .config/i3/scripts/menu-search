@@ -5,12 +5,9 @@
 # URLs will be directly handed to the browser.
 # Anything else will be search for via Google.
 
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
+pgrep -x menu && exit
 
-pgrep -x $dmenu_cmd && exit
-
-choice=$(echo "" | $dmenu_cmd -i -p "Search Google:") || exit 1
+choice=$(echo "" | menu -i -p "Search Google:") || exit 1
 
 if [ "$choice" = ""  ]; then
     $BROWSER "https://google.com"

@@ -1,11 +1,5 @@
 #!/bin/bash
 
-if ! [ -f "$HOME/.dmenurc" ]; then
-	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-fi
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
-
 declare -A radio_stations
 
 radio_stations[0 TURN OFF]=""
@@ -24,7 +18,7 @@ radio_stations[Synthwave Boy]="https://www.youtube.com/watch?v=4xDzrJKXOOY"
 radio_stations[Classical Piano]="https://www.youtube.com/watch?v=tSlOlKRuudU"
 radio_stations[Productivity Music | ADHD Relief Music]="https://www.youtube.com/watch?v=RG2IK8oRZNA"
 
-chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | $dmenu_cmd -i -l 20 -p "Radio:")
+chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | menu -i -l 20 -p "Radio:")
 
 if [[ "$chosen" == "quit" ]]; then
         echo "Program terminated" && exit 1
@@ -38,7 +32,7 @@ elif [[ "$chosen" == "SEARCH YOUTUBE" ]]; then
         ytfzf -D --detach --url-handler-opts='--no-video';
         retVal=$?
         if [ $retVal -eq 4 ]; then
-                notify-send "ytfzf (dmenu-radio): No results scraped"
+                notify-send "ytfzf (menu-radio): No results scraped"
         elif [ $retVal -eq 0]; then
                 pkill mpv;
         fi
@@ -54,7 +48,7 @@ elif [[ "$chosen" != "" ]]; then
         ytfzf -D --detach --url-handler-opts='--no-video' $chosen;
         retVal=$?
         if [ $retVal -eq 4 ]; then
-                notify-send "ytfzf (dmenu-radio): No results scraped"
+                notify-send "ytfzf (menu-radio): No results scraped"
         elif [ $retVal -eq 0]; then
                 pkill mpv;
         fi

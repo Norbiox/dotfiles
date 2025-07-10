@@ -1,18 +1,11 @@
 #!/bin/bash
 
-if ! [ -f "$HOME/.dmenurc" ]; then
-	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-fi
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
-
-
 declare -a options=(
 `xrandr | grep " connected" | awk '{ print $1 } '`
 "quit"
 )
 
-chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -l 10 -p "Pick monitor for Wacom stylus:")
+chosen=$(printf '%s\n' "${options[@]}" | menu -l 10 -p "Pick monitor for Wacom stylus:")
 
 if [[ "$chosen" == "quit" ]]; then
         echo "Program terminated" && exit 1

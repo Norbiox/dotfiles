@@ -1,13 +1,8 @@
 #!/bin/sh
 
-# Feed this script a link and it will give dmenu
-# some choice programs to use to open it.
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
+feed="${1:-$(true | menu -p 'Paste URL or file path')}"
 
-feed="${1:-$(true | dmenu -p 'Paste URL or file path')}"
-
-case "$(printf "copy url\\nnsxiv\\nsetbg\\nPDF\\nbrowser\\nlynx\\nvim\\nmpv\\nmpv loop\\nmpv float\\nqueue download\\nqueue yt-dlp\\nqueue yt-dlp audio" | $dmenu_cmd -i -p "Open it with?")" in
+case "$(printf "copy url\\nnsxiv\\nsetbg\\nPDF\\nbrowser\\nlynx\\nvim\\nmpv\\nmpv loop\\nmpv float\\nqueue download\\nqueue yt-dlp\\nqueue yt-dlp audio" | menu -i -p "Open it with?")" in
 	"copy url") echo "$feed" | xclip -selection clipboard ;;
 	mpv) setsid -f mpv -quiet "$feed" >/dev/null 2>&1 ;;
 	"mpv loop") setsid -f mpv -quiet --loop "$feed" >/dev/null 2>&1 ;;

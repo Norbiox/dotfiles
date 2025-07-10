@@ -1,23 +1,15 @@
 #!/bin/bash
 
-if ! [ -f "$HOME/.dmenurc" ]; then
-	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-fi
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
-
 declare -a options=(
 "Private: Default"
 "Ari10: Profile 1"
 )
 
-chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Brave:")
+chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Brave:")
 
 if [ "$chosen" ]; then
         # take everything after the colon
         option=$(printf '%s\n' "${chosen}" | awk '{split($0,a,": "); print a[2]}')
-        echo $option
-        echo $@
         brave --profile-directory="$option" $@
 else
         echo "Program terminated" && exit 1

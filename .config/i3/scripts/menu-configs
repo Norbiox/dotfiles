@@ -1,18 +1,11 @@
 #!/bin/bash
-# Use dmenu to show a menu of config files and open selected in editor
-
-if ! [ -f "$HOME/.dmenurc" ]; then
-	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-fi
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
+# Use menu to show a menu of config files and open selected in editor
 
 declare -a options=(
 "kitty - $HOME/.config/kitty/kitty.conf"
 "alacritty - $HOME/.config/alacritty/alacritty.yml"
 "i3 - $HOME/.config/i3/config"
 "i3blocks - $HOME/.config/i3blocks/config"
-"dmenu - $HOME/.dmenurc"
 "newsboat URLs - $HOME/.config/newsboat/urls"
 "newsboat - $HOME/.config/newsboat/config"
 "neovim - $HOME/.config/nvim/init.lua"
@@ -20,7 +13,8 @@ declare -a options=(
 "quit"
 )
 
-chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Open config")
+chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Open config")
+
 
 if [[ "$chosen" == "quit" ]]; then
         echo "Program terminated" && exit 1

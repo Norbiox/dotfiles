@@ -1,0 +1,18 @@
+#!/bin/bash
+# Set customized dmenu command DMENU_CMD
+
+## define the font for dmenu to be used
+dmenu_fn="VictorMono-12.5:Bold"
+## background colour for unselected menu-items
+dmenu_nb="#282C34"
+## textcolour for unselected menu-items
+dmenu_nf="#ABB2BF"
+## background colour for selected menu-items
+dmenu_sb="#61AFEF"
+## textcolour for selected menu-items
+dmenu_sf="#282C34"
+## number of lines
+dmenu_lines=10
+
+dmenu -i -fn $dmenu_fn -nb $dmenu_nb -nf $dmenu_nf -sf $dmenu_sf -sb $dmenu_sb -l $dmenu_lines "$@"
+

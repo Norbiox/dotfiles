@@ -130,38 +130,38 @@ exec --no-startup-id xfce4-power-manager &
 
 ################# menus
 
-# dmenu app launcher
-bindsym $mod1+Shift+colon        exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-recency $DMENU_OPTIONS
+# app launcher
+bindsym $mod1+Shift+colon        exec menu-recency
 
 # radio
-bindsym $mod1+Shift+r            exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-radio $DMENU_OPTIONS
+bindsym $mod1+Shift+r            exec menu-radio
 
 # configurations
-bindsym $mod1+Shift+c           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-configs $DMENU_OPTIONS
+bindsym $mod1+Shift+c           exec menu-configs
 
 # Idasen
-bindsym $mod1+Shift+i           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-idasen $DMENU_OPTIONS
+bindsym $mod1+Shift+i           exec menu-idasen
 
 # Soundcore headphones
-bindsym $mod1+Shift+s           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-soundcore $DMENU_OPTIONS
+bindsym $mod1+Shift+s           exec menu-soundcore
 
 # Wacom stylus
-bindsym $mod1+Shift+w           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-wacom $DMENU_OPTIONS
+bindsym $mod1+Shift+w           exec menu-wacom
 
 # Power profiles
-bindsym $mod1+Shift+p           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-powerprofile $DMENU_OPTIONS
+bindsym $mod1+Shift+p           exec menu-powerprofile
 
-# dmenu-bluetooth
-bindsym $mod1+Shift+b           exec --no-startup-id source ~/.dmenurc && dmenu-bluetooth $DMENU_OPTIONS
+# menu-bluetooth
+bindsym $mod1+Shift+b           exec menu-bluetooth
 
 # networkmanager_dmenu
-bindsym $mod1+Shift+n           exec --no-startup-id source ~/.dmenurc && networkmanager_dmenu $DMENU_OPTIONS
+bindsym $mod1+Shift+n           exec networkmanager_dmenu
 
-# dmenu-emoji
-bindsym $mod1+Shift+e           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-emoji $DMENU_OPTIONS
+# menu-emoji
+bindsym $mod1+Shift+e           exec menu-emoji
 
 # Jitsi
-bindsym $mod1+Shift+j           exec --no-startup-id source ~/.dmenurc && .config/i3/scripts/dmenu-jitsi $DMENU_OPTIONS
+bindsym $mod1+Shift+j           exec menu-jitsi
 
 
 ################# applications keyboard shortcuts  
@@ -175,10 +175,10 @@ bindsym $mod+$mod1+Return exec --no-startup-id $TERMINAL_CMD2;focus
 bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERMINAL_CMD2;focus
 
 #browser
-bindsym $mod+Shift+b exec --no-startup-id dmenu-brave
-bindsym $mod+Ctrl+b exec --no-startup-id dmenu-brave `xclip -o`
+bindsym $mod+Shift+b exec --no-startup-id menu-brave
+bindsym $mod+Ctrl+b exec --no-startup-id menu-brave `xclip -o`
 bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`
-bindsym $mod+Shift+m exec --no-startup-id dmenu-meet
+bindsym $mod+Shift+m exec --no-startup-id menu-meet
 
 # Discord
 bindsym $mod+Shift+d exec --no-startup-id discord

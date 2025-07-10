@@ -6,12 +6,6 @@ if ! [ -f "$rooms_config_file" ]; then
         echo "Example Room=exampleroom" > $rooms_config_file
 fi
 
-if ! [ -f "$HOME/.dmenurc" ]; then
-	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-fi
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
-
 declare -a options
 declare -A rooms
 
@@ -25,7 +19,7 @@ done
 
 options+=("Random")
 
-chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Room:")
+chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Room:")
 
 echo "$chosen"
 echo "$rooms[$chosen]"

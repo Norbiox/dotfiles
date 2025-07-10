@@ -14,7 +14,6 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # Source important files
 [[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
-[[ -f ~/.dmenurc ]] && . ~/.dmenurc
 
 # Add custom paths
 [[ -d ~/.config/i3/scripts ]] && export PATH=$HOME/.config/i3/scripts:$PATH

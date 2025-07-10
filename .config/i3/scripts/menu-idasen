@@ -5,13 +5,6 @@ if ! [ -x "$(command -v idasen)" ]; then
         echo "Error: idasen is not installed." && exit 1
 fi
 
-# use custom dmenu config if it exists
-if ! [ -f "$HOME/.dmenurc" ]; then
-	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-fi
-. $HOME/.dmenurc
-dmenu_cmd="dmenu $DMENU_OPTIONS"
-
 # load predefined positions from idasen.yaml to 'options' array
 declare -a options=()
 while read line; do
@@ -19,7 +12,7 @@ while read line; do
 done < <(tail -n +3 ~/.config/idasen/idasen.yaml)
 
 # let user pick next position
-chosen=$(printf '%s\n' "${options[@]}" | $dmenu_cmd -i -l 20 -p "Pick Idasen position:")
+chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Pick Idasen position:")
 
 # change position if any was chosen and set timer for next position change
 if [ "$chosen" ]; then

@@ -1,0 +1,2 @@
+#!/bin/bash
+menu -p "Password:" -nb "#282C34" -nf "#282C34" <&- && echo
