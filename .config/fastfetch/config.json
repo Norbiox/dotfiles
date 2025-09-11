@@ -21,6 +21,7 @@
     "cpu",
     "memory",
     "disk",
+    "gpu",
     "localip",
     "battery",
     "poweradapter",
@@ -30,7 +31,6 @@
   ],
   "unusedModules": [
     "display",
-    "gpu",
     "swap"
   ]
 }
