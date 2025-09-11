@@ -1,0 +1,51 @@
+# Chmod
+[[mgr.prepend_keymap]]
+on    = [ "c", "m" ]
+run   = "plugin chmod"
+desc  = "Chmod on selected files"
+
+# Sudo
+[[mgr.prepend_keymap]]
+on    = "<C-t>"
+run   = "plugin sudo-demo"
+
+# Zoom in
+[[mgr.prepend_keymap]]
+on   = "+"
+run  = "plugin zoom 1"
+desc = "Zoom in hovered file"
+
+# Zoom out
+[[mgr.prepend_keymap]]
+on   = "-"
+run  = "plugin zoom -1"
+desc = "Zoom out hovered file"
+
+# Open shell here
+[[mgr.prepend_keymap]]
+on   = "!"
+for  = "unix"
+run  = 'shell "$SHELL" --block'
+desc = "Open $SHELL here"
+
+# Close input by once pressing <Esc>
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
+
+# Create a tab and enter the hovered directory immediately
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin smart-tab"
+desc = "Create a tab and enter the hovered directory immediately"
+
+# cd to the root of the current Git repository
+[[mgr.prepend_keymap]]
+on = [ "g", "r" ]
+run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+
+# Copy the hovered file's path to the clipboard
+[[mgr.prepend_keymap]]
+on  = "y"
+run = [ 'shell -- echo "$@" | xclip -i -selection clipboard', "yank" ]

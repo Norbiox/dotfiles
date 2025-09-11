@@ -1,9 +1,25 @@
-[manager]
+[mgr]
 ratio=[1, 4, 3]
-linemode="mtime"
+sort_by="alphabetical"
+sort_dir_first=true
+linemode="custom_mtime"
+show_hidden=false
+show_symlink=true
 scrolloff=5
+mouse_events=["click","scroll","touch","move","drag"]
+
+[preview]
+wrap="yes"
+image_delay=100
+image_quality=90
 
 [opener]
-open = [
-  { run = 'zathura --fork "$@"', orphan = true, desc = "zathura", for = "linux" }
+zathura = [
+  { run = 'zathura --fork "$@"', orphan = true, desc = "Zathura", for = "linux" }
+]
+
+[open]
+prepend_rules = [
+  { name = "*.pdf", use = "zathura" },
+  { name = "*.html", use = [ "open", "edit" ]},
 ]
