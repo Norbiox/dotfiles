@@ -6,7 +6,6 @@ return {
   pyright = {},
   ruff = {},
   ts_ls = {},
-  nim_langserver = {},
   gopls = {},
   clojure_lsp = {},
   groovyls = {},
@@ -30,5 +29,6 @@ return {
   },
   stylua = {},
   prettierd = {},
+  tflint = {},
 }
 

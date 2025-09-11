@@ -12,9 +12,25 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
   command = 'setlocal filetype=ini',
 })
 
--- Tab width settings for JSON files
+-- Tab width settings for JSON and terraform files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "json",
+  callback = function()
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 2
+    vim.bo.expandtab = true
+  end
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "terraform",
+  callback = function()
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 2
+    vim.bo.expandtab = true
+  end
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
   callback = function()
     vim.bo.tabstop = 2
     vim.bo.shiftwidth = 2

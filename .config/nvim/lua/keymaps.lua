@@ -45,4 +45,3 @@ vim.keymap.set('t', '<leader>bf', '<C-\\><C-N>:FloatermFirst<CR>', {noremap = tr
 vim.keymap.set('t', '<leader>bp', '<C-\\><C-N>:FloatermPrev<CR>', {noremap = true, silent = true})
 vim.keymap.set('t', '<leader>bn', '<C-\\><C-N>:FloatermNext<CR>', {noremap = true, silent = true})
 vim.keymap.set('t', '<leader>bl', '<C-\\><C-N>:FloatermLast<CR>', {noremap = true, silent = true})
-

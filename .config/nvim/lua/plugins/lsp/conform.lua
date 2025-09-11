@@ -41,10 +41,9 @@ return {
           return { "isort", "black" }
         end
       end,
-      javascript = { "prettierd", "prettier", stop_after_first = true },
       yaml = { "yamlls" },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
       html = { "prettierd", "prettier", stop_after_first = true },
-      css = { "prettierd", "prettier", stop_after_first = true },
       markdown = { "prettierd", "prettier", stop_after_first = true },
       json = { "prettierd", "prettier", stop_after_first = true },
     },
