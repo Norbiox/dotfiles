@@ -1,0 +1,25 @@
+#!/bin/bash
+
+declare -a options=(
+        "Brave"
+        "Google Chrome (Ari10)"
+        "Chromium"
+        "Firefox"
+        "Qutebrowser"
+)
+
+chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Browser:")
+
+if [ "$chosen" == "Brave" ]; then
+        brave $@
+elif [ "$chosen" == "Google Chrome (Ari10)" ]; then
+        google-chrome-stable $@
+elif [ "$chosen" == "Chromium" ]; then
+        chromium $@
+elif [ "$chosen" == "Firefox" ]; then
+        firefox $@
+elif [ "$chosen" == "Qutebrowser" ]; then
+        qutebrowser $@
+else
+        echo "Program terminated" && exit 1
+fi

@@ -60,10 +60,11 @@ mode "$mode_system" {
 
 bindsym $mod+Ctrl+s mode "$mode_screen_layout"
 
-set $mode_screen_layout (1) laptop, (2) home
+set $mode_screen_layout (1) laptop, (2) home, (3) one monitor above
 mode "$mode_screen_layout" {
     bindsym 1 exec --no-startup-id .screenlayout/single.sh, mode "default"
     bindsym 2 exec --no-startup-id .screenlayout/home.sh, mode "default"
+    bindsym 3 exec --no-startup-id .screenlayout/one_above.sh, mode "default"
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -111,7 +112,7 @@ exec --no-startup-id xfce4-clipman
 # exec --no-startup-id redshift-gtk
 
 # variety - wallpaper changer
-# exec --no-startup-id variety
+exec --no-startup-id variety
 
 
 ############## vpn
@@ -152,7 +153,7 @@ bindsym $mod1+Shift+w           exec menu-wacom
 bindsym $mod1+Shift+p           exec menu-powerprofile
 
 # menu-bluetooth
-bindsym $mod1+Shift+b           exec menu-bluetooth
+bindsym $mod1+Shift+b           exec dmenu-bluetooth
 
 # networkmanager_dmenu
 bindsym $mod1+Shift+n           exec networkmanager_dmenu
@@ -175,8 +176,8 @@ bindsym $mod+$mod1+Return exec --no-startup-id $TERMINAL_CMD2;focus
 bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERMINAL_CMD2;focus
 
 #browser
-bindsym $mod+Shift+b exec --no-startup-id menu-brave
-bindsym $mod+Ctrl+b exec --no-startup-id menu-brave `xclip -o`
+bindsym $mod+Shift+b exec --no-startup-id menu-browser
+bindsym $mod+Ctrl+b exec --no-startup-id menu-browser `xclip -o`
 bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`
 bindsym $mod+Shift+m exec --no-startup-id menu-meet
 
@@ -494,6 +495,8 @@ for_window [class="Urxvt"] focus
 for_window [class="Alacritty"] focus
 for_window [class="Kitty"] focus
 for_window [class="Brave-browser"] focus
+for_window [class="Firefox"] focus
+for_window [class="Google-chrome"] focus
 
 
 ################# audio settings                   

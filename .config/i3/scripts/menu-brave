@@ -1,4 +1,6 @@
 #!/bin/bash
+# DEPRECATED!!!
+# I use menu-browser instead because I have different browsers for personal/work purposes now
 
 declare -a options=(
 "Private: Default"
@@ -10,6 +12,7 @@ chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Brave:")
 if [ "$chosen" ]; then
         # take everything after the colon
         option=$(printf '%s\n' "${chosen}" | awk '{split($0,a,": "); print a[2]}')
+        echo $option
         brave --profile-directory="$option" $@
 else
         echo "Program terminated" && exit 1

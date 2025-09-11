@@ -1,8 +1,11 @@
 #!/bin/bash
 
 declare -a profiles=(
-"Private: Default"
-"Ari10: Profile 1"
+        "Brave"
+        "Google Chrome (Ari10)"
+        "Chromium"
+        "Firefox"
+        "Qutebrowser"
 )
 
 declare -a options=(
@@ -13,10 +16,16 @@ declare -a options=(
 
 # Pick Brave Profile
 profile=$(printf '%s\n' "${profiles[@]}" | menu -i -l 20 -p "Pick Brave profile:")
-if [ "$profile" ]; then
-        # take everything after the colon
-        profile=$(printf '%s\n' "${profile}" | awk '{split($0,a,": "); print a[2]}')
-        echo $profile
+if [ "$profile" == "Brave" ]; then
+        browser="brave"
+elif [ "$profile" == "Google Chrome (Ari10)" ]; then
+        browser="google-chrome-stable"
+elif [ "$profile" == "Chromium" ]; then
+        browser="chromium"
+elif [ "$profile" == "Firefox" ]; then
+        browser="firefox"
+elif [ "$profile" == "Qutebrowser" ]; then
+        browser="qutebrowser"
 else
         echo "Program terminated" && exit 1
 fi
@@ -41,4 +50,4 @@ else
         echo "Program terminated" && exit 1
 fi
 
-brave --profile-directory="$profile" --app="$link"
+$browser --app="$link"
