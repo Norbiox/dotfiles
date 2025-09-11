@@ -27,6 +27,8 @@ function hstrnotiocsti {
 if [[ $- =~ .*i.* ]]; then bind -x '"\C-r": "hstrnotiocsti"'; fi
 export HSTR_TIOCSTI=n
 
+#---Thismachineonlyrc---#
+[ -f ~/.thismachineonlyrc ] && source ~/.thismachineonlyrc
 
 #---Terminal options---#
 
@@ -57,6 +59,11 @@ export FZF_CTRL_T_COMMAND='rg --hidden -l ""'
 
 
 #---Aliases---#
+
+# Unalias some commands
+unalias cb
+unalias cz
+unalias cf
 
 # Bare repo config
 alias config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
@@ -158,12 +165,15 @@ alias test-mic="arecord -d 5 test-mic.wav && sleep 1 && aplay test-mic.wav && rm
 alias kdiff="kitty +kitten diff"
 
 # copy to clipboard/primary/secondary
-alias copy="xclip -sel clipboard"  # by default works with by vim setup
-alias copyp="xclip -sel primary"
-alias copys="xclip -sel secondary"
-
-# source .thismachineonlyrc
-[[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
+if [[ -z "$WAYLAND_DISPLAY" ]]; then
+    alias copy="xclip -selection clipboard"
+    alias copyp="xclip -selection primary"
+    alias copys="xclip -selection secondary"
+else
+    alias copy="wl-copy"
+    alias copyp="wl-copy --primary"
+    alias copys="wl-copy --secondary"
+fi
 
 eval "$(starship init bash)"
 #
@@ -252,7 +262,15 @@ vsed() {
 ### PS with grep
 alias pg="ps auxw | grep -v grep | grep $1"
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/norbert/Dev/google-cloud-sdk/path.bash.inc' ]; then . '/home/norbert/Dev/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/norbert/Dev/google-cloud-sdk/completion.bash.inc' ]; then . '/home/norbert/Dev/google-cloud-sdk/completion.bash.inc'; fi
 fastfetch -c ~/.config/fastfetch/config.json
+
+# Terraform autocomplete
+complete -C /usr/bin/terraform terraform
 
 # Zoxide setup
 alias cd='z'
