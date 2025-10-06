@@ -229,6 +229,7 @@ for_window [instance="dropdownnews"] resize set 1000 px 900 px;
 for_window [instance="dropdownterminal"] resize set 1400 px 600 px;
 for_window [instance="dropdownnotes"] resize set 1000 px 900 px;
 for_window [instance="dropdowngtd"] resize set 1000 px 900 px;
+for_window [instance="dropdowngemini"] resize set 1000 px 900 px;
 for_window [instance="dropdowntranslator"] resize set 1000 px 900 px;
 
 # spawn or open dropdown terminal
@@ -256,6 +257,8 @@ bindsym $mod+n              exec --no-startup-id spawn_dropdown notes
 # spawn or open dropdown todolist
 bindsym $mod+g              exec --no-startup-id spawn_dropdown gtd
 
+# spawn gemini CLI
+bindsym $mod+c              exec --no-startup-id spawn_dropdown gemini
 
 ################# screenshots                      
 
