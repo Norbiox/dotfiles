@@ -34,7 +34,6 @@ if [ -z `xwininfo -tree -root | grep "\"$class\""`]; then
 		python) i3 "$spawn_kitty ipython --no-banner";;
 		terminal) i3 "$spawn_kitty tmux";;
 		translator) i3 "$spawn_kitty gtt";;
-		gemini) i3 "$spawn_kitty gemini -s";;
 		*) i3 "$spawn_kitty $1";;
 	esac
 fi

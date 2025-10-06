@@ -1,0 +1,24 @@
+#!/bin/bash
+# Customized menu command: dmenu/wmenu depending on compositor
+
+## define the font for menu to be used
+dmenu_fn="VictorMono-10.5:Bold"
+wmenu_f="VictorMono-Medium 12"
+## background colour for unselected menu-items
+dmenu_nb="#282C34"
+## textcolour for unselected menu-items
+dmenu_nf="#ABB2BF"
+## background colour for selected menu-items
+dmenu_sb="#61AFEF"
+## textcolour for selected menu-items
+dmenu_sf="#282C34"
+## number of lines
+dmenu_lines=10
+
+# Pick dmenu if X11, wmenu if wayland
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+  wmenu -i -f "$wmenu_f" -N $dmenu_nb -n $dmenu_nf -s $dmenu_sf -S $dmenu_sb -l 10 "$@"
+else
+  dmenu -i -h 22 -fn $dmenu_fn -nb $dmenu_nb -nf $dmenu_nf -sf $dmenu_sf -sb $dmenu_sb -l $dmenu_lines "$@"
+fi
+
