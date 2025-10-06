@@ -28,7 +28,7 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Decrease update time
+-- Decrease update time that language servers will use
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
@@ -39,7 +39,16 @@ vim.o.colorcolumn="80,100,120"
 vim.o.conceallevel = 1
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,menuone,noselect'
+vim.o.completeopt = 'noinsert,menuone,noselect'
+
+-- Show a more advanced menu for autocomplete suggestions
+vim.o.wildmenu = true
+
+-- Turn tabs into spaces
+vim.o.expandtab = true
+
+-- Set default number of spaces for tabs
+vim.o.tabstop = 2
 
 -- Set cursor line
 vim.o.cursorline = true
@@ -77,3 +86,13 @@ vim.opt.confirm = true
 vim.g.have_nerd_fond = true
 
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Improve the code folding behavior in TreeSitter
+vim.opt.foldmethod = 'manual'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- Expand the number of usable colors, if the terminal emulator supports it 
+vim.opt.termguicolors = true
+
+-- Show the title of the file
+vim.opt.title = true

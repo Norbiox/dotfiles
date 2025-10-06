@@ -5,6 +5,7 @@ return {
   config = function()
     require('nvim-autopairs').setup {
       fast_wrap = {},
+      disable_filetype = { "TelescopePrompt", "vim" },
     }
 
     -- Insert '(' after select function or method item
