@@ -17,12 +17,11 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # Add custom paths
 [[ -d ~/.config/i3/scripts ]] && export PATH=$HOME/.config/i3/scripts:$PATH
-[[ -d ~/.config/sway/scripts ]] && export PATH=$HOME/.config/i3/scripts:$PATH
+[[ -d ~/.config/sway/scripts ]] && export PATH=$HOME/.config/sway/scripts:$PATH
 [[ -d ~/.scripts ]] && export PATH=$HOME/.scripts:$PATH
 [[ -d ~/.bin ]] && export PATH=$HOME/.bin:$PATH
 [[ -d ~/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 [[ -d ~/.cargo/bin ]] && export PATH=$HOME/.cargo/bin:$PATH
-[[ -d ~/.go/bin ]] && export PATH=$HOME/.go/bin:$PATH
 [[ -d ~/.fly ]] && export PATH=$HOME/.fly:$PATH
 [[ -d ~/.detaspace/bin ]] && export PATH=$HOME/.detaspace/bin:$PATH
 [[ -d ~/.local/share/nvim/site/pack/packer/start/vim-iced/bin ]] && export PATH=$HOME/.local/share/nvim/site/pack/packer/start/vim-iced/bin:$PATH
@@ -51,3 +50,13 @@ if [ -n "$BASH_VERSION" -a -n "$PS1" ]; then
     . "$HOME/.bashrc"
   fi
 fi
+
+# Go development
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/norbert/Dev/google-cloud-sdk/path.bash.inc' ]; then . '/home/norbert/Dev/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/norbert/Dev/google-cloud-sdk/completion.bash.inc' ]; then . '/home/norbert/Dev/google-cloud-sdk/completion.bash.inc'; fi
