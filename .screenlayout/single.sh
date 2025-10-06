@@ -9,4 +9,4 @@ xrandr \
   --output HDMI1 --off \
   --output VIRTUAL1 --off
 
-nitrogen --restore
+# nitrogen --restore

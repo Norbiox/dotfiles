@@ -60,11 +60,11 @@ mode "$mode_system" {
 
 bindsym $mod+Ctrl+s mode "$mode_screen_layout"
 
-set $mode_screen_layout (1) laptop, (2) home, (3) one monitor above
+set $mode_screen_layout (1) laptop, (2) home, (3) home (old)
 mode "$mode_screen_layout" {
     bindsym 1 exec --no-startup-id .screenlayout/single.sh, mode "default"
-    bindsym 2 exec --no-startup-id .screenlayout/home.sh, mode "default"
-    bindsym 3 exec --no-startup-id .screenlayout/one_above.sh, mode "default"
+    bindsym 2 exec --no-startup-id .screenlayout/home_daisy.sh, mode "default"
+    bindsym 3 exec --no-startup-id .screenlayout/home.sh, mode "default"
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
