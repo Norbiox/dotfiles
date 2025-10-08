@@ -114,6 +114,8 @@ exec --no-startup-id xfce4-clipman
 # variety - wallpaper changer
 exec --no-startup-id variety
 
+# flameshot - screenshot tool
+exec --no-startup-id flameshot
 
 ############## vpn
 
@@ -262,11 +264,10 @@ bindsym $mod+c              exec --no-startup-id spawn_dropdown gemini
 
 ################# screenshots                      
 
+# Quick screenshot of the whole screen
 bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
-bindsym Control+Print exec --no-startup-id xfce4-screenshooter
-bindsym Control+Shift+Print exec --no-startup-id gnome-screenshot -i
-bindsym $mod+Control+Print exec --no-startup-id flameshot gui
-# bindsym shift+Print exec --no-startup-id shutter
+# Controlled screenshot with edit options
+bindsym Control+Print exec --no-startup-id flameshot gui
 
 
 ################# reload changed configuration     

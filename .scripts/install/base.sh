@@ -54,7 +54,8 @@ yay -S \
   ncpamixer \
   nvm \
   scc \
-  todoist
+  todoist \
+  flameshot
 
 echo "Install power-profiles-daemon..."
 sudo pacman -Sy power-profiles-deamon
