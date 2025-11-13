@@ -629,7 +629,7 @@ set_from_resource $color15    color15
 
 ################# font settings
 
-set $font "xft:Victor Mono Bold 14px"
+set $font "xft:Cascadia Code SemiBold 14px"
 font $font
 
 
