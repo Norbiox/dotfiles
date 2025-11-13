@@ -2,7 +2,7 @@
 # Customized menu command: dmenu/wmenu depending on compositor
 
 ## define the font for menu to be used
-dmenu_fn="VictorMono-10.5:Bold"
+dmenu_fn="CascadiaCode-11:Medium"
 wmenu_f="VictorMono-Medium 12"
 ## background colour for unselected menu-items
 dmenu_nb="#282C34"
