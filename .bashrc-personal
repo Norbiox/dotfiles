@@ -272,6 +272,15 @@ fastfetch -c ~/.config/fastfetch/config.json
 # Terraform autocomplete
 complete -C /usr/bin/terraform terraform
 
+# Packages utils
+alias list-biggest-packages='expac "%n %m" -l"\n" -Q $(pacman -Qq) -H M | sort -rhk 2 | less'
+
+# NVM setup
+. /usr/share/nvm/init-nvm.sh
+
 # Zoxide setup
 alias cd='z'
 eval "$(zoxide init bash)"
+
+# Mise setup
+eval "$(mise activate bash)"
