@@ -1,0 +1,13 @@
+#!/bin/bash
+# Menu to select workspace name
+
+# Options to choose from are taken from i3
+options=$(i3-msg -t get_workspaces | jq -r '.[] | .name')
+
+chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Pick workspace:")
+
+if [ "$chosen" ]; then
+        echo $chosen
+else
+        exit 1
+fi

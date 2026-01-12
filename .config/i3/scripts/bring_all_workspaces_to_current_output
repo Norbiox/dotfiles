@@ -1,0 +1,7 @@
+#!/bin/bash
+# Brings all workspaces to the current output
+
+for workspace in $(i3-msg -t get_workspaces | jq -r '.[] | .name'); do
+    echo "Bringing $workspace to $current_output"
+    i3-msg "[workspace=${workspace}]" move workspace to output current
+done
