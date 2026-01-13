@@ -13,8 +13,3 @@ xrandr \
   --output DP2 --off \
   --output HDMI1 --off \
   --output VIRTUAL1 --off
-
-
-sleep 3
-
-nitrogen --restore

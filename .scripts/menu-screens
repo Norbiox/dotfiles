@@ -1,0 +1,32 @@
+#!/bin/bash
+
+screenlayout_dir="$HOME/.screenlayout"
+
+# Get all .sh scripts in .screenlayout directory
+declare -a scripts=()
+while IFS= read -r -d '' script; do
+    scripts+=("$(basename "$script" .sh)")
+done < <(find "$screenlayout_dir" -maxdepth 1 -name "*.sh" -type f -print0 | sort -z)
+
+if [ ${#scripts[@]} -eq 0 ]; then
+    notify-send "menu-screens" "No screen layout scripts found in $screenlayout_dir"
+    exit 1
+fi
+
+chosen=$(printf '%s\n' "${scripts[@]}" | menu -i -l 20 -p "Screen layout:")
+
+if [ "$chosen" ]; then
+    script_path="$screenlayout_dir/$chosen.sh"
+    if [ -x "$script_path" ]; then
+        "$script_path"
+    else
+        notify-send "menu-screens" "Script is not executable: $script_path"
+        exit 1
+    fi
+
+    nitrogen --restore
+    notify-send "menu-screens" "Screen layout changed to: $chosen"
+    exit 0
+else
+    echo "Program terminated" && exit 1
+fi

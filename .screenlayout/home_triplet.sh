@@ -19,10 +19,3 @@ xrandr --fb 5760x1080
 
 xrandr \
 #   --output eDP1 --primary --mode 1920x1080 --pos 1920x1200 --rotate normal \
-
-
-
-
-sleep 3
-
-nitrogen --restore
