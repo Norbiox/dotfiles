@@ -11,6 +11,8 @@ export OPENER=rifle
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_STYLE_OVERRIDE=kvantum
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+export DMENU_COMMAND='dmenu -i -h 22 -l 20 -fn "VictorMono-10.5:Bold"'
+export DMENU_BLUETOOTH_LAUNCHER=$DMENU_COMMAND
 
 # Source important files
 [[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
