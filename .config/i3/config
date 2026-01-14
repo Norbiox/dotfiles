@@ -54,23 +54,13 @@ mode "$mode_system" {
 }
 
 
-################ Screen layout and workspaces   
+################ Screens layout
 
-# exec --no-startup-id .screenlayout/home.sh
+# Set screens automatically on startup
+exec --no-startup-id autorandr --change
 
-bindsym $mod+Ctrl+s exec --no-startup-id menu-screens
-
-# bindsym $mod+Ctrl+s mode "$mode_screen_layout"
-
-# set $mode_screen_layout (1) laptop, (2) home, (3) triple
-# mode "$mode_screen_layout" {
-#     bindsym 1 exec --no-startup-id .screenlayout/single.sh, mode "default"
-#     bindsym 2 exec --no-startup-id .screenlayout/home.sh, mode "default"
-#     bindsym 3 exec --no-startup-id .screenlayout/home_triple.sh, mode "default"
-#     # exit system mode: "Enter" or "Escape"
-#     bindsym Return mode "default"
-#     bindsym Escape mode "default"
-# }
+# Menu for picking screens profile
+bindsym $mod+Ctrl+s exec --no-startup-id menu-autorandr
 
 
 ################# autostart - execute applications at boot time
@@ -83,9 +73,9 @@ exec_always --no-startup-id autotiling
 # get the mouse out of the way with unclutter
 exec --no-startup-id unclutter
 
-# setup workspaces on their monitors
-exec --no-startup-id reset-workspaces
-
+# KDE Connect
+exec --no-startup-id kdeconnectd
+exec --no-startup-id kdeconnect-indicator
 
 # TRAY APPLICATIONS
 
@@ -179,7 +169,7 @@ bindsym $mod+KP_Enter exec --no-startup-id $TERMINAL_CMD;focus
 bindsym $mod+$mod1+Return exec --no-startup-id $TERMINAL_CMD2;focus
 bindsym $mod+$mod1+KP_Enter exec --no-startup-id $TERMINAL_CMD2;focus
 
-#browser
+# browser
 bindsym $mod+Shift+b exec --no-startup-id menu-browser
 bindsym $mod+Ctrl+b exec --no-startup-id menu-browser `xclip -o`
 bindsym $mod1+Ctrl+b exec --no-startup-id brave --incognito `xclip -o`
@@ -411,11 +401,12 @@ bindsym $mod+Ctrl+l resize grow width 5 px or 5 ppt
 # assign [class="Firefox|Vivaldi-stable|Vivaldi-snapshot|Opera"]                      → 3
 # assign [class="Chromium|Google-chrome"]                    → 3
 
-# Workspace 2 Browser
-# assign [class="Brave"] → 2
+# Workspace 2 Google-chrome
+#assign [class="Chromium|Google-chrome"] → 2
 
 # Workspace 3 Inkscape
 # assign [class="Inkscape"]                                                           → 3
+assign [class="app.clickup.com"] → 3
 
 # Workspace 4 Gimp
 # assign [class="Gimp"]                                                               → 4
@@ -434,13 +425,14 @@ assign [class="Slack"] → 6
 # Workspace 8 file managers
 # assign [class="Nemo|Thunar|Caja|nautilus|Nautilus"]                                 → 8
 
-# Workspace 9 email clients
-# assign [class="Geary|Evolution"]                                                    → 9
+# Workspace 9 Browser
+#assign [class="Brave"] → 9
 
 # Workspace 10 music related
 # assign [class="Spotify|spotify"]                                                    → 10
 # fix for spotify not moving to workspace 10
 # for_window [class="Spotify"] move to workspace 10
+assign [class="my.brain.fm"] → 10
 
 
 ################# floating or tiled rules         
@@ -491,6 +483,8 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="^Preferences$"] floating enable
 for_window [window_role="setup"] floating enable
 
+for_window [class="my.brain.fm"] floating disable
+for_window [class="app.clickup.com"] floating disable
 
 ################# give focus to applications       
 

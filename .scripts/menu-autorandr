@@ -1,5 +1,4 @@
 #!/bin/bash
-# Select and load autorandr profile with menu
 
 # Get all saved autorandr profiles
 profiles=$(autorandr --list 2>/dev/null)
