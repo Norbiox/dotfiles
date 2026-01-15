@@ -1,5 +1,7 @@
 #!/bin/bash
 # This script is executed after a screen layout change.
 
+sleep 2
+
 # Set the wallpaper
 nitrogen --restore
