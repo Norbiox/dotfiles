@@ -104,7 +104,7 @@ exec --no-startup-id xfce4-clipman
 # exec --no-startup-id redshift-gtk
 
 # variety - wallpaper changer
-exec --no-startup-id variety
+#exec --no-startup-id variety
 
 # flameshot - screenshot tool
 exec --no-startup-id flameshot
