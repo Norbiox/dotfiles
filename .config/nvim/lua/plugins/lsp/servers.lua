@@ -30,5 +30,6 @@ return {
   stylua = {},
   prettierd = {},
   tflint = {},
+  marksman = {},
 }
 

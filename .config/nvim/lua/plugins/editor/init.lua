@@ -5,6 +5,6 @@ return {
   require "plugins.editor.surround",
   require "plugins.editor.todo",
   require "plugins.editor.oscyank",
-  require "plugins.editor.hardtime",
-  require "plugins.editor.notify",
+  -- require "plugins.editor.hardtime",
+  -- require "plugins.editor.notify",
 }

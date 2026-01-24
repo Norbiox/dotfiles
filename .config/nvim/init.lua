@@ -15,4 +15,4 @@ require "lazy-bootstrap"
 require "lazy-plugins"
 
 -- Set up notifications
-vim.notify = require("notify")
+-- vim.notify = require("notify")

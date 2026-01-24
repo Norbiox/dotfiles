@@ -162,5 +162,11 @@ return {
         end,
       },
     }
+
+    require('lint').linters_by_ft = {
+      python = { 'ruff' },
+      terraform = { 'tflint' },
+      markdown = { 'vale' },
+    }
   end,
 }

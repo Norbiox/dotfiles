@@ -96,3 +96,23 @@ vim.opt.termguicolors = true
 
 -- Show the title of the file
 vim.opt.title = true
+
+-- Rounded borders in floating windows
+vim.o.winborder = 'rounded'
+
+-- Set background corod for floating windows borders so it's beautiful again
+local set_hl_for_floating_window = function()
+  -- Link NormalFloat background to Normal background
+  vim.api.nvim_set_hl(0, 'NormalFloat', { link = 'Normal', }) 
+  -- Ensure FloatBorder background is also linked or set to 'none'
+  vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none', }) 
+end
+
+set_hl_for_floating_window()
+
+-- Set an autocmd to re-apply the highlights if the colorscheme changes
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  desc = 'Avoid overwritten by loading color schemes later',
+  callback = set_hl_for_floating_window,
+})
