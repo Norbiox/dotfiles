@@ -1,5 +1,9 @@
 # See dunst(5) for all configuration options
 
+[debug]
+    # Set to true to enable debug mode
+    script = ~/.scripts/dunst-debug.sh
+
 [global]
     ### Keyboard ###
 
