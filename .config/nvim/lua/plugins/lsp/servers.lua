@@ -31,5 +31,6 @@ return {
   prettierd = {},
   tflint = {},
   marksman = {},
+  kotlin_lsp = {},
 }
 
