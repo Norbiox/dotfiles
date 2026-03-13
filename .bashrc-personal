@@ -284,3 +284,6 @@ eval "$(zoxide init bash)"
 
 # Mise setup
 eval "$(mise activate bash)"
+
+# Tirith setup
+# eval "$(tirith init)"

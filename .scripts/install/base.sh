@@ -54,6 +54,7 @@ yay -S \
   ncpamixer \
   nvm \
   scc \
+  tirith \  # homograph attacks blocker
   todoist \
   flameshot
 
