@@ -38,5 +38,8 @@
 [branch]
 	sort = -committerdate
 
-[includeIf "gitdir:~/Work/Ari10/"]
+[includeIf "gitdir:~/Work/Ari10/**/.git"]
 	path = ~/Work/Ari10/.gitconfig
+
+[includeIf "gitdir:~/Work/Tequipy/**/.git"]
+	path = ~/Work/Tequipy/.gitconfig
