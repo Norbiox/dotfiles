@@ -2,7 +2,7 @@
 
 declare -a options=(
         "Brave"
-        "Google Chrome (Ari10)"
+        "Google Chrome"
         "Chromium"
         "Firefox"
         "Qutebrowser"
@@ -12,7 +12,7 @@ chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Browser:")
 
 if [ "$chosen" == "Brave" ]; then
         brave $@
-elif [ "$chosen" == "Google Chrome (Ari10)" ]; then
+elif [ "$chosen" == "Google Chrome" ]; then
         google-chrome-stable $@
 elif [ "$chosen" == "Chromium" ]; then
         chromium $@
