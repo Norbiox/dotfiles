@@ -275,6 +275,15 @@ complete -C /usr/bin/terraform terraform
 # Packages utils
 alias list-biggest-packages='expac "%n %m" -l"\n" -Q $(pacman -Qq) -H M | sort -rhk 2 | less'
 
+# Claude profiles - smart switching based on directory
+claude() {
+    if [[ "$PWD" == ~/Work/Tequipy/* ]]; then
+        CLAUDE_CONFIG_DIR=~/.claude/accounts/tequipy command claude "$@"
+    else
+        command claude "$@"
+    fi
+}
+
 # NVM setup
 . /usr/share/nvm/init-nvm.sh
 
