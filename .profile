@@ -14,6 +14,10 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 export DMENU_COMMAND='dmenu -i -h 22 -l 20 -fn "VictorMono-10.5:Bold"'
 export DMENU_BLUETOOTH_LAUNCHER=$DMENU_COMMAND
 
+# Cursor settings
+export XCURSOR_SIZE=48
+export XCURSOR_THEME=Banana
+
 # Source important files
 [[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
 

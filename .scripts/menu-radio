@@ -12,12 +12,11 @@ radio_stations[CodeRadio]="https://coderadio-admin-v2.freecodecamp.org/listen/co
 radio_stations[HPR1 Traditional Classic Country]="https://us2.maindigitalstream.com/ssl/7713"
 radio_stations[HPR2 Todays Classic Country]="https://us2.maindigitalstream.com/ssl/7735"
 radio_stations[HPR4 Gospel Bluegrass]="https://us2.maindigitalstream.com/ssl/7739"
-radio_stations[Chillstep.info]="https://chillstep.info/radio/stream.ogg?1696871921731"
-radio_stations[10 Hours of Messianic Jewish Worship Music]="https://www.youtube.com/watch?v=fnuYjtMH-NA"
 radio_stations[Lofi Girl]="https://www.youtube.com/watch?v=jfKfPfyJRdk"
 radio_stations[Synthwave Boy]="https://www.youtube.com/watch?v=4xDzrJKXOOY"
 radio_stations[Classical Piano]="https://www.youtube.com/watch?v=tSlOlKRuudU"
 radio_stations[Productivity Music | ADHD Relief Music]="https://www.youtube.com/watch?v=RG2IK8oRZNA"
+radio_stations[Christian LoFi]="https://www.youtube.com/watch?v=qXPoj_VYb3U"
 
 chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | menu -i -l 20 -p "Radio:")
 

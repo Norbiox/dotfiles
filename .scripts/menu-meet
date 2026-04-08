@@ -2,7 +2,7 @@
 
 declare -a profiles=(
         "Brave"
-        "Google Chrome (Ari10)"
+        "Google Chrome"
         "Chromium"
         "Firefox"
         "Qutebrowser"
@@ -18,7 +18,7 @@ declare -a options=(
 profile=$(printf '%s\n' "${profiles[@]}" | menu -i -l 20 -p "Pick Brave profile:")
 if [ "$profile" == "Brave" ]; then
         browser="brave"
-elif [ "$profile" == "Google Chrome (Ari10)" ]; then
+elif [ "$profile" == "Google Chrome" ]; then
         browser="google-chrome-stable"
 elif [ "$profile" == "Chromium" ]; then
         browser="chromium"
