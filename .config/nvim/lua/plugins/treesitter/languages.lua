@@ -26,6 +26,7 @@ return {
   'java',
   'lua',
   'markdown',
+  'markdown_inline',
   'nim',
   'nix',
   'python',

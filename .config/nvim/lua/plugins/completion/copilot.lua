@@ -1,7 +1,7 @@
 -- Codeium AI completion
 -- return { 'Exafunction/codeium.vim' }
 --
-return { 'augmentcode/augment.vim' }
+-- return { 'augmentcode/augment.vim' }
 
 -- return {
 --     "Exafunction/windsurf.nvim",
@@ -14,3 +14,9 @@ return { 'augmentcode/augment.vim' }
 --         })
 --     end
 -- }
+return {
+  "supermaven-inc/supermaven-nvim",
+  config = function()
+    require("supermaven-nvim").setup({})
+  end,
+}
