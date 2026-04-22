@@ -44,6 +44,9 @@ return {
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
+          -- nvim-treesitter main branch removed the old parsers API telescope uses;
+          -- native vim.treesitter (enabled via FileType autocmd) handles highlighting.
+          preview = { treesitter = false },
           mappings = {
             i = {
               ['<c-enter>'] = 'to_fuzzy_refine',

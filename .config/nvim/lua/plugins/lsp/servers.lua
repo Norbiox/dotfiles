@@ -3,7 +3,18 @@
 return {
   clangd = {},
   rust_analyzer = {},
-  pyright = {},
+  pyright = {
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = 'workspace',
+          indexing = true,
+        },
+      },
+    },
+  },
   ruff = {},
   ts_ls = {},
   gopls = {},
