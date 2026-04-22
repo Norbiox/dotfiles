@@ -138,6 +138,19 @@ nah () {
     fi
 }
 
+# Useful git aliases
+# 20 most often changing files, run from /src or /app
+alias git_most_changing="git log --format=format: --name-only --since="1 year ago" | sort | uniq -c | sort -nr | head -20"
+# All contributors, ranked by commit count
+alias git_contributors="git shortlog -sn --no-merges"
+# 20 most often changing, bug-related files
+alias git_buggy_files="git log -i -E --grep="fix|bug|broken" --name-only --format='' | sort | uniq -c | sort -nr | head -20"
+# Commit count by month
+alias git_commit_count_by_month="git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c"
+# Crisis commits
+alias git_hotfix_frequency="git log --oneline --since="1 year ago" | grep -iE 'revert|hotfix|emergency|rollback'"
+
+
 # Config management aliases
 alias cst='config status'
 alias ca='config add -p'
