@@ -17,6 +17,7 @@ radio_stations[Synthwave Boy]="https://www.youtube.com/watch?v=4xDzrJKXOOY"
 radio_stations[Classical Piano]="https://www.youtube.com/watch?v=tSlOlKRuudU"
 radio_stations[Productivity Music | ADHD Relief Music]="https://www.youtube.com/watch?v=RG2IK8oRZNA"
 radio_stations[Christian LoFi]="https://www.youtube.com/watch?v=qXPoj_VYb3U"
+radio_stations[JimTV [shuffled]]="https://www.youtube.com/playlist?list=PLZGcQAxf5NjPjWQvlFkOeK7EdYtxeCf4r"
 
 chosen=$(printf '%s\n' "${!radio_stations[@]}" | sort -n | menu -i -l 20 -p "Radio:")
 
@@ -44,9 +45,13 @@ elif [[ "$chosen" == "BrainFM" ]]; then
         $BROWSER --app=https://my.brain.fm/
 
 elif [[ "${radio_stations[$chosen]}" != "" ]]; then
-        echo "Turning radio $chosed..."
+        echo "Turning radio $chosen..."
         pkill mpv;
-        mpv --no-video ${radio_stations[$chosen]};
+        if [[ "$chosen" == *"shuffled"* ]]; then
+                mpv --no-video --shuffle ${radio_stations[$chosen]};
+        else
+                mpv --no-video ${radio_stations[$chosen]};
+        fi
 
 elif [[ "$chosen" != "" ]]; then
         notify-send "Searching YouTube is disabled for ytfzf does not work and I wait for alternative..."
