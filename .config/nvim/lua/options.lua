@@ -85,6 +85,11 @@ vim.opt.confirm = true
 
 vim.g.have_nerd_fond = true
 
+-- Disable unused optional providers to silence checkhealth warnings
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+
 -- vim: ts=2 sts=2 sw=2 et
 
 -- Improve the code folding behavior in TreeSitter

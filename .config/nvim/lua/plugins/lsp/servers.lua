@@ -18,7 +18,9 @@ return {
   ruff = {},
   ts_ls = {},
   gopls = {},
-  clojure_lsp = {},
+  clojure_lsp = {
+    filetypes = { 'clojure' }, -- .edn files map to 'clojure' via vim.filetype.add
+  },
   groovyls = {},
   yamlls = {},
   lua_ls = {

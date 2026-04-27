@@ -1,3 +1,27 @@
+-- Trim 'edn' from clojure_lsp filetypes: .edn files map to 'clojure' via filetype.add below
+vim.lsp.config('clojure_lsp', { filetypes = { 'clojure' } })
+
+-- Filetype registrations for LSP servers that reference non-default filetypes
+vim.filetype.add({
+  extension = {
+    edn    = 'clojure',
+    gotmpl = 'gotmpl',
+    mdx    = 'markdown.mdx',
+  },
+  filename = {
+    ['docker-compose.yml']  = 'yaml.docker-compose',
+    ['docker-compose.yaml'] = 'yaml.docker-compose',
+    ['compose.yml']         = 'yaml.docker-compose',
+    ['compose.yaml']        = 'yaml.docker-compose',
+    ['.gitlab-ci.yml']      = 'yaml.gitlab',
+  },
+  pattern = {
+    ['.*/templates/.*%.ya?ml'] = 'yaml.helm-values',
+    ['.*/templates/.*%.tpl']   = 'helm',
+    ['helmfile.*%.ya?ml']      = 'yaml.helm-values',
+  },
+})
+
 -- Custom files associations
 vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
   pattern = {'Jenkinsfile', 'jenkinsfile'},
