@@ -1,0 +1,12 @@
+#!/bin/sh
+# Lock the screen. Backward-compatible: Wayland (swaylock) / X11 (betterlockscreen).
+
+if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	# Flags below are supported by STOCK swaylock. --clock/--datestr are
+	# swaylock-effects-only; using them on stock swaylock aborts the lock
+	# (screen would never lock on idle/sleep), so they are intentionally
+	# omitted. Add them back only if you install swaylock-effects.
+	exec swaylock -f -c 282c34
+else
+	exec betterlockscreen -l dimblur -- --time-str="%H:%M"
+fi

@@ -1,0 +1,33 @@
+# kanshi — Wayland replacement for autorandr.
+# Run as a service under sway (the sway config does `exec kanshi`).
+# Switch profiles manually with:  kanshictl switch <name>   (see menu-screens)
+#
+# The three externals are IDENTICAL Dell U2415 panels, so they are matched by
+# EDID (make + model + serial), not by the DP-6/7/8 connector name which can be
+# reshuffled on re-dock. Serials come from `edid-decode /sys/class/drm/card1-*/edid`:
+#   7MT0177R1E2L  /  7MT016613C3L  /  7MT0187628UL
+#
+# Positions mirror the old ~/.screenlayout/home.sh: three externals in a row at
+# y=0, laptop centred below at y=1200.
+#
+# NOTE: physical left/middle/right ordering is a guess. If a monitor lands in
+# the wrong spot, just swap the `position` X value (0 / 1920 / 3840) between
+# the two output lines — nothing else needs to change.
+#
+# Verify the exact make string with `swaymsg -t get_outputs` in a native sway
+# session (TTY). It should be "Dell Inc."; if sway prints something else, fix
+# the prefix below.
+
+profile home {
+	output eDP-1 mode 1920x1080 position 1920,1200 scale 1
+	output "Dell Inc. DELL U2415 7MT0177R1E2L" mode 1920x1200 position 0,0    scale 1
+	output "Dell Inc. DELL U2415 7MT016613C3L" mode 1920x1200 position 1920,0 scale 1
+	output "Dell Inc. DELL U2415 7MT0187628UL" mode 1920x1200 position 3840,0 scale 1
+	exec setbg
+}
+
+# Laptop only (no externals connected).
+profile laptop {
+	output eDP-1 mode 1920x1080 position 0,0 scale 1
+	exec setbg
+}

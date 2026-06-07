@@ -1,0 +1,18 @@
+#!/bin/sh
+# Set the desktop wallpaper. Backward-compatible: Wayland (swaybg) / X11 (xwallpaper).
+# Usage: setbg /path/to/image
+# Persists the chosen image to ~/.cache/bg so it can be restored on login.
+
+img="$1"
+[ -z "$img" ] && img="$HOME/.cache/bg"
+[ -f "$img" ] || exit 1
+
+# Remember choice for restore-on-login
+[ "$img" != "$HOME/.cache/bg" ] && cp -f "$img" "$HOME/.cache/bg" 2>/dev/null
+
+if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	pkill -x swaybg 2>/dev/null
+	swaybg -m fill -i "$HOME/.cache/bg" >/dev/null 2>&1 &
+else
+	xwallpaper --zoom "$HOME/.cache/bg"
+fi

@@ -39,7 +39,7 @@ elif [ "$chosen" == "New meeting" ]; then
 elif [ "$chosen" == "Join a meeting (from clipboard)" ]; then
         # get link from clipboard
         echo "Getting link from clipboard..."
-        link=`xclip -o`
+        link=`clippaste`
         echo $link
         if [ "$link" ]; then
                 echo "Opening Google Meet meeting $link..."

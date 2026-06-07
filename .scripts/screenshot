@@ -1,0 +1,30 @@
+#!/bin/sh
+# Take a screenshot. Backward-compatible: Wayland (grim/slurp) / X11 (scrot/flameshot).
+# Usage:
+#   screenshot full    -> whole screen saved to ~/Pictures
+#   screenshot area     -> interactive region selection, opens editor if available
+#   screenshot          -> same as `area`
+
+mode="${1:-area}"
+dir="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
+file="$dir/screenshot-$(date +%Y-%m-%d-%H%M%S).png"
+
+if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	case "$mode" in
+		full) grim "$file" && notify-send "Screenshot" "Saved $file" ;;
+		area|*)
+			if command -v satty >/dev/null 2>&1; then
+				grim -g "$(slurp)" - | satty --filename - --output-filename "$file"
+			elif command -v swappy >/dev/null 2>&1; then
+				grim -g "$(slurp)" - | swappy -f -
+			else
+				grim -g "$(slurp)" "$file" && notify-send "Screenshot" "Saved $file"
+			fi
+			;;
+	esac
+else
+	case "$mode" in
+		full) scrot "$file" -e 'notify-send Screenshot "Saved $f"' ;;
+		area|*) flameshot gui ;;
+	esac
+fi

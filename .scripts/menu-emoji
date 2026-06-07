@@ -5,7 +5,7 @@ declare -a options=`cat ~/.local/share/emoji`
 chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Pick emoji:")
 
 if [ "$chosen" ]; then
-        echo $chosen | awk '{printf $1;}' | xclip -sel clip
+        echo $chosen | awk '{printf $1;}' | clipcopy
 else
         echo "Program terminated" && exit 1
 fi

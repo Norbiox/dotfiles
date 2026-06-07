@@ -1,46 +1,51 @@
 #!/bin/bash
 
-# Opens a dropdown terminal in i3, or toggles it if already open.
-# $1 is the option to pass to the terminal.
-# The option might be one of the following:
-# - terminal
-# - files
-# - news
-# - notes
-# - gtd
-# - python
-# - translator
-# - mixer
-# - any other command to be executed in a terminal
+# Opens a dropdown terminal, or toggles it if already open.
+# Backward-compatible: works under sway (Wayland) and i3 (X11).
 #
-# The script uses terminal class to determine if the window is already open.
-# It names the window with the class name, so that it can be easily identified.
-# The class name is "dropdown" + the option name.
+# $1 is the dropdown name (also the kitty class / app_id), one of:
+#   terminal files news notes gtd python translator mixer gemini
+#   ...or any other command, run in a terminal.
+#
+# The window is identified by class "dropdown<name>". On sway we match by
+# app_id, on i3 by instance; window detection greps the WM tree either way.
 
 [ -z "$1" ] && exit
 
-class=dropdown$1
-spawn_kitty="exec --no-startup-id kitty -T $class --class $class $(echo '$@' | cut -d ' ' -f2-) -e"
+class="dropdown$1"
 
-if [ -z `xwininfo -tree -root | grep "\"$class\""`]; then
-	echo "Window not detected... spawning.";
-
-	case "$1" in
-		files) i3 "$spawn_kitty yazi";;
-		gtd) i3 "$spawn_kitty bash -c 'cd $HOME/notes && vim gtd.md'";;
-		mixer) i3 "$spawn_kitty ncpamixer";;
-		news) i3 "$spawn_kitty newsboat";;
-		notes) i3 "$spawn_kitty bash -c 'cd $HOME/notes && vim -c :VimwikiIndex'";;
-		python) i3 "$spawn_kitty ipython --no-banner";;
-		terminal) i3 "$spawn_kitty tmux";;
-		translator) i3 "$spawn_kitty gtt";;
-		*) i3 "$spawn_kitty $1";;
-	esac
+# Pick the IPC tool and the window-match criteria for the current WM.
+if [ -n "$SWAYSOCK" ] || [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	MSG=swaymsg
+	CRIT="[app_id=\"$class\"]"
+else
+	MSG=i3-msg
+	CRIT="[instance=\"$class\"]"
 fi
 
-until xwininfo -tree -root | grep "\"$class\""; do
-	echo "Waiting for window to be open..."
-	sleep 0.1
-done
+spawn="exec kitty -T $class --class $class -e"
 
-i3 "[instance=\"$class\"] scratchpad show, move position center; [instance=\"$class\"]"
+# Spawn the window if it is not already present in the tree.
+if ! $MSG -t get_tree | grep -q "\"$class\""; then
+	echo "Window not detected... spawning."
+
+	case "$1" in
+		files)      $MSG "$spawn yazi";;
+		gtd)        $MSG "$spawn bash -c 'cd \$HOME/notes && vim gtd.md'";;
+		mixer)      $MSG "$spawn ncpamixer";;
+		news)       $MSG "$spawn newsboat";;
+		notes)      $MSG "$spawn bash -c 'cd \$HOME/notes && vim -c :VimwikiIndex'";;
+		python)     $MSG "$spawn ipython --no-banner";;
+		terminal)   $MSG "$spawn tmux";;
+		translator) $MSG "$spawn gtt";;
+		gemini)     $MSG "$spawn gemini -s";;
+		*)          $MSG "$spawn $1";;
+	esac
+
+	until $MSG -t get_tree | grep -q "\"$class\""; do
+		echo "Waiting for window to be open..."
+		sleep 0.1
+	done
+fi
+
+$MSG "$CRIT scratchpad show, move position center"

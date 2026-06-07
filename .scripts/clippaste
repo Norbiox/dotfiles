@@ -1,0 +1,10 @@
+#!/bin/sh
+# Print the PRIMARY selection (mouse-highlighted text), matching old `xclip -o`.
+# Backward-compatible: Wayland (wl-paste) / X11 (xclip).
+# Usage: link=$(clippaste)
+
+if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	exec wl-paste --primary --no-newline
+else
+	exec xclip -o
+fi

@@ -3,10 +3,10 @@
 
 case "$1" in
     lock)
-        betterlockscreen -l -- --time-str="%H:%M"
+        lock
         ;;
     logout)
-        i3-msg exit
+        wmmsg exit
         ;;
     suspend)
         systemctl suspend

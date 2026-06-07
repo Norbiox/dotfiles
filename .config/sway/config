@@ -1,0 +1,372 @@
+# Sway config — migrated from ~/.config/i3/config.
+# Sway is a drop-in i3 replacement, so most i3 syntax is reused verbatim.
+# Differences from i3 are called out in comments throughout.
+
+################# Modifier keys
+set $mod Mod4
+set $mod1 Mod1
+
+################# Movement keys (vim-style)
+set $up k
+set $down j
+set $left h
+set $right l
+
+################# Colors
+# i3 read these from ~/.Xresources via set_from_resource; Wayland has no
+# X resources, so the OneDark palette is inlined here.
+set $background #282C34
+set $foreground #ABB2BF
+set $color0  #282C34
+set $color1  #E06C75
+set $color2  #98C379
+set $color3  #E5C07B
+set $color4  #61AFEF
+set $color5  #C678DD
+set $color6  #56B6C2
+set $color7  #ABB2BF
+set $color8  #3E4452
+set $color9  #BE5046
+set $color10 #98C379
+set $color11 #D19A66
+set $color12 #61AFEF
+set $color13 #C678DD
+set $color14 #56B6C2
+set $color15 #5C6370
+
+################# Outputs / display layout
+# Handled by kanshi (~/.config/kanshi/config), the autorandr replacement.
+exec kanshi
+
+# Menu for picking a screen-layout profile (kanshi-aware, see menu-screens).
+bindsym $mod+Ctrl+s exec menu-autorandr
+
+################# Input
+# numlockx replacement (numlockx needs X).
+input "type:keyboard" {
+	xkb_numlock enabled
+}
+
+# unclutter replacement: hide the cursor after 8s idle.
+seat * hide_cursor 8000
+
+################# Cursor theme (was XCURSOR_* env + Xresources)
+seat * xcursor_theme Banana 48
+
+################# Lock / idle / sleep
+bindsym $mod1+Escape exec lock
+bindsym $mod1+End mode "$mode_system"
+
+# xss-lock replacement: lock on idle and before sleep.
+exec swayidle -w \
+	timeout 600 'lock' \
+	timeout 900 'swaymsg "output * power off"' \
+	resume 'swaymsg "output * power on"' \
+	before-sleep 'lock'
+
+set $mode_system System loc(k), (l)ogout, s(u)spend, (h)ibernate, (r)eboot, (s)uspend, (Shift+s)hutdown
+mode "$mode_system" {
+	bindsym k exec i3exit.sh lock, mode "default"
+	bindsym u exec i3exit.sh switch_user, mode "default"
+	bindsym l exec i3exit.sh logout, mode "default"
+	bindsym s exec i3exit.sh suspend, mode "default"
+	bindsym h exec i3exit.sh hibernate, mode "default"
+	bindsym r exec i3exit.sh reboot, mode "default"
+	bindsym Shift+s exec i3exit.sh shutdown, mode "default"
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+################# Autostart
+# Autotiling (same tool, works on sway).
+exec_always autotiling
+
+# Clipboard history (xfce4-clipman replacement).
+exec wl-paste --watch cliphist store
+
+# KDE Connect
+exec kdeconnectd
+exec kdeconnect-indicator
+
+# Authentication dialog
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Tray applets (shown in swaybar's tray)
+exec blueman-applet
+exec nm-applet --indicator
+exec pasystray
+
+# Power manager (battery applet)
+exec xfce4-power-manager
+
+# Color temperature (redshift replacement). Uncomment to enable.
+# exec gammastep-indicator
+
+# picom is not needed: sway composites natively. (No blur/transparency.)
+# flameshot autostart dropped: screenshots are on-demand via grim (see below).
+
+################# Menus
+bindsym $mod1+Shift+colon  exec menu-recency
+bindsym $mod1+Shift+r      exec menu-radio
+bindsym $mod1+Shift+c      exec menu-configs
+bindsym $mod1+Shift+i      exec menu-idasen
+bindsym $mod1+Shift+s      exec menu-soundcore
+bindsym $mod1+Shift+w      exec menu-wacom
+bindsym $mod1+Shift+p      exec menu-powerprofile
+bindsym $mod1+Shift+b      exec dmenu-bluetooth
+bindsym $mod1+Shift+n      exec networkmanager_dmenu
+bindsym $mod1+Shift+e      exec menu-emoji
+bindsym $mod1+Shift+j      exec menu-jitsi
+
+################# Application shortcuts
+bindsym $mod+Return exec $TERMINAL_CMD
+bindsym $mod+KP_Enter exec $TERMINAL_CMD
+bindsym $mod+$mod1+Return exec $TERMINAL_CMD2
+bindsym $mod+$mod1+KP_Enter exec $TERMINAL_CMD2
+
+bindsym $mod+Shift+b exec menu-browser
+bindsym $mod+Ctrl+b exec menu-browser "$(clippaste)"
+bindsym $mod1+Ctrl+b exec brave --incognito "$(clippaste)"
+bindsym $mod+Shift+m exec menu-meet
+
+bindsym $mod+Shift+d exec discord
+bindsym $mod+Shift+c exec cursor
+bindsym $mod+Shift+s exec slack
+bindsym $mod+Shift+p exec thunar
+bindsym $mod+Shift+v exec qv4l2 -d /dev/video2
+
+################# System control
+bindsym Ctrl+Shift+Escape exec xfce4-taskmanager
+bindsym $mod1+Ctrl+e exec arcolinux-tweak-tool
+bindsym $mod1+Shift+u exec pavucontrol
+bindsym $mod1+Ctrl+s exec xfce4-settings-manager
+bindsym $mod1+Ctrl+k exec arcolinux-logout
+bindsym $mod1+Ctrl+p exec pamac-manager
+# xkill has no Wayland equivalent; sway kill closes the focused window.
+
+################# Dropdowns (scratchpad)
+# Kitty is a native Wayland client, so match on app_id (not instance/class).
+for_window [app_id="^dropdown.*"] floating enable, sticky enable, move scratchpad
+for_window [app_id="dropdownfiles"]      resize set 1700 px 900 px
+for_window [app_id="dropdownnews"]       resize set 1000 px 900 px
+for_window [app_id="dropdownterminal"]   resize set 1400 px 600 px
+for_window [app_id="dropdownnotes"]      resize set 1000 px 900 px
+for_window [app_id="dropdowngtd"]        resize set 1000 px 900 px
+for_window [app_id="dropdowngemini"]     resize set 1000 px 900 px
+for_window [app_id="dropdowntranslator"] resize set 1000 px 900 px
+
+bindsym $mod+colon     exec spawn_dropdown terminal
+bindsym $mod+p         exec spawn_dropdown python
+bindsym XF86Calculator exec spawn_dropdown python
+bindsym $mod+t         exec spawn_dropdown translator
+bindsym $mod+r         exec spawn_dropdown files
+bindsym $mod+u         exec spawn_dropdown mixer
+bindsym $mod+b         exec spawn_dropdown news
+bindsym $mod+n         exec spawn_dropdown notes
+bindsym $mod+g         exec spawn_dropdown gtd
+bindsym $mod+c         exec spawn_dropdown gemini
+
+################# Screenshots (scrot/flameshot replaced by grim/slurp)
+bindsym Print         exec screenshot full
+bindsym Control+Print exec screenshot area
+
+################# Reload / restart
+bindsym $mod1+Ctrl+r reload
+bindsym $mod+Shift+r reload
+
+################# Window management
+bindsym $mod+Shift+q kill
+
+floating_modifier $mod
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+################# Workspaces
+set $empty_ws "99:empty"
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+equal workspace $empty_ws
+
+bindsym $mod+Shift+1 move container to workspace 1; workspace 1
+bindsym $mod+Shift+2 move container to workspace 2; workspace 2
+bindsym $mod+Shift+3 move container to workspace 3; workspace 3
+bindsym $mod+Shift+4 move container to workspace 4; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5
+bindsym $mod+Shift+6 move container to workspace 6; workspace 6
+bindsym $mod+Shift+7 move container to workspace 7; workspace 7
+bindsym $mod+Shift+8 move container to workspace 8; workspace 8
+bindsym $mod+Shift+9 move container to workspace 9; workspace 9
+bindsym $mod+Shift+0 move container to workspace 10; workspace 10
+
+bindsym $mod+Ctrl+Shift+h move workspace to output left
+bindsym $mod+Ctrl+Shift+j move workspace to output down
+bindsym $mod+Ctrl+Shift+k move workspace to output up
+bindsym $mod+Ctrl+Shift+l move workspace to output right
+
+bindsym $mod1+Tab workspace next
+bindsym $mod1+Shift+Tab workspace prev
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod1+Ctrl+Right workspace next
+bindsym $mod1+Ctrl+Left workspace prev
+
+for_window [urgent=latest] focus
+
+################# Layout
+default_orientation horizontal
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle global
+
+bindsym $mod+s layout toggle tabbed splith
+bindsym $mod+w layout toggle stacking splith
+bindsym $mod+e layout toggle split
+bindsym $mod+q split toggle
+bindsym $mod+a focus parent
+bindsym $mod+d focus child
+
+################# Resize
+bindsym $mod+Ctrl+h resize shrink width 5 px or 5 ppt
+bindsym $mod+Ctrl+j resize grow height 5 px or 5 ppt
+bindsym $mod+Ctrl+k resize shrink height 5 px or 5 ppt
+bindsym $mod+Ctrl+l resize grow width 5 px or 5 ppt
+
+################# Assign apps to workspaces
+# Chromium-app windows are XWayland -> match on class.
+assign [class="app.clickup.com"] 3
+assign [class="Slack"] 6
+assign [class="my.brain.fm"] 10
+
+################# Floating / tiling rules
+# XWayland apps -> [class=...]; native Wayland apps -> [app_id=...].
+for_window [class="Blueman-manager"] floating enable
+for_window [class="Galculator"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Xfce4-taskmanager"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [class="my.brain.fm"] floating disable
+for_window [class="app.clickup.com"] floating disable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="^Preferences$"] floating enable
+
+################# Borders / gaps (i3-gaps syntax is native in sway)
+hide_edge_borders smart
+default_border pixel 1
+default_floating_border pixel 2
+popup_during_fullscreen smart
+
+for_window [class="^.*"] border pixel 1
+gaps inner 10
+gaps outer 0
+smart_gaps on
+smart_borders on
+
+################# Gaps modes
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+	bindsym o mode "$mode_gaps_outer"
+	bindsym i mode "$mode_gaps_inner"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+	bindsym plus  gaps inner current plus 5
+	bindsym minus gaps inner current minus 5
+	bindsym 0     gaps inner current set 0
+	bindsym Shift+plus  gaps inner all plus 5
+	bindsym Shift+minus gaps inner all minus 5
+	bindsym Shift+0     gaps inner all set 0
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+	bindsym plus  gaps outer current plus 5
+	bindsym minus gaps outer current minus 5
+	bindsym 0     gaps outer current set 0
+	bindsym Shift+plus  gaps outer all plus 5
+	bindsym Shift+minus gaps outer all minus 5
+	bindsym Shift+0     gaps outer all set 0
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+################# Audio / media keys
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+bindsym XF86AudioMute exec amixer -D pulse set Master toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
+
+################# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+################# Fonts
+font pango:Cascadia Code SemiBold 11
+
+################# Bar
+bindsym $mod+m bar mode toggle
+
+bar {
+	status_command i3blocks -c ~/.config/i3blocks/config
+	position top
+	height 22
+	workspace_buttons yes
+	workspace_min_width 10
+	strip_workspace_numbers yes
+	separator_symbol "|"
+
+	colors {
+		background $background
+		statusline $foreground
+		separator  $color8
+
+		focused_workspace   $color4     $color4     $background
+		active_workspace    $color4     $color8     $foreground
+		inactive_workspace  $color8     $color8     $foreground
+		binding_mode        $color4     $background $foreground
+		urgent_workspace    $color9     $color1     $background
+	}
+}
+
+################# Window colors
+# class                 border      backgr. text        indicator   child_border
+client.focused          $color4     $color4 $background $foreground $color4
+client.focused_inactive $color4     $color8 $foreground $color8     $color8
+client.unfocused        $background $color8 $foreground $color8     $color8
+client.urgent           $color9     $color9 $foreground $color4     $color9
+client.placeholder      $background $color8 $foreground $background $background
+client.background       $background

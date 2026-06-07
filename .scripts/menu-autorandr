@@ -1,25 +1,4 @@
-#!/bin/bash
-
-# Get all saved autorandr profiles
-profiles=$(autorandr --list 2>/dev/null)
-
-if [ -z "$profiles" ]; then
-    notify-send "menu-screens" "No autorandr profiles found"
-    exit 1
-fi
-
-chosen=$(echo "$profiles" | menu -i -l 20 -p "Screen layout:")
-
-if [ "$chosen" ]; then
-    autorandr --load "$chosen"
-
-    if [ $? -eq 0 ]; then
-        notify-send "menu-screens" "Screen layout changed to: $chosen"
-        exit 0
-    else
-        notify-send "menu-screens" "Failed to load profile: $chosen"
-        exit 1
-    fi
-else
-    echo "Program terminated" && exit 1
-fi
+#!/bin/sh
+# Backward-compat alias kept for existing keybindings ($mod+Ctrl+s).
+# Real logic lives in menu-screens (kanshi on Wayland / autorandr on X11).
+exec menu-screens "$@"

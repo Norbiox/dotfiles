@@ -43,6 +43,24 @@ sudo pacman -Sy \
   zathura-pdf-mupdf \
   zoxide
 
+echo "Install Wayland / sway stack..."
+sudo pacman -Sy \
+  sway \
+  swaybg \
+  swayidle \
+  swaylock \
+  kanshi \
+  grim \
+  slurp \
+  swappy \
+  wl-clipboard \
+  wmenu \
+  gammastep \
+  brightnessctl \
+  playerctl \
+  xdg-desktop-portal-wlr \
+  xdg-desktop-portal-gtk
+
 echo "Install various packages from AUR..."
 yay -S \
   diff-so-fancy \
@@ -56,10 +74,13 @@ yay -S \
   scc \
   tirith \  # homograph attacks blocker
   todoist \
-  flameshot
+  flameshot \
+  autotiling \
+  cliphist \
+  satty
 
 echo "Install power-profiles-daemon..."
-sudo pacman -Sy power-profiles-deamon
+sudo pacman -Sy power-profiles-daemon
 sudo systemctl enable power-profiles-daemon.service
 sudo systemctl start power-profiles-daemon.service
 

@@ -1,18 +1,29 @@
 #!/bin/bash
-# Select and load autorandr profile with menu
+# Select and apply a screen layout profile with the menu.
+# Backward-compatible: Wayland uses kanshi, X11 uses autorandr.
 
-# Get all saved autorandr profiles
-profiles=$(autorandr --list 2>/dev/null)
+if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    backend="kanshi"
+    # Profile names are declared as `profile <name> {` in the kanshi config.
+    profiles=$(grep -oP '^\s*profile\s+\K[^ {]+' "${XDG_CONFIG_HOME:-$HOME/.config}/kanshi/config" 2>/dev/null)
+else
+    backend="autorandr"
+    profiles=$(autorandr --list 2>/dev/null)
+fi
 
 if [ -z "$profiles" ]; then
-    notify-send "menu-screens" "No autorandr profiles found"
+    notify-send "menu-screens" "No $backend profiles found"
     exit 1
 fi
 
 chosen=$(echo "$profiles" | menu -i -l 20 -p "Screen layout:")
 
 if [ "$chosen" ]; then
-    autorandr --load "$chosen"
+    if [ "$backend" = "kanshi" ]; then
+        kanshictl switch "$chosen"
+    else
+        autorandr --load "$chosen"
+    fi
 
     if [ $? -eq 0 ]; then
         notify-send "menu-screens" "Screen layout changed to: $chosen"

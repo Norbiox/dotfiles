@@ -36,5 +36,5 @@ echo "Opening Jitsi room $room..."
 link="https://meet.jit.si/${room}"
 $BROWSER $link --new-window
 
-echo $link | xclip -selection c
+echo $link | clipcopy
 echo "Link to meeting copied to clipboard"

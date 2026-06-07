@@ -7,7 +7,7 @@
 # otherwise it opens link in browser.
 
 if [ -z "$1" ]; then
-	url="$(xclip -o)"
+	url="$(clippaste)"
 else
 	url="$1"
 fi

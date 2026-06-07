@@ -6,4 +6,4 @@
 workspace=$(menu-workspaces)
 echo "Bringing $workspace to $current_output"
 
-i3-msg "[workspace=${workspace}]" move workspace to output current
+wmmsg "[workspace=${workspace}]" move workspace to output current

@@ -1,0 +1,9 @@
+#!/bin/sh
+# Copy stdin to the clipboard. Backward-compatible: Wayland (wl-copy) / X11 (xclip).
+# Usage: echo foo | clipcopy
+
+if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	exec wl-copy
+else
+	exec xclip -selection clipboard
+fi
