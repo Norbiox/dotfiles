@@ -35,7 +35,7 @@ if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
     args+=("$a")
   done
 
-  printf '%s\n' "$input" | wmenu -i -f "$wmenu_f" -N $dmenu_nb -n $dmenu_nf -s $dmenu_sf -S $dmenu_sb -l "$lines" "${args[@]}"
+  printf '%s\n' "$input" | wmenu -i -f "$wmenu_f" -N $dmenu_nb -n $dmenu_nf -M $dmenu_sb -m $dmenu_sf -s $dmenu_sf -S $dmenu_sb -l "$lines" "${args[@]}"
 else
   dmenu -i -h 22 -fn $dmenu_fn -nb $dmenu_nb -nf $dmenu_nf -sf $dmenu_sf -sb $dmenu_sb -l $dmenu_lines "$@"
 fi
