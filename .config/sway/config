@@ -102,10 +102,11 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CU
 # Autotiling (same tool, works on sway).
 exec_always autotiling
 
-# Notification daemon (was D-Bus-activated under X; start it explicitly here
-# so `notify-send` and app notifications work). dunst supports Wayland.
-# -offset overrides dunstrc's (0,22): on Wayland swaybar already reserves space
-# via its exclusive zone, so a small offset is enough (dunstrc stays at 22 for X).
+# Notification daemon (native Wayland backend). New notifications appear on the
+# pointer's output (dunstrc follow = mouse); a displayed notification can't
+# migrate across outputs (Wayland layer-shell pins it to one). The X11/XWayland
+# backend doesn't help — XWayland gives X clients no global pointer, so dunst
+# falls back to the primary output.
 exec dunst
 
 # Clipboard history (xfce4-clipman replacement).
