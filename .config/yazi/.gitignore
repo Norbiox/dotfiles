@@ -1,2 +1,6 @@
 plugins/
-flavors/
+# Ignore flavors except the vendored onedark (kept in sync with the yazi schema
+# by hand). Skip its 1 MB preview image.
+flavors/*
+!flavors/onedark.yazi/
+flavors/onedark.yazi/preview.png
