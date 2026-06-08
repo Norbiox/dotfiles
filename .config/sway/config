@@ -171,7 +171,7 @@ for_window [app_id="dropdowngtd"]        resize set 1000 px 900 px
 for_window [app_id="dropdowngemini"]     resize set 1000 px 900 px
 for_window [app_id="dropdowntranslator"] resize set 1000 px 900 px
 
-bindsym $mod+colon     exec spawn_dropdown terminal
+bindsym $mod+semicolon exec spawn_dropdown terminal
 bindsym $mod+p         exec spawn_dropdown python
 bindsym XF86Calculator exec spawn_dropdown python
 bindsym $mod+t         exec spawn_dropdown translator
