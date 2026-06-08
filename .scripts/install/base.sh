@@ -100,6 +100,14 @@ echo "Setup wallpapers..."
 git clone https://gitlab.com/dwt1/wallpapers.git ~/.local/share/wallpapers
 sed "/dirs=/ s/$/\/home\/$USER\/.local\/share\/wallpapers;/" ~/.config/nitrogen/nitrogen.cfg -i
 
+echo "Setup dark mode (dconf, not tracked by dotfiles)..."
+# color-scheme is the freedesktop preference the xdg-desktop-portal Settings
+# portal reports to apps (Brave/Chromium, Firefox, Electron, GTK4) under sway.
+# It lives in ~/.config/dconf/user (binary), so it must be set here, not via a
+# settings.ini. gtk-theme keeps GTK apps on the dark Arc variant.
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme Arc-Carolina-blue-Dark
+
 echo "Install yazi..."
 sudo pacman -S yazi ffmpegthumbnailer unarchiver jq poppler fd ripgrep fzf zoxide
 
