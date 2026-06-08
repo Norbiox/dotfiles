@@ -11,7 +11,11 @@ export OPENER=rifle
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_STYLE_OVERRIDE=kvantum
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
-export DMENU_COMMAND='dmenu -i -h 22 -l 20 -fn "VictorMono-10.5:Bold"'
+# Launcher for third-party dmenu-style tools (dmenu-bluetooth, menu-pulse-sink).
+# Point them at our `menu` wrapper so they use wmenu on Wayland (native, opens
+# on the focused output, no XWayland hang) and dmenu on X11. The wrapper does
+# the runtime session detection + font/colours/line-count.
+export DMENU_COMMAND='menu'
 export DMENU_BLUETOOTH_LAUNCHER=$DMENU_COMMAND
 
 # Cursor settings

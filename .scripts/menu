@@ -1,9 +1,9 @@
 #!/bin/bash
-# Customized menu command: dmenu/wmenu depending on compositor
+# Customized menu command: dmenu (X11) / wmenu (Wayland).
 
 ## define the font for menu to be used
 dmenu_fn="CascadiaCode-11:Medium"
-wmenu_f="VictorMono-Medium 12"
+wmenu_f="Cascadia Code 11"
 ## background colour for unselected menu-items
 dmenu_nb="#282C34"
 ## textcolour for unselected menu-items
@@ -17,8 +17,25 @@ dmenu_lines=10
 
 # Pick dmenu if X11, wmenu if wayland
 if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
-  wmenu -i -f "$wmenu_f" -N $dmenu_nb -n $dmenu_nf -s $dmenu_sf -S $dmenu_sb -l 10 "$@"
+  # wmenu draws exactly -l rows, padding short lists with blank lines (unlike
+  # dmenu, which shrinks to fit). So buffer the input, size -l to the actual
+  # item count (capped), and drop any -l the caller passed — otherwise short
+  # menus like the browser picker show a stack of empty rows.
+  input="$(cat)"
+  lines=$(printf '%s\n' "$input" | grep -c '^')
+  [ "$lines" -gt 20 ] && lines=20
+  [ "$lines" -lt 1 ] && lines=1
+
+  # Strip any "-l N" from the caller's args so ours is the only one.
+  args=()
+  skip=0
+  for a in "$@"; do
+    if [ "$skip" = 1 ]; then skip=0; continue; fi
+    if [ "$a" = "-l" ]; then skip=1; continue; fi
+    args+=("$a")
+  done
+
+  printf '%s\n' "$input" | wmenu -i -f "$wmenu_f" -N $dmenu_nb -n $dmenu_nf -s $dmenu_sf -S $dmenu_sb -l "$lines" "${args[@]}"
 else
   dmenu -i -h 22 -fn $dmenu_fn -nb $dmenu_nb -nf $dmenu_nf -sf $dmenu_sf -sb $dmenu_sb -l $dmenu_lines "$@"
 fi
-
