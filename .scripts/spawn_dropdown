@@ -48,4 +48,19 @@ if ! $MSG -t get_tree | grep -q "\"$class\""; then
 	done
 fi
 
-$MSG "$CRIT scratchpad show, move position center"
+# Set the window size
+case "$1" in
+	files)      size="1700 900";;
+	gtd)        size="1000 900";;
+	news)       size="1000 900";;
+	notes)      size="1000 900";;
+	terminal)   size="1400 600";;
+	translator) size="1000 900";;
+	*)          size="";;
+esac
+
+if [ -n "$size" ]; then
+	$MSG "$CRIT scratchpad show, move position center, resize set ${size% *} px ${size#* } px"
+else
+	$MSG "$CRIT scratchpad show, move position center"
+fi

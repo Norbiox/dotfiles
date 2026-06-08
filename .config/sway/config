@@ -170,13 +170,7 @@ bindsym $mod1+Ctrl+p exec pamac-manager
 ################# Dropdowns (scratchpad)
 # Kitty is a native Wayland client, so match on app_id (not instance/class).
 for_window [app_id="^dropdown.*"] floating enable, sticky enable, move scratchpad
-for_window [app_id="dropdownfiles"]      resize set 1700 px 900 px
-for_window [app_id="dropdownnews"]       resize set 1000 px 900 px
-for_window [app_id="dropdownterminal"]   resize set 1400 px 600 px
-for_window [app_id="dropdownnotes"]      resize set 1000 px 900 px
-for_window [app_id="dropdowngtd"]        resize set 1000 px 900 px
-for_window [app_id="dropdowngemini"]     resize set 1000 px 900 px
-for_window [app_id="dropdowntranslator"] resize set 1000 px 900 px
+# spawn_dropdown script does the resizing now
 
 bindsym $mod+semicolon exec spawn_dropdown terminal
 bindsym $mod+p         exec spawn_dropdown python
