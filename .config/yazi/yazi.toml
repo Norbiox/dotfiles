@@ -20,6 +20,6 @@ zathura = [
 
 [open]
 prepend_rules = [
-  { name = "*.pdf", use = "zathura" },
-  { name = "*.html", use = [ "open", "edit" ]},
+  { url = "*.pdf", use = "zathura" },
+  { url = "*.html", use = [ "open", "edit" ]},
 ]
