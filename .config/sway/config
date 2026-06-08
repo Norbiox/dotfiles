@@ -133,17 +133,17 @@ exec xfce4-power-manager
 # flameshot autostart dropped: screenshots are on-demand via grim (see below).
 
 ################# Menus
-bindsym $mod1+Shift+colon  exec menu-recency
-bindsym $mod1+Shift+r      exec menu-radio
-bindsym $mod1+Shift+c      exec menu-configs
-bindsym $mod1+Shift+i      exec menu-idasen
-bindsym $mod1+Shift+s      exec menu-soundcore
-bindsym $mod1+Shift+w      exec menu-wacom
-bindsym $mod1+Shift+p      exec menu-powerprofile
-bindsym $mod1+Shift+b      exec dmenu-bluetooth
-bindsym $mod1+Shift+n      exec networkmanager_dmenu
-bindsym $mod1+Shift+e      exec menu-emoji
-bindsym $mod1+Shift+j      exec menu-jitsi
+bindsym $mod1+Shift+semicolon  exec menu-recency
+bindsym $mod1+Shift+r          exec menu-radio
+bindsym $mod1+Shift+c          exec menu-configs
+bindsym $mod1+Shift+i          exec menu-idasen
+bindsym $mod1+Shift+s          exec menu-soundcore
+bindsym $mod1+Shift+w          exec menu-wacom
+bindsym $mod1+Shift+p          exec menu-powerprofile
+bindsym $mod1+Shift+b          exec dmenu-bluetooth
+bindsym $mod1+Shift+n          exec networkmanager_dmenu
+bindsym $mod1+Shift+e          exec menu-emoji
+bindsym $mod1+Shift+j          exec menu-jitsi
 
 ################# Application shortcuts
 bindsym $mod+Return exec $TERMINAL_CMD
