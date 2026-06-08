@@ -192,6 +192,7 @@ bindsym $mod+c         exec spawn_dropdown gemini
 ################# Screenshots (scrot/flameshot replaced by grim/slurp)
 bindsym Print         exec screenshot full
 bindsym Control+Print exec screenshot area
+bindsym Shift+Print   exec screenshot copy
 
 ################# Reload / restart
 bindsym $mod1+Ctrl+r reload

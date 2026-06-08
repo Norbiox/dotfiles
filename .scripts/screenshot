@@ -3,6 +3,7 @@
 # Usage:
 #   screenshot full    -> whole screen saved to ~/Pictures
 #   screenshot area     -> interactive region selection, opens editor if available
+#   screenshot copy     -> interactive region copied to the clipboard (no file)
 #   screenshot          -> same as `area`
 
 mode="${1:-area}"
@@ -12,6 +13,7 @@ file="$dir/screenshot-$(date +%Y-%m-%d-%H%M%S).png"
 if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	case "$mode" in
 		full) grim "$file" && notify-send "Screenshot" "Saved $file" ;;
+		copy) grim -g "$(slurp)" - | wl-copy && notify-send "Screenshot" "Region copied to clipboard" ;;
 		area|*)
 			if command -v satty >/dev/null 2>&1; then
 				grim -g "$(slurp)" - | satty --filename - --output-filename "$file"
@@ -25,6 +27,7 @@ if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 else
 	case "$mode" in
 		full) scrot "$file" -e 'notify-send Screenshot "Saved $f"' ;;
+		copy) scrot -s - | xclip -selection clipboard -t image/png && notify-send "Screenshot" "Region copied to clipboard" ;;
 		area|*) flameshot gui ;;
 	esac
 fi
