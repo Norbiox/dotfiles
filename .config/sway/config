@@ -102,7 +102,7 @@ exec_always autotiling
 # so `notify-send` and app notifications work). dunst supports Wayland.
 # -offset overrides dunstrc's (0,22): on Wayland swaybar already reserves space
 # via its exclusive zone, so a small offset is enough (dunstrc stays at 22 for X).
-exec dunst -offset 0x4
+exec dunst
 
 # Clipboard history (xfce4-clipman replacement).
 exec wl-paste --watch cliphist store
