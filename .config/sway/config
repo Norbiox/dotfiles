@@ -64,6 +64,11 @@ seat * xcursor_theme Banana 48
 
 ################# Lock / idle / sleep
 bindsym $mod1+Escape exec lock
+
+# Define the mode variable BEFORE binding to it: sway substitutes variables
+# per-line, so referencing $mode_system before `set` bound to a nonexistent
+# mode and Alt+End did nothing.
+set $mode_system System loc(k), (l)ogout, s(u)spend, (h)ibernate, (r)eboot, (s)uspend, (Shift+s)hutdown
 bindsym $mod1+End mode "$mode_system"
 
 # xss-lock replacement: lock on idle and before sleep.
@@ -73,7 +78,6 @@ exec swayidle -w \
 	resume 'swaymsg "output * power on"' \
 	before-sleep 'lock'
 
-set $mode_system System loc(k), (l)ogout, s(u)spend, (h)ibernate, (r)eboot, (s)uspend, (Shift+s)hutdown
 mode "$mode_system" {
 	bindsym k exec i3exit.sh lock, mode "default"
 	bindsym u exec i3exit.sh switch_user, mode "default"
