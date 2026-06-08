@@ -47,9 +47,12 @@ bindsym $mod+Ctrl+s exec menu-autorandr
 ################# Input
 # numlockx replacement (numlockx needs X).
 input "type:keyboard" {
-	# Layout itself is set reliably via XKB_DEFAULT_LAYOUT=pl in ~/.profile
-	# (read by wlroots at startup; the `xkb_layout` directive here proved racy
-	# and didn't apply on fresh login / survive reloads). Kept for numlock.
+	# Polish layout set two ways for robustness:
+	#  - xkb_layout here -> applied on fresh login
+	#  - XKB_DEFAULT_LAYOUT=pl in ~/.profile -> the xkbcommon DEFAULT, which
+	#    survives `swaymsg reload` (reload doesn't re-apply this directive to
+	#    already-connected keyboards, but the env default still resolves to pl).
+	xkb_layout pl
 	xkb_numlock enabled
 }
 
