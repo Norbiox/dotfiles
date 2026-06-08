@@ -36,7 +36,10 @@ set $color15 #5C6370
 
 ################# Outputs / display layout
 # Handled by kanshi (~/.config/kanshi/config), the autorandr replacement.
-exec kanshi
+# exec_always (not exec) so a `swaymsg reload` — which resets outputs to sway's
+# default auto-arrangement — also restarts kanshi, which re-applies the profile.
+# Kill the old instance first; running two kanshi at once conflicts.
+exec_always "pkill -x kanshi; sleep 0.3; kanshi"
 
 # Menu for picking a screen-layout profile (kanshi-aware, see menu-screens).
 bindsym $mod+Ctrl+s exec menu-autorandr
@@ -44,6 +47,9 @@ bindsym $mod+Ctrl+s exec menu-autorandr
 ################# Input
 # numlockx replacement (numlockx needs X).
 input "type:keyboard" {
+	# Layout itself is set reliably via XKB_DEFAULT_LAYOUT=pl in ~/.profile
+	# (read by wlroots at startup; the `xkb_layout` directive here proved racy
+	# and didn't apply on fresh login / survive reloads). Kept for numlock.
 	xkb_numlock enabled
 }
 
@@ -81,6 +87,12 @@ mode "$mode_system" {
 ################# Autostart
 # Autotiling (same tool, works on sway).
 exec_always autotiling
+
+# Notification daemon (was D-Bus-activated under X; start it explicitly here
+# so `notify-send` and app notifications work). dunst supports Wayland.
+# -offset overrides dunstrc's (0,22): on Wayland swaybar already reserves space
+# via its exclusive zone, so a small offset is enough (dunstrc stays at 22 for X).
+exec dunst -offset 0x4
 
 # Clipboard history (xfce4-clipman replacement).
 exec wl-paste --watch cliphist store
@@ -282,6 +294,11 @@ default_border pixel 1
 default_floating_border pixel 2
 popup_during_fullscreen smart
 
+# Slim down the title bars shown on tabbed/stacked/split containers
+# (sway's default padding is chunkier than i3's looked).
+titlebar_padding 4 1
+titlebar_border_thickness 0
+
 for_window [class="^.*"] border pixel 1
 gaps inner 10
 gaps outer 0
@@ -335,7 +352,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 ################# Fonts
-font pango:Cascadia Code SemiBold 11
+# i3 used "xft:Cascadia Code SemiBold 14px"; 14px ~= 10.5pt in pango.
+font pango:Cascadia Code SemiBold 10.5
 
 ################# Bar
 bindsym $mod+m bar mode toggle

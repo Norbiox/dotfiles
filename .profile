@@ -18,6 +18,10 @@ export DMENU_BLUETOOTH_LAUNCHER=$DMENU_COMMAND
 export XCURSOR_SIZE=48
 export XCURSOR_THEME=Banana
 
+# Keyboard layout for Wayland/sway (wlroots reads this at startup; gives Polish
+# AltGr letters). Harmless under X11, which uses /etc/X11/xorg.conf.d instead.
+export XKB_DEFAULT_LAYOUT=pl
+
 # Source important files
 [[ -f ~/.thismachineonlyrc ]] && . ~/.thismachineonlyrc
 
