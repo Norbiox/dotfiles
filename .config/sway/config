@@ -88,6 +88,13 @@ mode "$mode_system" {
 }
 
 ################# Autostart
+# Export the session env into systemd --user and the D-Bus activation
+# environment FIRST. Without this, D-Bus-activated services (notably
+# xdg-desktop-portal{,-gtk}) start with no DISPLAY/WAYLAND_DISPLAY and die with
+# "cannot open display:" — which also breaks the Settings portal (dark mode).
+exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
+
 # Autotiling (same tool, works on sway).
 exec_always autotiling
 
