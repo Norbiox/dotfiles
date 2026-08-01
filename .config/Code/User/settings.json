@@ -31,7 +31,7 @@
             100
         ],
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnType": true,
         "testing.pytestEnabled": true
     },
@@ -101,7 +101,7 @@
     "prettier.printWidth": 1000,
     "problems.showCurrentInStatus": true,
     "python.analysis.autoImportCompletions": true,
-    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.typeCheckingMode": "strict",
     "python.analysis.userFileIndexingLimit": 10000,
     "python.formatting.blackArgs": [
         "-l",
@@ -165,6 +165,7 @@
         "<C-F>": false,
         "<C-G>": false,
         "<C-X>": false,
+        "<C-p>": false,
         "<C-d>": true
     },
     "vim.insertModeKeyBindings": [
@@ -256,7 +257,7 @@
     "workbench.reduceMotion": "on",
     "editor.guides.indentation": false,
     "cSpell.language": "en,pl,pl-PL",
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Atom One Dark",
     "editor.minimap.showSlider": "always",
     "editor.minimap.scale": 2,
     "editor.minimap.enabled": false,
@@ -297,5 +298,20 @@
         "100"
     ],
     "cloudcode.project": "bks-gemini-dev-eu-w1",
-    "cloudcode.duetAI.project": "bks-gemini-dev-eu-w1"
+    "cloudcode.duetAI.project": "bks-gemini-dev-eu-w1",
+    "redhat.telemetry.enabled": true,
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-21",
+            "path": "/usr/lib/jvm/java-21-openjdk",
+            "default": true
+        }
+    ],
+    "dart.flutterSdkPath": "/home/norbert/Dev/flutter",
+    "remote.SSH.remotePlatform": {
+        "192.168.0.109": "linux",
+        "192.168.0.115": "linux"
+    },
+    "augment.completions.enableAutomaticCompletions": true,
+    "database-client.autoSync": true
 }
