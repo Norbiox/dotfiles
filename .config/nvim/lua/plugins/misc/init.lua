@@ -7,4 +7,5 @@ return {
   require "plugins.misc.claude-code",
   require "plugins.misc.obsidian",
   require "plugins.misc.dap",
+  require "plugins.misc.flutter-tools",
 }

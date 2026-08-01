@@ -1,6 +1,6 @@
 -- Autocompletion
 return {
-  {
+{
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
@@ -112,6 +112,7 @@ return {
           })
         },
       }
+      require('plugins.completion.chordpro_cmp')
     end,
   },
 }
