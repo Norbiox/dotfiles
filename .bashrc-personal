@@ -298,5 +298,11 @@ eval "$(zoxide init bash)"
 # Mise setup
 eval "$(mise activate bash)"
 
+# Tidy up storage space
+alias tidyup='mcdu'
+
+# Setup fnox key file
+export FNOX_AGE_KEY_FILE=~/.ssh/id_ed25519
+
 # Tirith setup
 # eval "$(tirith init)"
