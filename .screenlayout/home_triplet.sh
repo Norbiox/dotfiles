@@ -17,5 +17,5 @@ xrandr \
 xrandr --setmonitor Triple auto DP2-1-8,DP2-2-8,DP2-3
 xrandr --fb 5760x1080
 
-xrandr \
+# xrandr \
 #   --output eDP1 --primary --mode 1920x1080 --pos 1920x1200 --rotate normal \
