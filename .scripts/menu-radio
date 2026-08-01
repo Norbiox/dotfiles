@@ -6,6 +6,7 @@ radio_stations[0 TURN OFF]=""
 radio_stations[1 PAUSE/RESUME]=""
 radio_stations[SEARCH YOUTUBE]=""
 radio_stations[BrainFM]=""
+radio_stations[YT Music]=""
 radio_stations[Radio Pielgrzym - pieśni]="http://shoutcast.com.pl:9444/"
 radio_stations[Radio Pielgrzym - kazania i reportaże]="http://shoutcast.com.pl:9448/"
 radio_stations[Radio Pielgrzym - kazania]="http://shoutcast.com.pl:9450/"
@@ -54,6 +55,10 @@ elif [[ "$chosen" == "SEARCH YOUTUBE" ]]; then
 elif [[ "$chosen" == "BrainFM" ]]; then
         notify-send "Starting BrainFM in browser app mode..."
         $BROWSER --app=https://my.brain.fm/
+
+elif [[ "$chosen" == "YT Music" ]]; then
+        notify-send "Starting YT Music in browser app mode..."
+        $BROWSER --app=https://music.youtube.com/
 
 elif [[ "${radio_stations[$chosen]}" != "" ]]; then
         echo "Turning radio $chosen..."
