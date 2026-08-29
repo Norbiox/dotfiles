@@ -8,5 +8,5 @@ if [ -n "$WAYLAND_DISPLAY" ] || [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	# omitted. Add them back only if you install swaylock-effects.
 	exec swaylock -f -c 282c34
 else
-	exec betterlockscreen -l dimblur -- --time-str="%H:%M"
+	exec betterlockscreen -l
 fi
