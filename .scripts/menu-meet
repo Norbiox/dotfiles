@@ -1,34 +1,10 @@
 #!/bin/bash
 
-declare -a profiles=(
-        "Brave"
-        "Google Chrome"
-        "Chromium"
-        "Firefox"
-        "Qutebrowser"
-)
-
 declare -a options=(
 "Main page"
 "New meeting"
 "Join a meeting (from clipboard)"
 )
-
-# Pick Brave Profile
-profile=$(printf '%s\n' "${profiles[@]}" | menu -i -l 20 -p "Pick Brave profile:")
-if [ "$profile" == "Brave" ]; then
-        browser="brave"
-elif [ "$profile" == "Google Chrome" ]; then
-        browser="google-chrome-stable"
-elif [ "$profile" == "Chromium" ]; then
-        browser="chromium"
-elif [ "$profile" == "Firefox" ]; then
-        browser="firefox"
-elif [ "$profile" == "Qutebrowser" ]; then
-        browser="qutebrowser"
-else
-        echo "Program terminated" && exit 1
-fi
 
 # Pick Google Meet option
 chosen=$(printf '%s\n' "${options[@]}" | menu -i -l 20 -p "Pick Google Meet option:")
@@ -50,4 +26,4 @@ else
         echo "Program terminated" && exit 1
 fi
 
-$browser --app="$link"
+brave --app="$link"
